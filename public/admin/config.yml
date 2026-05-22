@@ -2,16 +2,32 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "public/images/menu"
-public_folder: "/images/menu"
+media_folder: "public/uploads"
+public_folder: "/uploads"
 
 collections:
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "about"
+        label: "About & Contact"
+        file: "src/data/about.json"
+        fields:
+          - { label: "Restaurant Description", name: "description", widget: "text", hint: "Short tagline shown in the footer" }
+          - { label: "Location / Address", name: "location", widget: "string", hint: "e.g. Safdar Heights, Haripur" }
+          - { label: "Phone Number", name: "phone", widget: "string", hint: "e.g. +92 319 9921117 (displayed on site)" }
+          - { label: "WhatsApp Number", name: "whatsapp", widget: "string", hint: "Digits only, no spaces or + (e.g. 923199921117)" }
+          - { label: "Email Address", name: "email", widget: "string" }
+          - { label: "Opening Hours (display text)", name: "hours", widget: "string", hint: "e.g. Mon–Sat: 11am–11pm  |  Sun: 12pm–10pm" }
+          - { label: "Instagram URL", name: "instagram", widget: "string", hint: "Full URL e.g. https://instagram.com/lovengrill" }
+          - { label: "TikTok URL", name: "tiktok", widget: "string", hint: "Full URL e.g. https://www.tiktok.com/@lovengrill" }
+
   - name: "menu"
     label: "Menu"
     files:
       - name: "menu"
         label: "Menu Items"
-        file: "public/menu.json"
+        file: "src/data/menu.json"
         fields:
           - label: "Categories"
             name: "categories"
