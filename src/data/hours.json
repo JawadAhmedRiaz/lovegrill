@@ -1,0 +1,7 @@
+{
+  "schedule": [
+    { "days": "Mon–Sat", "opens": "11:00 AM", "closes": "11:00 PM" },
+    { "days": "Sunday",  "opens": "12:00 PM", "closes": "10:00 PM" }
+  ],
+  "notice": ""
+}

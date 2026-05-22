@@ -1,0 +1,41 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/menu"
+public_folder: "/images/menu"
+
+collections:
+  - name: "menu"
+    label: "Menu"
+    files:
+      - name: "menu"
+        label: "Menu Items"
+        file: "public/menu.json"
+        fields:
+          - label: "Categories"
+            name: "categories"
+            widget: "list"
+            fields:
+              - { label: "Category Name", name: "name", widget: "string" }
+              - { label: "Icon (emoji)", name: "icon", widget: "string" }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "ID", name: "id", widget: "string" }
+                  - { label: "Item Name", name: "name", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
+                  - { label: "Image", name: "image", widget: "image", required: false, hint: "Upload a photo of this menu item" }
+                  - { label: "Price (Rs)", name: "price", widget: "number", required: false }
+                  - { label: "Price Prefix (e.g. From, Starting)", name: "pricePrefix", widget: "string", required: false }
+                  - { label: "Tag", name: "tag", widget: "string", required: false }
+                  - { label: "Popular?", name: "popular", widget: "boolean", default: false }
+                  - { label: "Spicy?", name: "spicy", widget: "boolean", default: false }
+                  - label: "Variants (sizes/portions)"
+                    name: "variants"
+                    widget: "list"
+                    required: false
+                    fields:
+                      - { label: "Label (e.g. Small, Medium, 6 Pcs)", name: "label", widget: "string" }
+                      - { label: "Price (Rs)", name: "price", widget: "number" }

@@ -1,0 +1,1403 @@
+{
+  "categories": [
+    {
+      "name": "Pizzas",
+      "icon": "\ud83c\udf55",
+      "items": [
+        {
+          "id": "pz-ctiva",
+          "name": "Chicken Tiva",
+          "desc": "Freshly made every day with premium chicken toppings.",
+          "tag": "Classic",
+          "popular": true,
+          "spicy": false,
+          "variants": [
+            {
+              "label": "Small",
+              "price": 810
+            },
+            {
+              "label": "Medium",
+              "price": 1210
+            },
+            {
+              "label": "Large",
+              "price": 1760
+            },
+            {
+              "label": "XL",
+              "price": 2299
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "pz-cfajita",
+          "name": "Chicken Fajita",
+          "desc": "Classic fajita flavours on a fresh pizza base.",
+          "tag": "Classic",
+          "popular": false,
+          "spicy": true,
+          "variants": [
+            {
+              "label": "Small",
+              "price": 810
+            },
+            {
+              "label": "Medium",
+              "price": 1210
+            },
+            {
+              "label": "Large",
+              "price": 1760
+            },
+            {
+              "label": "XL",
+              "price": 2299
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "pz-cgold",
+          "name": "Cheese Gold",
+          "desc": "Only cheese inside \u2014 pure golden cheesy bliss.",
+          "tag": "Cheese Lover",
+          "popular": false,
+          "spicy": false,
+          "variants": [
+            {
+              "label": "Small",
+              "price": 810
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "pz-hotspicy",
+          "name": "Hot & Spicy",
+          "desc": "Fiery spice blend on a crispy base for heat lovers.",
+          "tag": "Spicy",
+          "popular": false,
+          "spicy": true,
+          "variants": [
+            {
+              "label": "Small",
+              "price": 810
+            },
+            {
+              "label": "Medium",
+              "price": 1210
+            },
+            {
+              "label": "Large",
+              "price": 1760
+            },
+            {
+              "label": "XL",
+              "price": 1999
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "pz-periperi",
+          "name": "Peri-Peri",
+          "desc": "Tangy peri-peri sauce with juicy chicken bites.",
+          "tag": "Spicy",
+          "popular": true,
+          "spicy": true,
+          "variants": [
+            {
+              "label": "Small",
+              "price": 860
+            },
+            {
+              "label": "Medium",
+              "price": 1260
+            },
+            {
+              "label": "Large",
+              "price": 1860
+            },
+            {
+              "label": "XL",
+              "price": 1750
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "pz-csupreme",
+          "name": "Chicken Supreme",
+          "desc": "Loaded supreme pizza with generous chicken topping.",
+          "tag": "Premium",
+          "popular": false,
+          "spicy": false,
+          "variants": [
+            {
+              "label": "Small",
+              "price": 860
+            },
+            {
+              "label": "Medium",
+              "price": 1260
+            },
+            {
+              "label": "Large",
+              "price": 1860
+            },
+            {
+              "label": "XL",
+              "price": 2250
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "pz-kebabstuff",
+          "name": "Kebab-Stuff",
+          "desc": "Stuffed with spiced kebab filling and melted cheese.",
+          "tag": "Special",
+          "popular": false,
+          "spicy": true,
+          "variants": [
+            {
+              "label": "Medium",
+              "price": 1360
+            },
+            {
+              "label": "Large",
+              "price": 1960
+            },
+            {
+              "label": "XL",
+              "price": 2399
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "pz-beef",
+          "name": "Beef Pizza",
+          "desc": "Rich seasoned beef with mozzarella on a hand-tossed base.",
+          "tag": "Special",
+          "popular": false,
+          "spicy": false,
+          "variants": [
+            {
+              "label": "Medium",
+              "price": 1360
+            },
+            {
+              "label": "Large",
+              "price": 1960
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "pz-legendmuglai",
+          "name": "Legend Muglai",
+          "desc": "Mughlai spiced toppings with aromatic herbs and cheese.",
+          "tag": "Special",
+          "popular": true,
+          "spicy": true,
+          "variants": [
+            {
+              "label": "Medium",
+              "price": 1360
+            },
+            {
+              "label": "Large",
+              "price": 1960
+            },
+            {
+              "label": "XL",
+              "price": 2399
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "pz-place",
+          "name": "Pizza Place",
+          "desc": "Our signature house pizza \u2014 a true crowd pleaser.",
+          "tag": "House Favourite",
+          "popular": true,
+          "spicy": false,
+          "variants": [
+            {
+              "label": "Medium",
+              "price": 1360
+            },
+            {
+              "label": "Large",
+              "price": 1960
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "pz-crown",
+          "name": "Crown-Crust",
+          "desc": "Crown crust stuffed with cheese for a royal treat.",
+          "tag": "Special",
+          "popular": false,
+          "spicy": false,
+          "variants": [
+            {
+              "label": "Medium",
+              "price": 1360
+            },
+            {
+              "label": "Large",
+              "price": 1960
+            },
+            {
+              "label": "XL",
+              "price": 2399
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "pz-pizzasta",
+          "name": "Pizzasta",
+          "desc": "A unique fusion of pizza and pasta flavours in every bite.",
+          "tag": "Fusion",
+          "popular": false,
+          "spicy": false,
+          "variants": [
+            {
+              "label": "Medium",
+              "price": 1360
+            },
+            {
+              "label": "Large",
+              "price": 1960
+            }
+          ],
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Beef Burgers",
+      "icon": "\ud83c\udf54",
+      "items": [
+        {
+          "id": "bb-bbg",
+          "name": "BBG Beef (Special)",
+          "desc": "Our special BBG beef burger \u2014 bold, juicy, unforgettable.",
+          "price": 1199,
+          "tag": "Chef's Special",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "bb-grill",
+          "name": "Grill Beef Burger",
+          "desc": "Flame-grilled beef patty with fresh toppings.",
+          "price": 760,
+          "tag": "Grilled",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "bb-mushroom",
+          "name": "Beef Mushroom",
+          "desc": "Juicy beef with saut\u00e9ed mushrooms and creamy sauce.",
+          "price": 760,
+          "tag": "Classic",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "bb-jalapeno",
+          "name": "Beef Jalape\u00f1o",
+          "desc": "Beef patty loaded with jalape\u00f1os and spicy sauce.",
+          "price": 760,
+          "tag": "Spicy",
+          "popular": false,
+          "spicy": true,
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Chicken Burgers",
+      "icon": "\ud83c\udf57",
+      "items": [
+        {
+          "id": "cb-fillet",
+          "name": "Fillet Burger",
+          "desc": "Crispy chicken fillet with BBQ sauce on a toasted bun.",
+          "price": 599,
+          "tag": "BBQ Sauce",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "cb-thunder",
+          "name": "Classic Thunder",
+          "desc": "Double smash patty, aged cheddar, tangy pickles, toasted sesame bun.",
+          "price": 599,
+          "tag": "Best Seller",
+          "popular": true,
+          "spicy": true,
+          "image": ""
+        },
+        {
+          "id": "cb-zinger",
+          "name": "Zinger",
+          "desc": "Spicy crispy zinger chicken in a soft bun with mayo.",
+          "price": 520,
+          "tag": "Hot Pick",
+          "popular": false,
+          "spicy": true,
+          "image": ""
+        },
+        {
+          "id": "cb-double",
+          "name": "Double Degger",
+          "desc": "Double-stacked chicken degger burger for big appetites.",
+          "price": 750,
+          "tag": "Double",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "cb-crispo",
+          "name": "Crispo Burger",
+          "desc": "Ultra-crispy chicken with signature crispo seasoning.",
+          "price": 460,
+          "tag": "Crunchy",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "cb-kids",
+          "name": "Kid's Burger",
+          "desc": "A smaller, milder burger perfect for the little ones.",
+          "price": 460,
+          "tag": "Kids",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "cb-fish",
+          "name": "Fish Burger",
+          "desc": "Crispy battered fish fillet with tartar sauce.",
+          "price": 760,
+          "tag": "Seafood",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Wraps",
+      "icon": "\ud83c\udf2f",
+      "items": [
+        {
+          "id": "wr-twister",
+          "name": "Twister Wrap",
+          "desc": "Crispy chicken twisted in a soft tortilla with fresh veggies.",
+          "price": 499,
+          "tag": "Classic",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "wr-crunchy",
+          "name": "Crunchy Wrap",
+          "desc": "Extra crunchy filling wrapped in a warm toasted tortilla.",
+          "price": 550,
+          "tag": "Crunchy",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "wr-lovegrill",
+          "name": "Love N' Grill",
+          "desc": "Special grilled wrap bursting with smoky flavours.",
+          "price": 599,
+          "tag": "Special Wrap",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "wr-bbqcheese",
+          "name": "BBQ Cheese Wrap",
+          "desc": "Cheesy BBQ chicken wrapped and toasted to perfection.",
+          "price": 550,
+          "tag": "Cheesy",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "wr-tikka",
+          "name": "Tikka Roll Paratha",
+          "desc": "Spiced tikka chicken rolled in a flaky soft paratha.",
+          "price": 399,
+          "tag": "Desi",
+          "popular": true,
+          "spicy": true,
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Wings",
+      "icon": "\ud83c\udf57",
+      "items": [
+        {
+          "id": "wg-crispo",
+          "name": "Crispo Wings",
+          "desc": "Ultra-crispy fried wings with our signature crispo seasoning.",
+          "tag": "Crispy",
+          "popular": true,
+          "spicy": false,
+          "variants": [
+            {
+              "label": "6 Pcs",
+              "price": 499
+            },
+            {
+              "label": "12 Pcs",
+              "price": 850
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "wg-bbq",
+          "name": "BBQ Wings",
+          "desc": "Smoky BBQ glazed wings cooked to sticky perfection.",
+          "tag": "BBQ",
+          "popular": false,
+          "spicy": false,
+          "variants": [
+            {
+              "label": "6 Pcs",
+              "price": 499
+            },
+            {
+              "label": "12 Pcs",
+              "price": 899
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "wg-oven",
+          "name": "Oven Baked Wings",
+          "desc": "Healthier oven-baked wings with a tender juicy inside.",
+          "tag": "Baked",
+          "popular": false,
+          "spicy": false,
+          "variants": [
+            {
+              "label": "6 Pcs",
+              "price": 450
+            },
+            {
+              "label": "12 Pcs",
+              "price": 850
+            }
+          ],
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Fries",
+      "icon": "\ud83c\udf5f",
+      "items": [
+        {
+          "id": "fr-plain",
+          "name": "Plain Fries",
+          "desc": "Classic golden crispy fries salted to perfection.",
+          "tag": "Classic",
+          "popular": false,
+          "spicy": false,
+          "variants": [
+            {
+              "label": "Med",
+              "price": 349
+            },
+            {
+              "label": "Family",
+              "price": 450
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "fr-masala",
+          "name": "Masala Fries",
+          "desc": "Golden fries tossed in our special masala spice blend.",
+          "tag": "Spiced",
+          "popular": true,
+          "spicy": true,
+          "variants": [
+            {
+              "label": "Med",
+              "price": 399
+            },
+            {
+              "label": "Family",
+              "price": 499
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "fr-mayo",
+          "name": "Mayo Fries",
+          "desc": "Crispy fries drizzled with creamy garlic mayo.",
+          "tag": "Creamy",
+          "popular": false,
+          "spicy": false,
+          "variants": [
+            {
+              "label": "Med",
+              "price": 449
+            },
+            {
+              "label": "Family",
+              "price": 549
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "fr-loaded",
+          "name": "Loaded Fries",
+          "desc": "Fully loaded fries with toppings, sauce and cheese.",
+          "price": 649,
+          "tag": "Loaded",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Nuggets & Shots",
+      "icon": "\ud83c\udf57",
+      "items": [
+        {
+          "id": "ng-6",
+          "name": "Nuggets 6 Pcs",
+          "desc": "Golden crispy chicken nuggets \u2014 a timeless classic.",
+          "price": 449,
+          "tag": "Classic",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "ng-12",
+          "name": "Nuggets 12 Pcs",
+          "desc": "Double the nuggets, double the fun.",
+          "price": 899,
+          "tag": "Family",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "hs-6",
+          "name": "Hot Shot 6 Pcs",
+          "desc": "Spicy hot shots with a fiery crunch.",
+          "price": 599,
+          "tag": "Hot",
+          "popular": false,
+          "spicy": true,
+          "image": ""
+        },
+        {
+          "id": "hs-12",
+          "name": "Hot Shot 12 Pcs",
+          "desc": "Go big with a dozen fiery hot shots.",
+          "price": 750,
+          "tag": "Hot",
+          "popular": true,
+          "spicy": true,
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Broast",
+      "icon": "\ud83c\udf56",
+      "items": [
+        {
+          "id": "br-inj2",
+          "name": "Injected Broast 2 Pcs",
+          "desc": "Flavour-injected deep-fried broast, juicy and crispy.",
+          "price": 720,
+          "tag": "Classic",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "br-inj3",
+          "name": "Injected Broast 3 Pcs",
+          "desc": "Flavour-injected broast for a hearty meal.",
+          "price": 899,
+          "tag": "Classic",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "br-inj5",
+          "name": "Injected Broast 5 Pcs",
+          "desc": "Family-sized injected broast platter.",
+          "price": 1499,
+          "tag": "Family",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "br-jal1",
+          "name": "Jalape\u00f1o Broast 1 Pc",
+          "desc": "Spicy jalape\u00f1o-marinated broast, crispy and fiery.",
+          "price": 720,
+          "tag": "Spicy",
+          "popular": false,
+          "spicy": true,
+          "image": ""
+        },
+        {
+          "id": "br-jal3",
+          "name": "Jalape\u00f1o Broast 3 Pcs",
+          "desc": "3 pieces of spicy jalape\u00f1o broast.",
+          "price": 899,
+          "tag": "Spicy",
+          "popular": false,
+          "spicy": true,
+          "image": ""
+        },
+        {
+          "id": "br-jal5",
+          "name": "Jalape\u00f1o Broast 5 Pcs",
+          "desc": "5-piece jalape\u00f1o broast platter for spice lovers.",
+          "price": 1499,
+          "tag": "Spicy",
+          "popular": false,
+          "spicy": true,
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Fish Meal",
+      "icon": "\ud83d\udc1f",
+      "items": [
+        {
+          "id": "fm-fillet",
+          "name": "Fish Fillet",
+          "desc": "Crispy golden fish fillet served with fries and a chilled drink.",
+          "price": 1850,
+          "tag": "Combo",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Pasta",
+      "icon": "\ud83c\udf5d",
+      "items": [
+        {
+          "id": "pa-alfredo",
+          "name": "Alfredo Pasta",
+          "desc": "Creamy classic Alfredo sauce tossed with perfectly cooked pasta.",
+          "price": 999,
+          "tag": "Creamy",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "pa-rich",
+          "name": "Rich Creamy Pasta",
+          "desc": "Indulgently rich and creamy pasta with herbs.",
+          "price": 899,
+          "tag": "Rich",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "pa-crunchy",
+          "name": "Crunchy Pasta",
+          "desc": "Pasta with a delightful crunchy topping and tangy sauce.",
+          "price": 899,
+          "tag": "Unique",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Rice",
+      "icon": "\ud83c\udf5a",
+      "items": [
+        {
+          "id": "ri-plain",
+          "name": "Plain Rice",
+          "desc": "Fluffy steamed plain rice, perfect as a side.",
+          "price": 449,
+          "tag": "Side",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "ri-garlic",
+          "name": "Garlic Rice",
+          "desc": "Aromatic garlic-infused rice with a rich buttery flavour.",
+          "price": 449,
+          "tag": "Aromatic",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "ri-egg",
+          "name": "Egg Fried Rice",
+          "desc": "Wok-fried rice with scrambled eggs and seasoning.",
+          "price": 499,
+          "tag": "Wok Fried",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "ri-masala",
+          "name": "Masala Rice",
+          "desc": "Spiced masala rice packed with flavour and aroma.",
+          "price": 499,
+          "tag": "Spiced",
+          "popular": false,
+          "spicy": true,
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Noodles",
+      "icon": "\ud83c\udf5c",
+      "items": [
+        {
+          "id": "nd-chicken",
+          "name": "Chicken Chomins",
+          "desc": "Stir-fried noodles with tender chicken and fresh veggies.",
+          "price": 899,
+          "tag": "Popular",
+          "popular": true,
+          "spicy": true,
+          "image": ""
+        },
+        {
+          "id": "nd-veg",
+          "name": "Vegetable Chomins",
+          "desc": "Stir-fried noodles loaded with fresh colourful vegetables.",
+          "price": 799,
+          "tag": "Veggie",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Soups",
+      "icon": "\ud83e\udd63",
+      "items": [
+        {
+          "id": "sp-corn",
+          "name": "Corn Soup",
+          "desc": "Sweet and savoury corn soup, warm and comforting.",
+          "tag": "Warm",
+          "popular": false,
+          "spicy": false,
+          "variants": [
+            {
+              "label": "Med",
+              "price": 399
+            },
+            {
+              "label": "Family",
+              "price": 999
+            }
+          ],
+          "image": ""
+        },
+        {
+          "id": "sp-special",
+          "name": "Special Soup",
+          "desc": "Chef's special soup loaded with chicken and fresh vegetables.",
+          "tag": "Chef's Special",
+          "popular": true,
+          "spicy": false,
+          "variants": [
+            {
+              "label": "Med",
+              "price": 499
+            },
+            {
+              "label": "Family",
+              "price": 1350
+            }
+          ],
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Drinks",
+      "icon": "\ud83e\udd64",
+      "items": [
+        {
+          "id": "dr-americano-hot",
+          "name": "Americano (Hot)",
+          "desc": "Classic rich espresso with hot water \u2014 bold and smooth.",
+          "variants": [
+            {
+              "label": "Regular",
+              "price": 350
+            },
+            {
+              "label": "Large",
+              "price": 399
+            }
+          ],
+          "tag": "Hot Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-latte-hot",
+          "name": "Latte (Hot)",
+          "desc": "Espresso with steamed milk \u2014 creamy and comforting.",
+          "variants": [
+            {
+              "label": "Regular",
+              "price": 399
+            },
+            {
+              "label": "Large",
+              "price": 399
+            }
+          ],
+          "tag": "Hot Coffee",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-cappuccino",
+          "name": "Cappuccino",
+          "desc": "Espresso topped with thick frothy milk foam.",
+          "variants": [
+            {
+              "label": "Regular",
+              "price": 399
+            },
+            {
+              "label": "Large",
+              "price": 399
+            }
+          ],
+          "tag": "Hot Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-espresso",
+          "name": "Espresso",
+          "desc": "Pure concentrated espresso shot \u2014 intense and rich.",
+          "variants": [
+            {
+              "label": "Regular",
+              "price": 399
+            }
+          ],
+          "tag": "Hot Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-icelatte",
+          "name": "Ice Latte",
+          "desc": "Chilled espresso with milk and ice \u2014 refreshing pick-me-up.",
+          "price": 550,
+          "tag": "Cold Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-icelatte-flavor",
+          "name": "Ice Latte (Flavoured)",
+          "desc": "Ice latte with caramel, vanilla, or hazelnut flavour.",
+          "price": 497,
+          "tag": "Cold Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-feppachino",
+          "name": "Feppachino",
+          "desc": "Our signature blended cold coffee \u2014 creamy and indulgent.",
+          "price": 399,
+          "tag": "Cold Coffee",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-freddo",
+          "name": "Freddo Espresso",
+          "desc": "Cold Greek-style shaken espresso over ice.",
+          "price": 399,
+          "tag": "Cold Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-americano-cold",
+          "name": "Ice Americano / Black",
+          "desc": "Cold brew black coffee \u2014 bold and refreshing.",
+          "price": 350,
+          "tag": "Cold Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-mintmarg",
+          "name": "Mint Margarita",
+          "desc": "Tangy fresh mint margarita mocktail.",
+          "price": 299,
+          "tag": "Bar Section",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-bubble",
+          "name": "Bubble Tea",
+          "desc": "Pineapple, blueberry, peach, mango, green apple, redbull flavours.",
+          "price": 450,
+          "tag": "Bar Section",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-milkbubble",
+          "name": "Milk Bubble Tea",
+          "desc": "Taro, banana, coconut, blueberry, mango, strawberry, chocolate.",
+          "price": 599,
+          "tag": "Bar Section",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-chillers",
+          "name": "Chillers",
+          "desc": "Blueberry, mango, red grapefruit, raspberry.",
+          "price": 420,
+          "tag": "Bar Section",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-icecream-shake",
+          "name": "Ice-Cream Shakes",
+          "desc": "Mango, strawberry, chocolate, vanilla, pista.",
+          "price": 550,
+          "tag": "Bar Section",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Ice Cream",
+      "icon": "\ud83c\udf66",
+      "items": [
+        {
+          "id": "ic-vanilla",
+          "name": "Vanilla",
+          "desc": "Classic creamy vanilla scoop.",
+          "variants": [
+            {
+              "label": "Single",
+              "price": 120
+            },
+            {
+              "label": "Double",
+              "price": 200
+            },
+            {
+              "label": "Triple",
+              "price": 300
+            }
+          ],
+          "tag": "Classic",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "ic-strawberry",
+          "name": "Strawberry",
+          "desc": "Fresh strawberry flavour ice cream.",
+          "variants": [
+            {
+              "label": "Single",
+              "price": 120
+            },
+            {
+              "label": "Double",
+              "price": 200
+            },
+            {
+              "label": "Triple",
+              "price": 300
+            }
+          ],
+          "tag": "Fruity",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "ic-mango",
+          "name": "Mango",
+          "desc": "Sweet tropical mango ice cream.",
+          "variants": [
+            {
+              "label": "Single",
+              "price": 120
+            },
+            {
+              "label": "Double",
+              "price": 200
+            },
+            {
+              "label": "Triple",
+              "price": 300
+            }
+          ],
+          "tag": "Fruity",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "ic-chocolate",
+          "name": "Chocolate",
+          "desc": "Rich dark chocolate ice cream.",
+          "variants": [
+            {
+              "label": "Single",
+              "price": 120
+            },
+            {
+              "label": "Double",
+              "price": 200
+            },
+            {
+              "label": "Triple",
+              "price": 300
+            }
+          ],
+          "tag": "Classic",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "ic-caramel",
+          "name": "Caramel",
+          "desc": "Buttery smooth caramel ice cream.",
+          "variants": [
+            {
+              "label": "Single",
+              "price": 120
+            },
+            {
+              "label": "Double",
+              "price": 200
+            },
+            {
+              "label": "Triple",
+              "price": 300
+            }
+          ],
+          "tag": "Sweet",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "ic-pista",
+          "name": "Pista",
+          "desc": "Pistachio flavoured premium ice cream.",
+          "variants": [
+            {
+              "label": "Single",
+              "price": 120
+            },
+            {
+              "label": "Double",
+              "price": 200
+            },
+            {
+              "label": "Triple",
+              "price": 300
+            }
+          ],
+          "tag": "Premium",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "ic-cheesecake",
+          "name": "S. Cheese Cake",
+          "desc": "Strawberry cheesecake flavoured ice cream.",
+          "variants": [
+            {
+              "label": "Single",
+              "price": 150
+            },
+            {
+              "label": "Double",
+              "price": 299
+            },
+            {
+              "label": "Triple",
+              "price": 420
+            }
+          ],
+          "tag": "Special",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "ic-butterscotch",
+          "name": "Butter Scotch",
+          "desc": "Classic butterscotch crunch ice cream.",
+          "variants": [
+            {
+              "label": "Single",
+              "price": 150
+            },
+            {
+              "label": "Double",
+              "price": 299
+            },
+            {
+              "label": "Triple",
+              "price": 420
+            }
+          ],
+          "tag": "Classic",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "ic-cotton",
+          "name": "Cotton Candy",
+          "desc": "Fun and fluffy cotton candy flavour.",
+          "variants": [
+            {
+              "label": "Single",
+              "price": 150
+            },
+            {
+              "label": "Double",
+              "price": 299
+            },
+            {
+              "label": "Triple",
+              "price": 420
+            }
+          ],
+          "tag": "Fun",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Desserts",
+      "icon": "\ud83e\uddc7",
+      "items": [
+        {
+          "id": "ds-waffle",
+          "name": "Bubble Waffle",
+          "desc": "Vanilla, Chocolate, Pista, caramel, strawberry, kulfa, butterscotch, cottoncandy, strawberry cheese cake flavours. Add 120 for extra scoop.",
+          "price": 650,
+          "tag": "Signature",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        }
+      ]
+    },
+    {
+      "name": "Deals",
+      "icon": "\ud83c\udf81",
+      "items": [
+        {
+          "id": "dl-student1",
+          "name": "Student Deal \u2014 Pizza",
+          "desc": "1 Medium Pizza with 2NR drink.",
+          "price": 1250,
+          "tag": "Student",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dl-student2",
+          "name": "Student Deal \u2014 Burger",
+          "desc": "2 Zinger Burgers with 2NR drink.",
+          "price": 1099,
+          "tag": "Student",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dl-doctor",
+          "name": "Doctor Deal",
+          "desc": "1 Large Pizza with 1L drink.",
+          "price": 1700,
+          "tag": "Solo",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dl-pkaustria",
+          "name": "Pak Austria Deal",
+          "desc": "2 Tikka Rolls, 1 Medium Pizzasta, 1L Drink.",
+          "price": 1999,
+          "tag": "Value",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dl-uoh",
+          "name": "University of Haripur Deal",
+          "desc": "2 Zinger Burgers, Medium Pizzasta, 1L Drink.",
+          "price": 2299,
+          "tag": "Value",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dl-haripur",
+          "name": "Haripur Deal",
+          "desc": "1 Tikka Roll Paratha, 6 Wings Oven Baked, 1 Medium Beef Pizza, BBQ Cheese Wrap, 1L Drink.",
+          "price": 2650,
+          "tag": "Combo",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dl-lawyers",
+          "name": "Lawyers Deal",
+          "desc": "1 Medium Pizzasta, Tikka Roll Paratha, 6 Crispo Wings, 1L Drink.",
+          "price": 2150,
+          "tag": "Combo",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dl-party",
+          "name": "Party Deal",
+          "desc": "2 Large Pizzas, 6 Wings Oven Baked, 6 Crispo Wings, 2 Classic Thunder Burgers, 2 Zinger Burgers, 3 Tikka Roll Paratha, 1.5L Drink.",
+          "price": 7199,
+          "tag": "Party",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dl-yari",
+          "name": "Yari Deal",
+          "desc": "1 Med Pizza, 2 Pcs Chicken Broast, 1L Drink.",
+          "price": 1880,
+          "tag": "Friends",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dl-pagal",
+          "name": "Pagal Deal",
+          "desc": "1 Med Pizza, 1 Zinger Burger, Reg Fries, 1L Drink.",
+          "price": 2050,
+          "tag": "Value",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dl-kids",
+          "name": "Kids Deal",
+          "desc": "1 Crispo Patty, 3 Nuggets, Fries, Juice.",
+          "price": 799,
+          "tag": "Kids",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        }
+      ]
+    }
+  ]
+}
