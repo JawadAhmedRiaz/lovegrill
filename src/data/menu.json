@@ -56,7 +56,7 @@
               "price": 2299
             }
           ],
-          "image": ""
+          "image": "/uploads/chicken-fajita.jpg"
         },
         {
           "id": "pz-cgold",
@@ -71,7 +71,7 @@
               "price": 810
             }
           ],
-          "image": "/uploads/chicken-fajita.jpg"
+          "image": "/uploads/cheese-gold1.jpg"
         },
         {
           "id": "pz-hotspicy",
@@ -125,7 +125,7 @@
               "price": 1750
             }
           ],
-          "image": ""
+          "image": "/uploads/peri-peri.jpg"
         },
         {
           "id": "pz-csupreme",
@@ -152,7 +152,7 @@
               "price": 2250
             }
           ],
-          "image": ""
+          "image": "/uploads/chicken-supreme.jpg"
         },
         {
           "id": "pz-kebabstuff",
@@ -175,7 +175,7 @@
               "price": 2399
             }
           ],
-          "image": ""
+          "image": "/uploads/kebab-stuff.jpg"
         },
         {
           "id": "pz-beef",
@@ -194,7 +194,7 @@
               "price": 1960
             }
           ],
-          "image": ""
+          "image": "/uploads/beef-pizza.jpg"
         },
         {
           "id": "pz-legendmuglai",
@@ -217,7 +217,7 @@
               "price": 2399
             }
           ],
-          "image": ""
+          "image": "/uploads/mughlai-pizza.jpg"
         },
         {
           "id": "pz-place",
@@ -236,7 +236,7 @@
               "price": 1960
             }
           ],
-          "image": ""
+          "image": "/uploads/pizza-place.jpg"
         },
         {
           "id": "pz-crown",
@@ -259,7 +259,7 @@
               "price": 2399
             }
           ],
-          "image": ""
+          "image": "/uploads/crown-crust.jpg"
         },
         {
           "id": "pz-pizzasta",
@@ -278,7 +278,7 @@
               "price": 1960
             }
           ],
-          "image": ""
+          "image": "/uploads/pizzasta.jpg.jpeg"
         }
       ]
     },
@@ -294,7 +294,7 @@
           "tag": "Chef's Special",
           "popular": true,
           "spicy": false,
-          "image": "https://www.shutterstock.com/image-photo/fresh-tasty-burger-on-black-600nw-334280822.jpg"
+          "image": "/uploads/bbg-burger.jpeg"
         },
         {
           "id": "bb-grill",
@@ -304,7 +304,7 @@
           "tag": "Grilled",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/grill-beef-burger.jpeg"
         },
         {
           "id": "bb-mushroom",
@@ -314,7 +314,7 @@
           "tag": "Classic",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/beef-mashroom-burger.jpeg"
         },
         {
           "id": "bb-jalapeno",
@@ -324,7 +324,7 @@
           "tag": "Spicy",
           "popular": false,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/beef-jalapeno.jpeg"
         }
       ]
     },
@@ -654,7 +654,7 @@
           "tag": "Classic",
           "popular": false,
           "spicy": false,
-          "image": "/uploads/injected-broast-2pcs.jpeg"
+          "image": ""
         },
         {
           "id": "br-inj3",
@@ -1279,7 +1279,7 @@
           "tag": "Signature",
           "popular": true,
           "spicy": false,
-          "image": "/uploads/bubble-tea.jpeg"
+          "image": ""
         }
       ]
     },
