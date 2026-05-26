@@ -56,7 +56,7 @@
               "price": 2299
             }
           ],
-          "image": ""
+          "image": "/uploads/chicken-fajita.jpg"
         },
         {
           "id": "pz-cgold",
@@ -71,7 +71,7 @@
               "price": 810
             }
           ],
-          "image": ""
+          "image": "/uploads/cheese-gold1.jpg"
         },
         {
           "id": "pz-hotspicy",
@@ -98,7 +98,7 @@
               "price": 1999
             }
           ],
-          "image": ""
+          "image": "/uploads/hot-spicy.jpg"
         },
         {
           "id": "pz-periperi",
@@ -125,7 +125,7 @@
               "price": 1750
             }
           ],
-          "image": ""
+          "image": "/uploads/peri-peri.jpg"
         },
         {
           "id": "pz-csupreme",
@@ -152,7 +152,7 @@
               "price": 2250
             }
           ],
-          "image": ""
+          "image": "/uploads/chicken-supreme.jpg"
         },
         {
           "id": "pz-kebabstuff",
@@ -175,7 +175,7 @@
               "price": 2399
             }
           ],
-          "image": ""
+          "image": "/uploads/kebab-stuff.jpg"
         },
         {
           "id": "pz-beef",
@@ -194,7 +194,7 @@
               "price": 1960
             }
           ],
-          "image": ""
+          "image": "/uploads/beef-pizza.jpg"
         },
         {
           "id": "pz-legendmuglai",
@@ -217,7 +217,7 @@
               "price": 2399
             }
           ],
-          "image": ""
+          "image": "/uploads/mughlai-pizza.jpg"
         },
         {
           "id": "pz-place",
@@ -236,7 +236,7 @@
               "price": 1960
             }
           ],
-          "image": ""
+          "image": "/uploads/pizza-place.jpg"
         },
         {
           "id": "pz-crown",
@@ -259,7 +259,7 @@
               "price": 2399
             }
           ],
-          "image": ""
+          "image": "/uploads/crown-crust.jpg"
         },
         {
           "id": "pz-pizzasta",
@@ -278,7 +278,7 @@
               "price": 1960
             }
           ],
-          "image": ""
+          "image": "/uploads/pizzasta.jpg.jpeg"
         }
       ]
     },
@@ -294,7 +294,7 @@
           "tag": "Chef's Special",
           "popular": true,
           "spicy": false,
-          "image": "https://www.shutterstock.com/image-photo/fresh-tasty-burger-on-black-600nw-334280822.jpg"
+          "image": "/uploads/bbg-burger.jpeg"
         },
         {
           "id": "bb-grill",
@@ -304,7 +304,7 @@
           "tag": "Grilled",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/grill-beef-burger.jpeg"
         },
         {
           "id": "bb-mushroom",
@@ -314,7 +314,7 @@
           "tag": "Classic",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/beef-mashroom-burger.jpeg"
         },
         {
           "id": "bb-jalapeno",
@@ -324,7 +324,7 @@
           "tag": "Spicy",
           "popular": false,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/beef-jalapeno.jpeg"
         }
       ]
     },
@@ -340,7 +340,7 @@
           "tag": "BBQ Sauce",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/fillet-burger.jpeg"
         },
         {
           "id": "cb-thunder",
@@ -350,7 +350,7 @@
           "tag": "Best Seller",
           "popular": true,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/classic-thunder.jpeg"
         },
         {
           "id": "cb-zinger",
@@ -360,7 +360,7 @@
           "tag": "Hot Pick",
           "popular": false,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/zinger.jpeg"
         },
         {
           "id": "cb-double",
@@ -370,7 +370,7 @@
           "tag": "Double",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/double-degger.jpeg"
         },
         {
           "id": "cb-crispo",
@@ -380,7 +380,7 @@
           "tag": "Crunchy",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/crispo-burger.jpeg"
         },
         {
           "id": "cb-kids",
@@ -390,7 +390,7 @@
           "tag": "Kids",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/kids-burger.jpeg"
         },
         {
           "id": "cb-fish",
@@ -400,7 +400,7 @@
           "tag": "Seafood",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/fish-burger.png"
         }
       ]
     },
@@ -416,7 +416,7 @@
           "tag": "Classic",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/twister-wrap.jpeg"
         },
         {
           "id": "wr-crunchy",
@@ -426,7 +426,7 @@
           "tag": "Crunchy",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/crunchy-wrap.jpeg"
         },
         {
           "id": "wr-lovegrill",
@@ -436,7 +436,7 @@
           "tag": "Special Wrap",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/love-n-grill-wrap.jpeg"
         },
         {
           "id": "wr-bbqcheese",
@@ -446,7 +446,7 @@
           "tag": "Cheesy",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/bbq-cheese-wrap.jpeg"
         },
         {
           "id": "wr-tikka",
@@ -456,7 +456,7 @@
           "tag": "Desi",
           "popular": true,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/tikka-roll-paratha.jpeg"
         }
       ]
     },
@@ -481,7 +481,7 @@
               "price": 850
             }
           ],
-          "image": ""
+          "image": "/uploads/crispo-wings.jpg"
         },
         {
           "id": "wg-bbq",
@@ -500,7 +500,7 @@
               "price": 899
             }
           ],
-          "image": ""
+          "image": "/uploads/bbq-wings.jpg"
         },
         {
           "id": "wg-oven",
@@ -519,7 +519,7 @@
               "price": 850
             }
           ],
-          "image": ""
+          "image": "/uploads/baked-wings.jpg"
         }
       ]
     },
@@ -544,7 +544,7 @@
               "price": 450
             }
           ],
-          "image": ""
+          "image": "/uploads/simple-fries.jpeg"
         },
         {
           "id": "fr-masala",
@@ -563,7 +563,7 @@
               "price": 499
             }
           ],
-          "image": ""
+          "image": "/uploads/masala-fries.jpeg"
         },
         {
           "id": "fr-mayo",
@@ -582,7 +582,7 @@
               "price": 549
             }
           ],
-          "image": ""
+          "image": "/uploads/mayo-fries.jpeg"
         },
         {
           "id": "fr-loaded",
@@ -592,7 +592,7 @@
           "tag": "Loaded",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/loaded-fries.jpeg"
         }
       ]
     },
@@ -608,7 +608,7 @@
           "tag": "Classic",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/nuggets-6pcs.jpeg"
         },
         {
           "id": "ng-12",
@@ -618,7 +618,7 @@
           "tag": "Family",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/nuggets-12pcs.jpeg"
         },
         {
           "id": "hs-6",
@@ -628,7 +628,7 @@
           "tag": "Hot",
           "popular": false,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/hotshot-6pcs.jpeg"
         },
         {
           "id": "hs-12",
@@ -638,7 +638,7 @@
           "tag": "Hot",
           "popular": true,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/hotshot-12pcs.jpeg"
         }
       ]
     },
@@ -654,7 +654,7 @@
           "tag": "Classic",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/injected-broast-2pcs.jpeg"
         },
         {
           "id": "br-inj3",
@@ -664,7 +664,7 @@
           "tag": "Classic",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/injected-broast-3pcs.jpeg"
         },
         {
           "id": "br-inj5",
@@ -674,7 +674,7 @@
           "tag": "Family",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/injected-broast-5pcs.jpeg"
         },
         {
           "id": "br-jal1",
@@ -684,7 +684,7 @@
           "tag": "Spicy",
           "popular": false,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/jalapeno-broast-1pc.jpeg"
         },
         {
           "id": "br-jal3",
@@ -694,7 +694,7 @@
           "tag": "Spicy",
           "popular": false,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/jalapeno-broast-3pcs.jpeg"
         },
         {
           "id": "br-jal5",
@@ -704,7 +704,7 @@
           "tag": "Spicy",
           "popular": false,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/jalapeno-broast-5pcs.jpeg"
         }
       ]
     },
@@ -720,7 +720,7 @@
           "tag": "Combo",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/fish-fillet.jpg"
         }
       ]
     },
@@ -736,7 +736,7 @@
           "tag": "Creamy",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/alfredo-pasta.jpeg"
         },
         {
           "id": "pa-rich",
@@ -746,7 +746,7 @@
           "tag": "Rich",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/creamy-pasta.jpeg"
         },
         {
           "id": "pa-crunchy",
@@ -756,7 +756,7 @@
           "tag": "Unique",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/crunchy-pasta.jpeg"
         }
       ]
     },
@@ -772,7 +772,7 @@
           "tag": "Side",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/plain-rice.jpeg"
         },
         {
           "id": "ri-garlic",
@@ -782,7 +782,7 @@
           "tag": "Aromatic",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/garlic-rice.jpeg"
         },
         {
           "id": "ri-egg",
@@ -792,7 +792,7 @@
           "tag": "Wok Fried",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/egg-fried-rice.jpeg"
         },
         {
           "id": "ri-masala",
@@ -802,7 +802,7 @@
           "tag": "Spiced",
           "popular": false,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/masala-rice.jpeg"
         }
       ]
     },
@@ -818,7 +818,7 @@
           "tag": "Popular",
           "popular": true,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/chicken-chowmin.jpg"
         },
         {
           "id": "nd-veg",
@@ -828,7 +828,7 @@
           "tag": "Veggie",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/veg-chowmin.jpg"
         }
       ]
     },
@@ -853,7 +853,7 @@
               "price": 999
             }
           ],
-          "image": ""
+          "image": "/uploads/corn-soup.jpeg"
         },
         {
           "id": "sp-special",
@@ -872,7 +872,7 @@
               "price": 1350
             }
           ],
-          "image": ""
+          "image": "/uploads/special-soup.jpeg"
         }
       ]
     },
@@ -897,7 +897,7 @@
           "tag": "Hot Coffee",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/americano.jpeg"
         },
         {
           "id": "dr-latte-hot",
@@ -916,7 +916,7 @@
           "tag": "Hot Coffee",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/hot-latte.jpeg"
         },
         {
           "id": "dr-cappuccino",
@@ -935,7 +935,7 @@
           "tag": "Hot Coffee",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/cappuccino.jpeg"
         },
         {
           "id": "dr-espresso",
@@ -950,7 +950,7 @@
           "tag": "Hot Coffee",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/espresso.jpeg"
         },
         {
           "id": "dr-icelatte",
@@ -960,7 +960,7 @@
           "tag": "Cold Coffee",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/iced-latte.jpeg"
         },
         {
           "id": "dr-icelatte-flavor",
@@ -970,7 +970,7 @@
           "tag": "Cold Coffee",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/iced-latte-flavoured-.jpeg"
         },
         {
           "id": "dr-feppachino",
@@ -980,7 +980,7 @@
           "tag": "Cold Coffee",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/feppachino.jpeg"
         },
         {
           "id": "dr-freddo",
@@ -990,7 +990,7 @@
           "tag": "Cold Coffee",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/freddo-espresso.jpeg"
         },
         {
           "id": "dr-americano-cold",
@@ -1000,7 +1000,7 @@
           "tag": "Cold Coffee",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/iced-americano.jpeg"
         },
         {
           "id": "dr-mintmarg",
@@ -1010,7 +1010,7 @@
           "tag": "Bar Section",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/mint-margarita.jpeg"
         },
         {
           "id": "dr-bubble",
@@ -1020,7 +1020,7 @@
           "tag": "Bar Section",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/bubble-tea.jpeg"
         },
         {
           "id": "dr-milkbubble",
@@ -1030,7 +1030,7 @@
           "tag": "Bar Section",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/milk-bubble-tea.jpeg"
         },
         {
           "id": "dr-chillers",
@@ -1040,7 +1040,7 @@
           "tag": "Bar Section",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/chillers.jpeg"
         },
         {
           "id": "dr-icecream-shake",
@@ -1050,7 +1050,7 @@
           "tag": "Bar Section",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/icecream-shakes.jpeg"
         }
       ]
     },
@@ -1079,7 +1079,7 @@
           "tag": "Classic",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/vanilla-icecream.jpeg"
         },
         {
           "id": "ic-strawberry",
@@ -1102,7 +1102,7 @@
           "tag": "Fruity",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/strawberry-icecream.jpeg"
         },
         {
           "id": "ic-mango",
@@ -1125,7 +1125,7 @@
           "tag": "Fruity",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/mango-icecream.jpeg"
         },
         {
           "id": "ic-chocolate",
@@ -1148,7 +1148,7 @@
           "tag": "Classic",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/chocolate-icecream.jpeg"
         },
         {
           "id": "ic-caramel",
@@ -1171,7 +1171,7 @@
           "tag": "Sweet",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/caramel-icecream.jpeg"
         },
         {
           "id": "ic-pista",
@@ -1194,7 +1194,7 @@
           "tag": "Premium",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/pista-icecream.jpeg"
         },
         {
           "id": "ic-cheesecake",
@@ -1217,7 +1217,7 @@
           "tag": "Special",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/cheese-cake.jpeg"
         },
         {
           "id": "ic-butterscotch",
@@ -1240,7 +1240,7 @@
           "tag": "Classic",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/butter-scotch.jpeg"
         },
         {
           "id": "ic-cotton",
@@ -1263,7 +1263,7 @@
           "tag": "Fun",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/cotton-candy.jpeg"
         }
       ]
     },
@@ -1279,7 +1279,7 @@
           "tag": "Signature",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/dessert.jpeg"
         }
       ]
     },
@@ -1295,7 +1295,7 @@
           "tag": "Student",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/student-deal-pizza.jpeg"
         },
         {
           "id": "dl-student2",
@@ -1305,7 +1305,7 @@
           "tag": "Student",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/student-deal-burger.jpeg"
         },
         {
           "id": "dl-doctor",
@@ -1315,7 +1315,7 @@
           "tag": "Solo",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/doctor-deal.jpeg"
         },
         {
           "id": "dl-pkaustria",
@@ -1325,7 +1325,7 @@
           "tag": "Value",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/pak-austria-deal.jpeg"
         },
         {
           "id": "dl-uoh",
@@ -1335,7 +1335,7 @@
           "tag": "Value",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/uoh-deal.jpeg"
         },
         {
           "id": "dl-haripur",
@@ -1345,7 +1345,7 @@
           "tag": "Combo",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/haripur-deal.jpeg"
         },
         {
           "id": "dl-lawyers",
@@ -1355,7 +1355,7 @@
           "tag": "Combo",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/lawyers-deal.jpeg"
         },
         {
           "id": "dl-party",
@@ -1365,7 +1365,7 @@
           "tag": "Party",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/party-deal.jpeg"
         },
         {
           "id": "dl-yari",
@@ -1375,7 +1375,7 @@
           "tag": "Friends",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/yaari-deal.jpeg"
         },
         {
           "id": "dl-pagal",
@@ -1385,7 +1385,7 @@
           "tag": "Value",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/pagal-deal.jpeg"
         },
         {
           "id": "dl-kids",
@@ -1395,7 +1395,7 @@
           "tag": "Kids",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/kids-deal.png"
         }
       ]
     }
