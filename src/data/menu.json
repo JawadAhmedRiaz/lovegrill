@@ -544,7 +544,7 @@
               "price": 450
             }
           ],
-          "image": ""
+          "image": "/uploads/simple-fries.jpeg"
         },
         {
           "id": "fr-masala",
@@ -563,7 +563,7 @@
               "price": 499
             }
           ],
-          "image": ""
+          "image": "/uploads/masala-fries.jpeg"
         },
         {
           "id": "fr-mayo",
@@ -582,7 +582,7 @@
               "price": 549
             }
           ],
-          "image": ""
+          "image": "/uploads/mayo-fries.jpeg"
         },
         {
           "id": "fr-loaded",
@@ -592,7 +592,7 @@
           "tag": "Loaded",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/loaded-fries.jpeg"
         }
       ]
     },
@@ -608,7 +608,7 @@
           "tag": "Classic",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/nuggets-6pcs.jpeg"
         },
         {
           "id": "ng-12",
@@ -618,7 +618,7 @@
           "tag": "Family",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/nuggets-12pcs.jpeg"
         },
         {
           "id": "hs-6",
@@ -628,7 +628,7 @@
           "tag": "Hot",
           "popular": false,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/hotshot-6pcs.jpeg"
         },
         {
           "id": "hs-12",
@@ -638,7 +638,7 @@
           "tag": "Hot",
           "popular": true,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/hotshot-12pcs.jpeg"
         }
       ]
     },
@@ -654,7 +654,7 @@
           "tag": "Classic",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/injected-broast-2pcs.jpeg"
         },
         {
           "id": "br-inj3",
@@ -664,7 +664,7 @@
           "tag": "Classic",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/injected-broast-3pcs.jpeg"
         },
         {
           "id": "br-inj5",
@@ -674,7 +674,7 @@
           "tag": "Family",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/injected-broast-5pcs.jpeg"
         },
         {
           "id": "br-jal1",
@@ -684,7 +684,7 @@
           "tag": "Spicy",
           "popular": false,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/jalapeno-broast-1pc.jpeg"
         },
         {
           "id": "br-jal3",
@@ -694,7 +694,7 @@
           "tag": "Spicy",
           "popular": false,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/jalapeno-broast-3pcs.jpeg"
         },
         {
           "id": "br-jal5",
@@ -704,7 +704,7 @@
           "tag": "Spicy",
           "popular": false,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/jalapeno-broast-5pcs.jpeg"
         }
       ]
     },
@@ -720,7 +720,7 @@
           "tag": "Combo",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/fish-fillet.jpg"
         }
       ]
     },
@@ -736,7 +736,7 @@
           "tag": "Creamy",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/alfredo-pasta.jpeg"
         },
         {
           "id": "pa-rich",
@@ -746,7 +746,7 @@
           "tag": "Rich",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/creamy-pasta.jpeg"
         },
         {
           "id": "pa-crunchy",
@@ -756,7 +756,7 @@
           "tag": "Unique",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/crunchy-pasta.jpeg"
         }
       ]
     },
@@ -772,7 +772,7 @@
           "tag": "Side",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/plain-rice.jpeg"
         },
         {
           "id": "ri-garlic",
@@ -782,7 +782,7 @@
           "tag": "Aromatic",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/garlic-rice.jpeg"
         },
         {
           "id": "ri-egg",
@@ -792,7 +792,7 @@
           "tag": "Wok Fried",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/egg-fried-rice.jpeg"
         },
         {
           "id": "ri-masala",
@@ -802,7 +802,7 @@
           "tag": "Spiced",
           "popular": false,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/masala-rice.jpeg"
         }
       ]
     },
@@ -818,7 +818,7 @@
           "tag": "Popular",
           "popular": true,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/chicken-chowmin.jpg"
         },
         {
           "id": "nd-veg",
@@ -828,7 +828,7 @@
           "tag": "Veggie",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/veg-chowmin.jpg"
         }
       ]
     },
@@ -853,7 +853,7 @@
               "price": 999
             }
           ],
-          "image": ""
+          "image": "/uploads/corn-soup.jpeg"
         },
         {
           "id": "sp-special",
@@ -872,7 +872,7 @@
               "price": 1350
             }
           ],
-          "image": ""
+          "image": "/uploads/special-soup.jpeg"
         }
       ]
     },
