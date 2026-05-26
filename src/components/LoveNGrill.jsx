@@ -883,7 +883,7 @@ function PublicSite() {
             <div style={{display:"flex",gap:"0.625rem",flexWrap:"wrap"}}>
               <a href="https://maps.app.goo.gl/8n36zwycKAeojedn8" target="_blank" rel="noreferrer" className="btn-f" onClick={()=>SFX.click()}
                 style={{display:"inline-flex",fontSize:"0.75rem",textDecoration:"none",padding:"10px 20px"}}>📍 Open Maps</a>
-              <a href="https://maps.app.goo.gl/8n36zwycKAeojedn8" target="_blank" rel="noreferrer" className="btn-o"
+              <a href="https://search.google.com/local/writereview?placeid=ChIJ_53fCwCz3zgRxWdEuN0ID2k" target="_blank" rel="noreferrer" className="btn-o"
                 style={{display:"inline-flex",fontSize:"0.75rem",textDecoration:"none"}}>⭐ Review Us on Maps</a>
             </div>
           </div>
@@ -943,10 +943,28 @@ function PublicSite() {
             <div className="fb" style={{color:"#3a3530",fontSize:"0.75rem"}}>
               Made by <span style={{color:"#FF6600",fontWeight:600,cursor:"default"}}>XorByt.dev</span>
             </div>
-            <span className="fb"
-              style={{color:"#FF6600",fontSize:"0.75rem",display:"inline-flex",alignItems:"center",gap:"0.25rem",fontWeight:600,cursor:"default",border:"1px solid rgba(255,102,0,.3)",padding:"4px 10px",borderRadius:4,background:"rgba(255,102,0,.07)"}}>
+            <a 
+              className="fb"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=xorbyt.dev@gmail.com&su=Contact%20the%20Developers&body=Hi%20Team,%0A%0A"
+              target="_blank"
+              rel="noopener noreferrer" 
+              style={{
+                color: "#FF6600",
+                fontSize: "0.75rem",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.25rem",
+                fontWeight: 600,
+                cursor: "pointer", // Changed to pointer so it looks clickable
+                border: "1px solid rgba(255,102,0,.3)",
+                padding: "4px 10px",
+                borderRadius: 4,
+                background: "rgba(255,102,0,.07)",
+                textDecoration: "none" // Prevents default link underlining
+              }}
+            >
               ✉ Contact Developers
-            </span>
+            </a>
           </div>
         </div>
       </footer>
