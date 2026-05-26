@@ -83,7 +83,7 @@ function SEO() {
     setMeta("og:description","Fire-kissed pizzas, gourmet burgers & sizzling deals in Haripur. Order via WhatsApp.",true);
     setMeta("og:type","restaurant.restaurant",true);
     setMeta("og:site_name","Love n' Grill",true);
-    setMeta("og:url","https://lovengrill.com",true);
+    setMeta("og:url","https://lovengrill.pk",true);
     setMeta("twitter:card","summary_large_image");
     setMeta("twitter:title","Love n' Grill – The Heartbeat of Haripur's Food Scene");
     setMeta("twitter:description","Fire-kissed pizzas, gourmet burgers & sizzling deals in Haripur.");
@@ -98,10 +98,10 @@ function SEO() {
       "name": "Love n' Grill",
       "alternateName": "LoveNGrill",
       "description": "Haripur's premier destination for fire-kissed pizzas, gourmet burgers, signature deals and fresh grills. Dine-in, takeaway & delivery available.",
-      "url": "https://lovengrill.com",
+      "url": "https://lovengrill.pk",
       "telephone": "+923199921117",
       "email": "lovengrill41@gmail.com",
-      "image": "https://lovengrill.com/logo.jpg",
+      "image": "https://lovengrill.pk/logo.jpg",
       "priceRange": "Rs.290 – Rs.6999",
       "servesCuisine": ["Pakistani","Fast Food","Pizza","Burgers","Grills"],
       "address": {
@@ -126,7 +126,7 @@ function SEO() {
         "https://maps.app.goo.gl/8n36zwycKAeojedn8"
       ],
       "hasMap": "https://maps.app.goo.gl/8n36zwycKAeojedn8",
-      "menu": "https://lovengrill.com/#menu",
+      "menu": "https://lovengrill.pk/#menu",
       "acceptsReservations": "False",
       "currenciesAccepted": "PKR",
       "paymentAccepted": "Cash, Online Transfer",
@@ -1071,7 +1071,7 @@ function MenuGrid({ category, cart, onAdd, onChangeQty, searchQuery = "", isSear
       <div key={item.id} className="mcard card-in" style={{display:"flex",flexDirection:"column",animationDelay:`${idx*60}ms`,borderRadius:12,overflow:"hidden",background:"#161616",border:"1px solid rgba(255,255,255,.07)"}}>
         {/* Image — tall, like KFC */}
         <div style={{position:"relative",width:"100%",paddingTop:"80%",background:"#1a1212",flexShrink:0,overflow:"hidden"}}>
-          <img src={img} alt={item.name} loading="eager" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",display:"block"}}/>
+          <img src={img ? (window.location.hostname === 'localhost' ? img : `/.netlify/images?url=${encodeURIComponent(img)}`) : ''} loading="lazy" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",display:"block"}}/>
           {/* Badges top-right */}
           <div style={{position:"absolute",top:8,right:8,display:"flex",flexDirection:"column",gap:"0.188rem",alignItems:"flex-end"}}>
             {item.spicy&&<span style={{background:"rgba(200,30,10,.9)",color:"#fff",fontSize:"0.5rem",fontWeight:700,fontFamily:"'Inter',sans-serif",padding:"0.125em 0.375em",borderRadius:20}}>🌶️ Spicy</span>}
