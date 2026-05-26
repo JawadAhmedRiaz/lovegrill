@@ -897,7 +897,7 @@
           "tag": "Hot Coffee",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/americano.jpeg"
         },
         {
           "id": "dr-latte-hot",
@@ -916,7 +916,7 @@
           "tag": "Hot Coffee",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/hot-latte.jpeg"
         },
         {
           "id": "dr-cappuccino",
@@ -935,7 +935,7 @@
           "tag": "Hot Coffee",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/cappuccino.jpeg"
         },
         {
           "id": "dr-espresso",
@@ -950,7 +950,7 @@
           "tag": "Hot Coffee",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/espresso.jpeg"
         },
         {
           "id": "dr-icelatte",
@@ -960,7 +960,7 @@
           "tag": "Cold Coffee",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/iced-latte.jpeg"
         },
         {
           "id": "dr-icelatte-flavor",
@@ -970,7 +970,7 @@
           "tag": "Cold Coffee",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/iced-latte-flavoured-.jpeg"
         },
         {
           "id": "dr-feppachino",
@@ -980,7 +980,7 @@
           "tag": "Cold Coffee",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/feppachino.jpeg"
         },
         {
           "id": "dr-freddo",
@@ -990,7 +990,7 @@
           "tag": "Cold Coffee",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/freddo-espresso.jpeg"
         },
         {
           "id": "dr-americano-cold",
@@ -1000,7 +1000,7 @@
           "tag": "Cold Coffee",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/iced-americano.jpeg"
         },
         {
           "id": "dr-mintmarg",
@@ -1010,7 +1010,7 @@
           "tag": "Bar Section",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/mint-margarita.jpeg"
         },
         {
           "id": "dr-bubble",
@@ -1020,7 +1020,7 @@
           "tag": "Bar Section",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/bubble-tea.jpeg"
         },
         {
           "id": "dr-milkbubble",
@@ -1030,7 +1030,7 @@
           "tag": "Bar Section",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/milk-bubble-tea.jpeg"
         },
         {
           "id": "dr-chillers",
@@ -1040,7 +1040,7 @@
           "tag": "Bar Section",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/chillers.jpeg"
         },
         {
           "id": "dr-icecream-shake",
@@ -1050,7 +1050,7 @@
           "tag": "Bar Section",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/icecream-shakes.jpeg"
         }
       ]
     },
@@ -1079,7 +1079,7 @@
           "tag": "Classic",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/vanilla-icecream.jpeg"
         },
         {
           "id": "ic-strawberry",
@@ -1102,7 +1102,7 @@
           "tag": "Fruity",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/strawberry-icecream.jpeg"
         },
         {
           "id": "ic-mango",
@@ -1125,7 +1125,7 @@
           "tag": "Fruity",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/mango-icecream.jpeg"
         },
         {
           "id": "ic-chocolate",
@@ -1148,7 +1148,7 @@
           "tag": "Classic",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/chocolate-icecream.jpeg"
         },
         {
           "id": "ic-caramel",
@@ -1171,7 +1171,7 @@
           "tag": "Sweet",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/caramel-icecream.jpeg"
         },
         {
           "id": "ic-pista",
@@ -1194,7 +1194,7 @@
           "tag": "Premium",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/pista-icecream.jpeg"
         },
         {
           "id": "ic-cheesecake",
@@ -1217,7 +1217,7 @@
           "tag": "Special",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/cheese-cake.jpeg"
         },
         {
           "id": "ic-butterscotch",
@@ -1240,7 +1240,7 @@
           "tag": "Classic",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/butter-scotch.jpeg"
         },
         {
           "id": "ic-cotton",
@@ -1263,7 +1263,7 @@
           "tag": "Fun",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/cotton-candy.jpeg"
         }
       ]
     },
@@ -1279,7 +1279,7 @@
           "tag": "Signature",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/dessert.jpeg"
         }
       ]
     },
@@ -1295,7 +1295,7 @@
           "tag": "Student",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/student-deal-pizza.jpeg"
         },
         {
           "id": "dl-student2",
@@ -1305,7 +1305,7 @@
           "tag": "Student",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/student-deal-burger.jpeg"
         },
         {
           "id": "dl-doctor",
@@ -1315,7 +1315,7 @@
           "tag": "Solo",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/doctor-deal.jpeg"
         },
         {
           "id": "dl-pkaustria",
@@ -1325,7 +1325,7 @@
           "tag": "Value",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/pak-austria-deal.jpeg"
         },
         {
           "id": "dl-uoh",
@@ -1335,7 +1335,7 @@
           "tag": "Value",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/uoh-deal.jpeg"
         },
         {
           "id": "dl-haripur",
@@ -1345,7 +1345,7 @@
           "tag": "Combo",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/haripur-deal.jpeg"
         },
         {
           "id": "dl-lawyers",
@@ -1355,7 +1355,7 @@
           "tag": "Combo",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/lawyers-deal.jpeg"
         },
         {
           "id": "dl-party",
@@ -1365,7 +1365,7 @@
           "tag": "Party",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/party-deal.jpeg"
         },
         {
           "id": "dl-yari",
@@ -1375,7 +1375,7 @@
           "tag": "Friends",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/yaari-deal.jpeg"
         },
         {
           "id": "dl-pagal",
@@ -1385,7 +1385,7 @@
           "tag": "Value",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/pagal-deal.jpeg"
         },
         {
           "id": "dl-kids",
@@ -1395,7 +1395,7 @@
           "tag": "Kids",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/kids-deal.png"
         }
       ]
     }
