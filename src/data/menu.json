@@ -2,7 +2,7 @@
   "categories": [
     {
       "name": "Pizzas",
-      "icon": "\ud83c\udf55",
+      "icon": "🍕",
       "items": [
         {
           "id": "pz-ctiva",
@@ -29,7 +29,7 @@
               "price": 2299
             }
           ],
-          "image": ""
+          "image": "/uploads/chicken-tiva.jpg"
         },
         {
           "id": "pz-cfajita",
@@ -61,7 +61,7 @@
         {
           "id": "pz-cgold",
           "name": "Cheese Gold",
-          "desc": "Only cheese inside \u2014 pure golden cheesy bliss.",
+          "desc": "Only cheese inside — pure golden cheesy bliss.",
           "tag": "Cheese Lover",
           "popular": false,
           "spicy": false,
@@ -222,7 +222,7 @@
         {
           "id": "pz-place",
           "name": "Pizza Place",
-          "desc": "Our signature house pizza \u2014 a true crowd pleaser.",
+          "desc": "Our signature house pizza — a true crowd pleaser.",
           "tag": "House Favourite",
           "popular": true,
           "spicy": false,
@@ -284,17 +284,17 @@
     },
     {
       "name": "Beef Burgers",
-      "icon": "\ud83c\udf54",
+      "icon": "🍔",
       "items": [
         {
           "id": "bb-bbg",
           "name": "BBG Beef (Special)",
-          "desc": "Our special BBG beef burger \u2014 bold, juicy, unforgettable.",
+          "desc": "Our special BBG beef burger — bold, juicy, unforgettable.",
           "price": 1199,
           "tag": "Chef's Special",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "https://www.shutterstock.com/image-photo/fresh-tasty-burger-on-black-600nw-334280822.jpg"
         },
         {
           "id": "bb-grill",
@@ -309,7 +309,7 @@
         {
           "id": "bb-mushroom",
           "name": "Beef Mushroom",
-          "desc": "Juicy beef with saut\u00e9ed mushrooms and creamy sauce.",
+          "desc": "Juicy beef with sautéed mushrooms and creamy sauce.",
           "price": 760,
           "tag": "Classic",
           "popular": false,
@@ -318,8 +318,8 @@
         },
         {
           "id": "bb-jalapeno",
-          "name": "Beef Jalape\u00f1o",
-          "desc": "Beef patty loaded with jalape\u00f1os and spicy sauce.",
+          "name": "Beef Jalapeño",
+          "desc": "Beef patty loaded with jalapeños and spicy sauce.",
           "price": 760,
           "tag": "Spicy",
           "popular": false,
@@ -330,7 +330,7 @@
     },
     {
       "name": "Chicken Burgers",
-      "icon": "\ud83c\udf57",
+      "icon": "🍗",
       "items": [
         {
           "id": "cb-fillet",
@@ -406,7 +406,7 @@
     },
     {
       "name": "Wraps",
-      "icon": "\ud83c\udf2f",
+      "icon": "🌯",
       "items": [
         {
           "id": "wr-twister",
@@ -462,7 +462,7 @@
     },
     {
       "name": "Wings",
-      "icon": "\ud83c\udf57",
+      "icon": "🍗",
       "items": [
         {
           "id": "wg-crispo",
@@ -525,7 +525,7 @@
     },
     {
       "name": "Fries",
-      "icon": "\ud83c\udf5f",
+      "icon": "🍟",
       "items": [
         {
           "id": "fr-plain",
@@ -598,12 +598,12 @@
     },
     {
       "name": "Nuggets & Shots",
-      "icon": "\ud83c\udf57",
+      "icon": "🍗",
       "items": [
         {
           "id": "ng-6",
           "name": "Nuggets 6 Pcs",
-          "desc": "Golden crispy chicken nuggets \u2014 a timeless classic.",
+          "desc": "Golden crispy chicken nuggets — a timeless classic.",
           "price": 449,
           "tag": "Classic",
           "popular": false,
@@ -644,7 +644,7 @@
     },
     {
       "name": "Broast",
-      "icon": "\ud83c\udf56",
+      "icon": "🍖",
       "items": [
         {
           "id": "br-inj2",
@@ -678,8 +678,8 @@
         },
         {
           "id": "br-jal1",
-          "name": "Jalape\u00f1o Broast 1 Pc",
-          "desc": "Spicy jalape\u00f1o-marinated broast, crispy and fiery.",
+          "name": "Jalapeño Broast 1 Pc",
+          "desc": "Spicy jalapeño-marinated broast, crispy and fiery.",
           "price": 720,
           "tag": "Spicy",
           "popular": false,
@@ -688,8 +688,8 @@
         },
         {
           "id": "br-jal3",
-          "name": "Jalape\u00f1o Broast 3 Pcs",
-          "desc": "3 pieces of spicy jalape\u00f1o broast.",
+          "name": "Jalapeño Broast 3 Pcs",
+          "desc": "3 pieces of spicy jalapeño broast.",
           "price": 899,
           "tag": "Spicy",
           "popular": false,
@@ -698,8 +698,8 @@
         },
         {
           "id": "br-jal5",
-          "name": "Jalape\u00f1o Broast 5 Pcs",
-          "desc": "5-piece jalape\u00f1o broast platter for spice lovers.",
+          "name": "Jalapeño Broast 5 Pcs",
+          "desc": "5-piece jalapeño broast platter for spice lovers.",
           "price": 1499,
           "tag": "Spicy",
           "popular": false,
@@ -710,7 +710,7 @@
     },
     {
       "name": "Fish Meal",
-      "icon": "\ud83d\udc1f",
+      "icon": "🐟",
       "items": [
         {
           "id": "fm-fillet",
@@ -726,7 +726,7 @@
     },
     {
       "name": "Pasta",
-      "icon": "\ud83c\udf5d",
+      "icon": "🍝",
       "items": [
         {
           "id": "pa-alfredo",
@@ -762,7 +762,7 @@
     },
     {
       "name": "Rice",
-      "icon": "\ud83c\udf5a",
+      "icon": "🍚",
       "items": [
         {
           "id": "ri-plain",
@@ -808,7 +808,7 @@
     },
     {
       "name": "Noodles",
-      "icon": "\ud83c\udf5c",
+      "icon": "🍜",
       "items": [
         {
           "id": "nd-chicken",
@@ -834,7 +834,7 @@
     },
     {
       "name": "Soups",
-      "icon": "\ud83e\udd63",
+      "icon": "🥣",
       "items": [
         {
           "id": "sp-corn",
@@ -878,12 +878,12 @@
     },
     {
       "name": "Drinks",
-      "icon": "\ud83e\udd64",
+      "icon": "🥤",
       "items": [
         {
           "id": "dr-americano-hot",
           "name": "Americano (Hot)",
-          "desc": "Classic rich espresso with hot water \u2014 bold and smooth.",
+          "desc": "Classic rich espresso with hot water — bold and smooth.",
           "variants": [
             {
               "label": "Regular",
@@ -902,7 +902,7 @@
         {
           "id": "dr-latte-hot",
           "name": "Latte (Hot)",
-          "desc": "Espresso with steamed milk \u2014 creamy and comforting.",
+          "desc": "Espresso with steamed milk — creamy and comforting.",
           "variants": [
             {
               "label": "Regular",
@@ -940,7 +940,7 @@
         {
           "id": "dr-espresso",
           "name": "Espresso",
-          "desc": "Pure concentrated espresso shot \u2014 intense and rich.",
+          "desc": "Pure concentrated espresso shot — intense and rich.",
           "variants": [
             {
               "label": "Regular",
@@ -955,7 +955,7 @@
         {
           "id": "dr-icelatte",
           "name": "Ice Latte",
-          "desc": "Chilled espresso with milk and ice \u2014 refreshing pick-me-up.",
+          "desc": "Chilled espresso with milk and ice — refreshing pick-me-up.",
           "price": 550,
           "tag": "Cold Coffee",
           "popular": false,
@@ -975,7 +975,7 @@
         {
           "id": "dr-feppachino",
           "name": "Feppachino",
-          "desc": "Our signature blended cold coffee \u2014 creamy and indulgent.",
+          "desc": "Our signature blended cold coffee — creamy and indulgent.",
           "price": 399,
           "tag": "Cold Coffee",
           "popular": true,
@@ -995,7 +995,7 @@
         {
           "id": "dr-americano-cold",
           "name": "Ice Americano / Black",
-          "desc": "Cold brew black coffee \u2014 bold and refreshing.",
+          "desc": "Cold brew black coffee — bold and refreshing.",
           "price": 350,
           "tag": "Cold Coffee",
           "popular": false,
@@ -1056,7 +1056,7 @@
     },
     {
       "name": "Ice Cream",
-      "icon": "\ud83c\udf66",
+      "icon": "🍦",
       "items": [
         {
           "id": "ic-vanilla",
@@ -1269,7 +1269,7 @@
     },
     {
       "name": "Desserts",
-      "icon": "\ud83e\uddc7",
+      "icon": "🧇",
       "items": [
         {
           "id": "ds-waffle",
@@ -1285,11 +1285,11 @@
     },
     {
       "name": "Deals",
-      "icon": "\ud83c\udf81",
+      "icon": "🎁",
       "items": [
         {
           "id": "dl-student1",
-          "name": "Student Deal \u2014 Pizza",
+          "name": "Student Deal — Pizza",
           "desc": "1 Medium Pizza with 2NR drink.",
           "price": 1250,
           "tag": "Student",
@@ -1299,7 +1299,7 @@
         },
         {
           "id": "dl-student2",
-          "name": "Student Deal \u2014 Burger",
+          "name": "Student Deal — Burger",
           "desc": "2 Zinger Burgers with 2NR drink.",
           "price": 1099,
           "tag": "Student",
