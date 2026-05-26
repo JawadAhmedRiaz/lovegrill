@@ -340,7 +340,7 @@
           "tag": "BBQ Sauce",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/fillet-burger.jpeg"
         },
         {
           "id": "cb-thunder",
@@ -350,7 +350,7 @@
           "tag": "Best Seller",
           "popular": true,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/classic-thunder.jpeg"
         },
         {
           "id": "cb-zinger",
@@ -360,7 +360,7 @@
           "tag": "Hot Pick",
           "popular": false,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/zinger.jpeg"
         },
         {
           "id": "cb-double",
@@ -370,7 +370,7 @@
           "tag": "Double",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/double-degger.jpeg"
         },
         {
           "id": "cb-crispo",
@@ -380,7 +380,7 @@
           "tag": "Crunchy",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/crispo-burger.jpeg"
         },
         {
           "id": "cb-kids",
@@ -390,7 +390,7 @@
           "tag": "Kids",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/kids-burger.jpeg"
         },
         {
           "id": "cb-fish",
@@ -400,7 +400,7 @@
           "tag": "Seafood",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/fish-burger.png"
         }
       ]
     },
@@ -416,7 +416,7 @@
           "tag": "Classic",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/twister-wrap.jpeg"
         },
         {
           "id": "wr-crunchy",
@@ -426,7 +426,7 @@
           "tag": "Crunchy",
           "popular": true,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/crunchy-wrap.jpeg"
         },
         {
           "id": "wr-lovegrill",
@@ -436,7 +436,7 @@
           "tag": "Special Wrap",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/love-n-grill-wrap.jpeg"
         },
         {
           "id": "wr-bbqcheese",
@@ -446,7 +446,7 @@
           "tag": "Cheesy",
           "popular": false,
           "spicy": false,
-          "image": ""
+          "image": "/uploads/bbq-cheese-wrap.jpeg"
         },
         {
           "id": "wr-tikka",
@@ -456,7 +456,7 @@
           "tag": "Desi",
           "popular": true,
           "spicy": true,
-          "image": ""
+          "image": "/uploads/tikka-roll-paratha.jpeg"
         }
       ]
     },
@@ -481,7 +481,7 @@
               "price": 850
             }
           ],
-          "image": ""
+          "image": "/uploads/crispo-wings.jpg"
         },
         {
           "id": "wg-bbq",
@@ -500,7 +500,7 @@
               "price": 899
             }
           ],
-          "image": ""
+          "image": "/uploads/bbq-wings.jpg"
         },
         {
           "id": "wg-oven",
@@ -519,7 +519,7 @@
               "price": 850
             }
           ],
-          "image": ""
+          "image": "/uploads/baked-wings.jpg"
         }
       ]
     },
