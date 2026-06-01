@@ -1602,13 +1602,13 @@
         },
         {
           "spicy": false,
-          "price": 420,
+          "price": "",
           "name": "Chillers",
           "desc": "Blueberry, mango, red grapefruit, raspberry.",
           "addons": [
             {
               "label": "Blueberry",
-              "price": 420
+              "price": 421
             }
           ],
           "popular": false,
