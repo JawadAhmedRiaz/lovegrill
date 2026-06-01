@@ -55,3 +55,19 @@ collections:
                     fields:
                       - { label: "Label (e.g. Small, Medium, 6 Pcs)", name: "label", widget: "string" }
                       - { label: "Price (Rs)", name: "price", widget: "number" }
+                  - label: "Add-ons (optional extras)"
+                    name: "addons"
+                    widget: "list"
+                    required: false
+                    hint: "Optional extras shown in the item details popup. Use 'Variant Prices' if the add-on price depends on the item size (e.g. Extra Chicken on a pizza)."
+                    fields:
+                      - { label: "Add-on Label", name: "label", widget: "string", hint: "e.g. Extra Cheese, Extra Scoop" }
+                      - { label: "Flat Price (Rs)", name: "price", widget: "number", required: false, hint: "Use this when the add-on has a single price (e.g. Extra Base = 310)." }
+                      - label: "Variant Prices (price per size)"
+                        name: "variantPrices"
+                        widget: "list"
+                        required: false
+                        hint: "Match each label to the parent item's variant label exactly (Small / Medium / Large / XL)."
+                        fields:
+                          - { label: "Matches Variant Label", name: "label", widget: "string" }
+                          - { label: "Price (Rs)", name: "price", widget: "number" }

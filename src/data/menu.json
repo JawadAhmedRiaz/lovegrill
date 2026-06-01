@@ -29,7 +29,51 @@
               "price": 2299
             }
           ],
-          "image": "/uploads/chicken-tiva.jpg"
+          "image": "/uploads/chicken-tiva.jpg",
+          "addons": [
+            {
+              "label": "Extra Chicken",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 110
+                },
+                {
+                  "label": "Medium",
+                  "price": 170
+                },
+                {
+                  "label": "Large",
+                  "price": 310
+                },
+                {
+                  "label": "XL",
+                  "price": 410
+                }
+              ]
+            },
+            {
+              "label": "Extra Cheese",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 130
+                },
+                {
+                  "label": "Medium",
+                  "price": 230
+                },
+                {
+                  "label": "Large",
+                  "price": 330
+                },
+                {
+                  "label": "XL",
+                  "price": 430
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "pz-cfajita",
@@ -56,7 +100,51 @@
               "price": 2299
             }
           ],
-          "image": "/uploads/chicken-fajita.jpg"
+          "image": "/uploads/chicken-fajita.jpg",
+          "addons": [
+            {
+              "label": "Extra Chicken",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 110
+                },
+                {
+                  "label": "Medium",
+                  "price": 170
+                },
+                {
+                  "label": "Large",
+                  "price": 310
+                },
+                {
+                  "label": "XL",
+                  "price": 410
+                }
+              ]
+            },
+            {
+              "label": "Extra Cheese",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 130
+                },
+                {
+                  "label": "Medium",
+                  "price": 230
+                },
+                {
+                  "label": "Large",
+                  "price": 330
+                },
+                {
+                  "label": "XL",
+                  "price": 430
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "pz-cgold",
@@ -71,7 +159,51 @@
               "price": 810
             }
           ],
-          "image": "/uploads/cheese-gold1.jpg"
+          "image": "/uploads/cheese-gold1.jpg",
+          "addons": [
+            {
+              "label": "Extra Chicken",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 110
+                },
+                {
+                  "label": "Medium",
+                  "price": 170
+                },
+                {
+                  "label": "Large",
+                  "price": 310
+                },
+                {
+                  "label": "XL",
+                  "price": 410
+                }
+              ]
+            },
+            {
+              "label": "Extra Cheese",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 130
+                },
+                {
+                  "label": "Medium",
+                  "price": 230
+                },
+                {
+                  "label": "Large",
+                  "price": 330
+                },
+                {
+                  "label": "XL",
+                  "price": 430
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "pz-hotspicy",
@@ -98,7 +230,51 @@
               "price": 1999
             }
           ],
-          "image": "/uploads/hot-spicy.jpg"
+          "image": "/uploads/hot-spicy.jpg",
+          "addons": [
+            {
+              "label": "Extra Chicken",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 110
+                },
+                {
+                  "label": "Medium",
+                  "price": 170
+                },
+                {
+                  "label": "Large",
+                  "price": 310
+                },
+                {
+                  "label": "XL",
+                  "price": 410
+                }
+              ]
+            },
+            {
+              "label": "Extra Cheese",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 130
+                },
+                {
+                  "label": "Medium",
+                  "price": 230
+                },
+                {
+                  "label": "Large",
+                  "price": 330
+                },
+                {
+                  "label": "XL",
+                  "price": 430
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "pz-periperi",
@@ -125,7 +301,51 @@
               "price": 1750
             }
           ],
-          "image": "/uploads/peri-peri.jpg"
+          "image": "/uploads/peri-peri.jpg",
+          "addons": [
+            {
+              "label": "Extra Chicken",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 110
+                },
+                {
+                  "label": "Medium",
+                  "price": 170
+                },
+                {
+                  "label": "Large",
+                  "price": 310
+                },
+                {
+                  "label": "XL",
+                  "price": 410
+                }
+              ]
+            },
+            {
+              "label": "Extra Cheese",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 130
+                },
+                {
+                  "label": "Medium",
+                  "price": 230
+                },
+                {
+                  "label": "Large",
+                  "price": 330
+                },
+                {
+                  "label": "XL",
+                  "price": 430
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "pz-csupreme",
@@ -152,7 +372,51 @@
               "price": 2250
             }
           ],
-          "image": "/uploads/chicken-supreme.jpg"
+          "image": "/uploads/chicken-supreme.jpg",
+          "addons": [
+            {
+              "label": "Extra Chicken",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 110
+                },
+                {
+                  "label": "Medium",
+                  "price": 170
+                },
+                {
+                  "label": "Large",
+                  "price": 310
+                },
+                {
+                  "label": "XL",
+                  "price": 410
+                }
+              ]
+            },
+            {
+              "label": "Extra Cheese",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 130
+                },
+                {
+                  "label": "Medium",
+                  "price": 230
+                },
+                {
+                  "label": "Large",
+                  "price": 330
+                },
+                {
+                  "label": "XL",
+                  "price": 430
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "pz-kebabstuff",
@@ -175,7 +439,51 @@
               "price": 2399
             }
           ],
-          "image": "/uploads/kebab-stuff.jpg"
+          "image": "/uploads/kebab-stuff.jpg",
+          "addons": [
+            {
+              "label": "Extra Chicken",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 110
+                },
+                {
+                  "label": "Medium",
+                  "price": 170
+                },
+                {
+                  "label": "Large",
+                  "price": 310
+                },
+                {
+                  "label": "XL",
+                  "price": 410
+                }
+              ]
+            },
+            {
+              "label": "Extra Cheese",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 130
+                },
+                {
+                  "label": "Medium",
+                  "price": 230
+                },
+                {
+                  "label": "Large",
+                  "price": 330
+                },
+                {
+                  "label": "XL",
+                  "price": 430
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "pz-beef",
@@ -194,7 +502,51 @@
               "price": 1960
             }
           ],
-          "image": "/uploads/beef-pizza.jpg"
+          "image": "/uploads/beef-pizza.jpg",
+          "addons": [
+            {
+              "label": "Extra Chicken",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 110
+                },
+                {
+                  "label": "Medium",
+                  "price": 170
+                },
+                {
+                  "label": "Large",
+                  "price": 310
+                },
+                {
+                  "label": "XL",
+                  "price": 410
+                }
+              ]
+            },
+            {
+              "label": "Extra Cheese",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 130
+                },
+                {
+                  "label": "Medium",
+                  "price": 230
+                },
+                {
+                  "label": "Large",
+                  "price": 330
+                },
+                {
+                  "label": "XL",
+                  "price": 430
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "pz-legendmuglai",
@@ -217,7 +569,51 @@
               "price": 2399
             }
           ],
-          "image": "/uploads/mughlai-pizza.jpg"
+          "image": "/uploads/mughlai-pizza.jpg",
+          "addons": [
+            {
+              "label": "Extra Chicken",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 110
+                },
+                {
+                  "label": "Medium",
+                  "price": 170
+                },
+                {
+                  "label": "Large",
+                  "price": 310
+                },
+                {
+                  "label": "XL",
+                  "price": 410
+                }
+              ]
+            },
+            {
+              "label": "Extra Cheese",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 130
+                },
+                {
+                  "label": "Medium",
+                  "price": 230
+                },
+                {
+                  "label": "Large",
+                  "price": 330
+                },
+                {
+                  "label": "XL",
+                  "price": 430
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "pz-place",
@@ -236,7 +632,51 @@
               "price": 1960
             }
           ],
-          "image": "/uploads/pizza-place.jpg"
+          "image": "/uploads/pizza-place.jpg",
+          "addons": [
+            {
+              "label": "Extra Chicken",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 110
+                },
+                {
+                  "label": "Medium",
+                  "price": 170
+                },
+                {
+                  "label": "Large",
+                  "price": 310
+                },
+                {
+                  "label": "XL",
+                  "price": 410
+                }
+              ]
+            },
+            {
+              "label": "Extra Cheese",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 130
+                },
+                {
+                  "label": "Medium",
+                  "price": 230
+                },
+                {
+                  "label": "Large",
+                  "price": 330
+                },
+                {
+                  "label": "XL",
+                  "price": 430
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "pz-crown",
@@ -259,7 +699,51 @@
               "price": 2399
             }
           ],
-          "image": "/uploads/crown-crust.jpg"
+          "image": "/uploads/crown-crust.jpg",
+          "addons": [
+            {
+              "label": "Extra Chicken",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 110
+                },
+                {
+                  "label": "Medium",
+                  "price": 170
+                },
+                {
+                  "label": "Large",
+                  "price": 310
+                },
+                {
+                  "label": "XL",
+                  "price": 410
+                }
+              ]
+            },
+            {
+              "label": "Extra Cheese",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 130
+                },
+                {
+                  "label": "Medium",
+                  "price": 230
+                },
+                {
+                  "label": "Large",
+                  "price": 330
+                },
+                {
+                  "label": "XL",
+                  "price": 430
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "pz-pizzasta",
@@ -278,7 +762,51 @@
               "price": 1960
             }
           ],
-          "image": "/uploads/pizzasta.jpg.jpeg"
+          "image": "/uploads/pizzasta.jpg.jpeg",
+          "addons": [
+            {
+              "label": "Extra Chicken",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 110
+                },
+                {
+                  "label": "Medium",
+                  "price": 170
+                },
+                {
+                  "label": "Large",
+                  "price": 310
+                },
+                {
+                  "label": "XL",
+                  "price": 410
+                }
+              ]
+            },
+            {
+              "label": "Extra Cheese",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 130
+                },
+                {
+                  "label": "Medium",
+                  "price": 230
+                },
+                {
+                  "label": "Large",
+                  "price": 330
+                },
+                {
+                  "label": "XL",
+                  "price": 430
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -294,7 +822,17 @@
           "tag": "Chef's Special",
           "popular": true,
           "spicy": false,
-          "image": "/uploads/bbg-burger.jpeg"
+          "image": "/uploads/bbg-burger.jpeg",
+          "addons": [
+            {
+              "label": "Extra Base",
+              "price": 310
+            },
+            {
+              "label": "Extra Cheese Slice",
+              "price": 160
+            }
+          ]
         },
         {
           "id": "bb-grill",
@@ -304,7 +842,17 @@
           "tag": "Grilled",
           "popular": false,
           "spicy": false,
-          "image": "/uploads/grill-beef-burger.jpeg"
+          "image": "/uploads/grill-beef-burger.jpeg",
+          "addons": [
+            {
+              "label": "Extra Base",
+              "price": 310
+            },
+            {
+              "label": "Extra Cheese Slice",
+              "price": 160
+            }
+          ]
         },
         {
           "id": "bb-mushroom",
@@ -314,7 +862,17 @@
           "tag": "Classic",
           "popular": false,
           "spicy": false,
-          "image": "/uploads/beef-mashroom-burger.jpeg"
+          "image": "/uploads/beef-mashroom-burger.jpeg",
+          "addons": [
+            {
+              "label": "Extra Base",
+              "price": 310
+            },
+            {
+              "label": "Extra Cheese Slice",
+              "price": 160
+            }
+          ]
         },
         {
           "id": "bb-jalapeno",
@@ -324,7 +882,17 @@
           "tag": "Spicy",
           "popular": false,
           "spicy": true,
-          "image": "/uploads/beef-jalapeno.jpeg"
+          "image": "/uploads/beef-jalapeno.jpeg",
+          "addons": [
+            {
+              "label": "Extra Base",
+              "price": 310
+            },
+            {
+              "label": "Extra Cheese Slice",
+              "price": 160
+            }
+          ]
         }
       ]
     },
@@ -1279,7 +1847,13 @@
           "tag": "Signature",
           "popular": true,
           "spicy": false,
-          "image": "/uploads/dessert.jpeg"
+          "image": "/uploads/dessert.jpeg",
+          "addons": [
+            {
+              "label": "Extra Scoop of Ice Cream",
+              "price": 120
+            }
+          ]
         }
       ]
     },

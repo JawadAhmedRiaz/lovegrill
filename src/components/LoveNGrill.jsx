@@ -944,27 +944,39 @@ function PublicSite() {
               Made by <span style={{color:"#FF6600",fontWeight:600,cursor:"default"}}>XorByt.dev</span>
             </div>
             <a 
-              className="fb"
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=xorbyt.dev@gmail.com&su=Contact%20the%20Developers&body=Hi%20Team,%0A%0A"
-              target="_blank"
-              rel="noopener noreferrer" 
-              style={{
-                color: "#FF6600",
-                fontSize: "0.75rem",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.25rem",
-                fontWeight: 600,
-                cursor: "pointer", // Changed to pointer so it looks clickable
-                border: "1px solid rgba(255,102,0,.3)",
-                padding: "4px 10px",
-                borderRadius: 4,
-                background: "rgba(255,102,0,.07)",
-                textDecoration: "none" // Prevents default link underlining
-              }}
-            >
-              ✉ Contact Developers
-            </a>
+  className="fb"
+  href="#"
+  onClick={(e) => {
+    e.preventDefault(); // Stop standard browser page navigation
+    
+    // Check if the user is on a mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+      // Mobile: Open their native mail app instantly
+      window.location.href = "mailto:xorbyt.dev@gmail.com?subject=Contact%20the%20Developers&body=Hi%20Team,%0A%0A";
+    } else {
+      // Desktop: Open Gmail Web Compose interface directly in a clean new tab
+      window.open("https://mail.google.com/mail/?view=cm&fs=1&to=xorbyt.dev@gmail.com&su=Contact%20the%20Developers&body=Hi%20Team,%0A%0A", "_blank", "noopener,noreferrer");
+    }
+  }}
+  style={{
+    color: "#FF6600",
+    fontSize: "0.75rem",
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "0.25rem",
+    fontWeight: 600,
+    cursor: "pointer",
+    border: "1px solid rgba(255,102,0,.3)",
+    padding: "4px 10px",
+    borderRadius: 4,
+    background: "rgba(255,102,0,.07)",
+    textDecoration: "none"
+  }}
+>
+  ✉ Contact Developers
+</a>
           </div>
         </div>
       </footer>
@@ -1038,6 +1050,31 @@ function OrderConfirmModal({ order, onClose, onReorder }) {
 function MenuGrid({ category, cart, onAdd, onChangeQty, searchQuery = "", isSearchResult = false }) {
   const { aboutData } = useApp();
   const [selVar, setSelVar] = useState({});
+  const [detailItem, setDetailItem] = useState(null);
+  const [addonQty, setAddonQty] = useState({});
+  useEffect(() => { setAddonQty({}); }, [detailItem?.item?.id]);
+
+  const getAddonUnitPrice = (a, selLabel) => {
+    if (a.variantPrices && a.variantPrices.length && selLabel) {
+      const m = a.variantPrices.find(v => v.label === selLabel);
+      if (m) return m.price;
+    }
+    return a.price ?? 0;
+  };
+  const computeAddonExtras = (item, sel) => {
+    if (!item?.addons?.length) return { extra: 0, summary: "", sig: "" };
+    let extra = 0; const lines = []; const sigParts = [];
+    item.addons.forEach(a => {
+      const q = addonQty[a.label] ?? 0;
+      if (q > 0) {
+        const u = getAddonUnitPrice(a, sel?.label);
+        extra += u * q;
+        lines.push(`+${a.label}${q>1?`×${q}`:""}`);
+        sigParts.push(`${a.label}:${q}`);
+      }
+    });
+    return { extra, summary: lines.join(", "), sig: sigParts.join("|") };
+  };
   const getQty = (id) => cart.find(c=>c.id===id)?.qty??0;
 
   const filtered = searchQuery.trim()
@@ -1069,19 +1106,23 @@ function MenuGrid({ category, cart, onAdd, onChangeQty, searchQuery = "", isSear
 
     return (
       <div key={item.id} className="mcard card-in" style={{display:"flex",flexDirection:"column",animationDelay:`${idx*60}ms`,borderRadius:12,overflow:"hidden",background:"#161616",border:"1px solid rgba(255,255,255,.07)"}}>
-        {/* Image — tall, like KFC */}
-        <div style={{position:"relative",width:"100%",paddingTop:"80%",background:"#1a1212",flexShrink:0,overflow:"hidden"}}>
+        {/* Image — tall, like KFC. Click to open details. */}
+        <div onClick={()=>{SFX.click();setDetailItem({item,price,sel,img});}} style={{position:"relative",width:"100%",paddingTop:"80%",background:"#1a1212",flexShrink:0,overflow:"hidden",cursor:"pointer"}}>
           <img src={img ? (window.location.hostname === 'localhost' ? img : `/.netlify/images?url=${encodeURIComponent(img)}`) : ''} loading="lazy" style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover",display:"block"}}/>
           {/* Badges top-right */}
           <div style={{position:"absolute",top:8,right:8,display:"flex",flexDirection:"column",gap:"0.188rem",alignItems:"flex-end"}}>
             {item.spicy&&<span style={{background:"rgba(200,30,10,.9)",color:"#fff",fontSize:"0.5rem",fontWeight:700,fontFamily:"'Inter',sans-serif",padding:"0.125em 0.375em",borderRadius:20}}>🌶️ Spicy</span>}
             {item.popular&&<span style={{background:"rgba(255,140,0,.9)",color:"#fff",fontSize:"0.5rem",fontWeight:700,fontFamily:"'Inter',sans-serif",padding:"0.125em 0.375em",borderRadius:20}}>⭐ Popular</span>}
           </div>
+          {/* "View details" hint */}
+          <div style={{position:"absolute",bottom:8,left:8,background:"rgba(0,0,0,.55)",backdropFilter:"blur(6px)",color:"#fff",fontSize:"0.563rem",fontWeight:600,fontFamily:"'Inter',sans-serif",padding:"4px 8px",borderRadius:20,letterSpacing:".08em",textTransform:"uppercase",pointerEvents:"none"}}>Tap for details</div>
         </div>
         {/* Content */}
         <div style={{padding:"10px 10px 12px",display:"flex",flexDirection:"column",flex:1}}>
-          <div style={{fontFamily:"'Playfair Display',serif",fontSize:"0.875rem",fontWeight:700,color:"#fff",lineHeight:1.25,marginBottom:4}}>{item.name}</div>
-          <div style={{fontFamily:"'Barlow',sans-serif",fontSize:"0.688rem",color:"rgba(255,255,255,.4)",lineHeight:1.5,marginBottom:8,overflow:"hidden",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical"}}>{item.desc}</div>
+          <div onClick={()=>{SFX.click();setDetailItem({item,price,sel,img});}} style={{cursor:"pointer"}}>
+            <div style={{fontFamily:"'Playfair Display',serif",fontSize:"0.875rem",fontWeight:700,color:"#fff",lineHeight:1.25,marginBottom:4}}>{item.name}</div>
+            <div style={{fontFamily:"'Barlow',sans-serif",fontSize:"0.688rem",color:"rgba(255,255,255,.4)",lineHeight:1.5,marginBottom:8,overflow:"hidden",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical"}}>{item.desc}</div>
+          </div>
           {/* Variants */}
           {hasV&&(
             <div style={{display:"flex",flexWrap:"wrap",gap:"0.188rem",marginBottom:8}}>
@@ -1115,9 +1156,101 @@ function MenuGrid({ category, cart, onAdd, onChangeQty, searchQuery = "", isSear
   };
 
   return (
-    <div className="menu-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(240px,1fr))",gap:"1rem"}}>
-      {filtered.map((item, idx) => renderCard(item, idx))}
-    </div>
+    <>
+      <div className="menu-grid" style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(240px,1fr))",gap:"1rem"}}>
+        {filtered.map((item, idx) => renderCard(item, idx))}
+      </div>
+      {detailItem && (
+        <div
+          onClick={()=>setDetailItem(null)}
+          style={{position:"fixed",inset:0,background:"rgba(0,0,0,.75)",backdropFilter:"blur(6px)",zIndex:300,display:"flex",alignItems:"center",justifyContent:"center",padding:"16px",animation:"cardIn .25s ease"}}>
+          <div
+            onClick={e=>e.stopPropagation()}
+            style={{background:"#161616",borderRadius:16,maxWidth:480,width:"100%",maxHeight:"90vh",overflow:"auto",border:"1px solid rgba(255,102,0,.25)",boxShadow:"0 30px 80px rgba(0,0,0,.6)",position:"relative"}}>
+            <button
+              onClick={()=>{SFX.click();setDetailItem(null);}}
+              style={{position:"absolute",top:12,right:12,zIndex:2,width:34,height:34,borderRadius:"50%",border:"none",background:"rgba(0,0,0,.55)",color:"#fff",fontSize:"1rem",cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}
+              aria-label="Close">✕</button>
+            <div style={{position:"relative",width:"100%",paddingTop:"60%",background:"#1a1212",overflow:"hidden",borderRadius:"16px 16px 0 0"}}>
+              <img
+                src={detailItem.img ? (window.location.hostname === 'localhost' ? detailItem.img : `/.netlify/images?url=${encodeURIComponent(detailItem.img)}`) : ''}
+                alt={detailItem.item.name}
+                style={{position:"absolute",inset:0,width:"100%",height:"100%",objectFit:"cover"}}/>
+              <div style={{position:"absolute",top:12,left:12,display:"flex",gap:"0.375rem"}}>
+                {detailItem.item.spicy&&<span style={{background:"rgba(200,30,10,.92)",color:"#fff",fontSize:"0.625rem",fontWeight:700,fontFamily:"'Inter',sans-serif",padding:"4px 8px",borderRadius:20}}>🌶️ Spicy</span>}
+                {detailItem.item.popular&&<span style={{background:"rgba(255,140,0,.92)",color:"#fff",fontSize:"0.625rem",fontWeight:700,fontFamily:"'Inter',sans-serif",padding:"4px 8px",borderRadius:20}}>⭐ Popular</span>}
+              </div>
+            </div>
+            <div style={{padding:"20px 22px 22px"}}>
+              <div style={{fontFamily:"'Playfair Display',serif",fontSize:"1.5rem",fontWeight:700,color:"#fff",lineHeight:1.2,marginBottom:6}}>{detailItem.item.name}</div>
+              {detailItem.sel && (
+                <div style={{fontFamily:"'Inter',sans-serif",fontSize:"0.688rem",color:"rgba(255,255,255,.55)",letterSpacing:".1em",textTransform:"uppercase",marginBottom:10}}>{detailItem.sel.label}</div>
+              )}
+              <div style={{fontFamily:"'Barlow',sans-serif",fontSize:"0.938rem",color:"rgba(255,255,255,.78)",lineHeight:1.6,marginBottom:18,whiteSpace:"pre-wrap"}}>{detailItem.item.desc}</div>
+              {detailItem.item.addons?.length>0 && (() => {
+                const hasVariantPriced = detailItem.item.addons.some(a => a.variantPrices?.length);
+                return (
+                  <div style={{marginBottom:18,paddingTop:14,borderTop:"1px dashed rgba(255,102,0,.22)"}}>
+                    <div style={{fontFamily:"'Inter',sans-serif",fontSize:"0.688rem",fontWeight:800,letterSpacing:".16em",textTransform:"uppercase",color:"#FF8844",marginBottom:10}}>Add-ons</div>
+                    {hasVariantPriced && !detailItem.sel && (
+                      <div style={{fontFamily:"'Barlow',sans-serif",fontSize:"0.75rem",color:"rgba(255,255,255,.55)",marginBottom:8}}>Pick a size first to see add-on prices.</div>
+                    )}
+                    {detailItem.item.addons.map(a => {
+                      const up = getAddonUnitPrice(a, detailItem.sel?.label);
+                      const q  = addonQty[a.label] ?? 0;
+                      return (
+                        <div key={a.label} style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:12,padding:"8px 0"}}>
+                          <div style={{flex:1,minWidth:0}}>
+                            <div style={{fontFamily:"'Barlow',sans-serif",fontSize:"0.938rem",color:"#fff",fontWeight:600}}>{a.label}</div>
+                            <div style={{fontFamily:"'Inter',sans-serif",fontSize:"0.688rem",color:"rgba(255,255,255,.45)",marginTop:2}}>+ Rs.{up}{a.variantPrices?.length && detailItem.sel?` · ${detailItem.sel.label}`:""}</div>
+                          </div>
+                          <div style={{display:"flex",alignItems:"center",gap:6,background:"rgba(255,102,0,.08)",border:"1px solid rgba(255,102,0,.3)",borderRadius:8,padding:"3px 6px"}}>
+                            <button className="qbtn" style={{width:26,height:26,fontSize:"1rem",border:"none",background:"none"}} onClick={()=>{SFX.click();setAddonQty(p=>({...p,[a.label]:Math.max(0,(p[a.label]??0)-1)}));}}>−</button>
+                            <span style={{minWidth:18,textAlign:"center",fontFamily:"'Inter',sans-serif",fontSize:"0.875rem",fontWeight:800,color:"#fff"}}>{q}</span>
+                            <button className="qbtn" style={{width:26,height:26,fontSize:"1rem",border:"none",background:"none"}} onClick={()=>{SFX.click();setAddonQty(p=>({...p,[a.label]:(p[a.label]??0)+1}));}}>+</button>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })()}
+              {(() => {
+                const extras = computeAddonExtras(detailItem.item, detailItem.sel);
+                const totalPrice = detailItem.price + extras.extra;
+                return (
+              <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:"0.75rem",flexWrap:"wrap"}}>
+                <div style={{fontFamily:"'Inter',sans-serif",fontSize:"1.5rem",fontWeight:800,color:"#FF6600"}}>
+                  {detailItem.item.pricePrefix && <span style={{fontSize:"0.688rem",color:"rgba(255,255,255,.4)",fontWeight:400,marginRight:4}}>{detailItem.item.pricePrefix}</span>}
+                  Rs.{totalPrice}
+                  {extras.extra>0 && <span style={{fontSize:"0.625rem",color:"rgba(255,255,255,.45)",fontWeight:500,marginLeft:6}}>(base Rs.{detailItem.price} + add-ons Rs.{extras.extra})</span>}
+                </div>
+                <div style={{display:"flex",gap:"0.5rem"}}>
+                  <button
+                    className="btn-f ripple-host"
+                    onClick={e=>{
+                      addRipple(e);
+                      const it = detailItem.item;
+                      const s = detailItem.sel;
+                      const addonKey = extras.sig ? `-${extras.sig.replace(/[^a-z0-9]/gi,"_")}` : "";
+                      const cid = it.id + (s ? `-${s.label}` : "") + addonKey;
+                      const variantStr = [s?.label||null, extras.summary||null].filter(Boolean).join(" · ") || null;
+                      onAdd({id:cid,name:it.name,variant:variantStr,price:totalPrice});
+                      setDetailItem(null);
+                    }}
+                    style={{fontSize:"0.75rem",padding:"12px 24px"}}>+ Add to Cart</button>
+                  <button
+                    onClick={()=>shareItem(detailItem.item, totalPrice)}
+                    style={{fontSize:"0.75rem",padding:"12px 18px",borderRadius:4,border:"1px solid rgba(255,255,255,.18)",background:"transparent",color:"#fff",cursor:"pointer",fontFamily:"'Inter',sans-serif",fontWeight:700,letterSpacing:".08em",textTransform:"uppercase"}}>Share</button>
+                </div>
+              </div>
+                );
+              })()}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
