@@ -5,83 +5,79 @@
       "icon": "🍕",
       "items": [
         {
-          "id": "pz-ctiva",
+          "spicy": false,
           "name": "Chicken Tiva",
+          "variants": [
+            {
+              "label": "Small",
+              "price": 810
+            },
+            {
+              "label": "Medium",
+              "price": 1210
+            },
+            {
+              "label": "Large",
+              "price": 1760
+            },
+            {
+              "label": "XL",
+              "price": 2299
+            }
+          ],
           "desc": "Freshly made every day with premium chicken toppings.",
-          "tag": "Classic",
+          "addons": [
+            {
+              "label": "Extra Chicken",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 110
+                },
+                {
+                  "label": "Medium",
+                  "price": 170
+                },
+                {
+                  "label": "Large",
+                  "price": 310
+                },
+                {
+                  "label": "XL",
+                  "price": 410
+                }
+              ]
+            },
+            {
+              "label": "Extra Cheese",
+              "variantPrices": [
+                {
+                  "label": "Small",
+                  "price": 130
+                },
+                {
+                  "label": "Medium",
+                  "price": 230
+                },
+                {
+                  "label": "Large",
+                  "price": 330
+                },
+                {
+                  "label": "XL",
+                  "price": 430
+                }
+              ]
+            }
+          ],
           "popular": true,
-          "spicy": false,
-          "variants": [
-            {
-              "label": "Small",
-              "price": 810
-            },
-            {
-              "label": "Medium",
-              "price": 1210
-            },
-            {
-              "label": "Large",
-              "price": 1760
-            },
-            {
-              "label": "XL",
-              "price": 2299
-            }
-          ],
-          "image": "/uploads/chicken-tiva.jpg",
-          "addons": [
-            {
-              "label": "Extra Chicken",
-              "variantPrices": [
-                {
-                  "label": "Small",
-                  "price": 110
-                },
-                {
-                  "label": "Medium",
-                  "price": 170
-                },
-                {
-                  "label": "Large",
-                  "price": 310
-                },
-                {
-                  "label": "XL",
-                  "price": 410
-                }
-              ]
-            },
-            {
-              "label": "Extra Cheese",
-              "variantPrices": [
-                {
-                  "label": "Small",
-                  "price": 130
-                },
-                {
-                  "label": "Medium",
-                  "price": 230
-                },
-                {
-                  "label": "Large",
-                  "price": 330
-                },
-                {
-                  "label": "XL",
-                  "price": 430
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "pz-cfajita",
-          "name": "Chicken Fajita",
-          "desc": "Classic fajita flavours on a fresh pizza base.",
           "tag": "Classic",
-          "popular": false,
+          "id": "pz-ctiva",
+          "image": "/uploads/chicken-tiva.jpg"
+        },
+        {
           "spicy": true,
+          "name": "Chicken Fajita",
           "variants": [
             {
               "label": "Small",
@@ -100,7 +96,7 @@
               "price": 2299
             }
           ],
-          "image": "/uploads/chicken-fajita.jpg",
+          "desc": "Classic fajita flavours on a fresh pizza base.",
           "addons": [
             {
               "label": "Extra Chicken",
@@ -144,22 +140,22 @@
                 }
               ]
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Classic",
+          "id": "pz-cfajita",
+          "image": "/uploads/chicken-fajita.jpg"
         },
         {
-          "id": "pz-cgold",
-          "name": "Cheese Gold",
-          "desc": "Only cheese inside — pure golden cheesy bliss.",
-          "tag": "Cheese Lover",
-          "popular": false,
           "spicy": false,
+          "name": "Cheese Gold",
           "variants": [
             {
               "label": "Small",
               "price": 810
             }
           ],
-          "image": "/uploads/cheese-gold1.jpg",
+          "desc": "Only cheese inside — pure golden cheesy bliss.",
           "addons": [
             {
               "label": "Extra Chicken",
@@ -203,15 +199,15 @@
                 }
               ]
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Cheese Lover",
+          "id": "pz-cgold",
+          "image": "/uploads/cheese-gold1.jpg"
         },
         {
-          "id": "pz-hotspicy",
-          "name": "Hot & Spicy",
-          "desc": "Fiery spice blend on a crispy base for heat lovers.",
-          "tag": "Spicy",
-          "popular": false,
           "spicy": true,
+          "name": "Hot & Spicy",
           "variants": [
             {
               "label": "Small",
@@ -230,7 +226,7 @@
               "price": 1999
             }
           ],
-          "image": "/uploads/hot-spicy.jpg",
+          "desc": "Fiery spice blend on a crispy base for heat lovers.",
           "addons": [
             {
               "label": "Extra Chicken",
@@ -274,15 +270,15 @@
                 }
               ]
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Spicy",
+          "id": "pz-hotspicy",
+          "image": "/uploads/hot-spicy.jpg"
         },
         {
-          "id": "pz-periperi",
-          "name": "Peri-Peri",
-          "desc": "Tangy peri-peri sauce with juicy chicken bites.",
-          "tag": "Spicy",
-          "popular": true,
           "spicy": true,
+          "name": "Peri-Peri",
           "variants": [
             {
               "label": "Small",
@@ -301,7 +297,7 @@
               "price": 1750
             }
           ],
-          "image": "/uploads/peri-peri.jpg",
+          "desc": "Tangy peri-peri sauce with juicy chicken bites.",
           "addons": [
             {
               "label": "Extra Chicken",
@@ -345,15 +341,15 @@
                 }
               ]
             }
-          ]
+          ],
+          "popular": true,
+          "tag": "Spicy",
+          "id": "pz-periperi",
+          "image": "/uploads/peri-peri.jpg"
         },
         {
-          "id": "pz-csupreme",
-          "name": "Chicken Supreme",
-          "desc": "Loaded supreme pizza with generous chicken topping.",
-          "tag": "Premium",
-          "popular": false,
           "spicy": false,
+          "name": "Chicken Supreme",
           "variants": [
             {
               "label": "Small",
@@ -372,7 +368,7 @@
               "price": 2250
             }
           ],
-          "image": "/uploads/chicken-supreme.jpg",
+          "desc": "Loaded supreme pizza with generous chicken topping.",
           "addons": [
             {
               "label": "Extra Chicken",
@@ -416,30 +412,30 @@
                 }
               ]
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Premium",
+          "id": "pz-csupreme",
+          "image": "/uploads/chicken-supreme.jpg"
         },
         {
-          "id": "pz-kebabstuff",
+          "spicy": true,
           "name": "Kebab-Stuff",
+          "variants": [
+            {
+              "label": "Medium",
+              "price": 1360
+            },
+            {
+              "label": "Large",
+              "price": 1960
+            },
+            {
+              "label": "XL",
+              "price": 2399
+            }
+          ],
           "desc": "Stuffed with spiced kebab filling and melted cheese.",
-          "tag": "Special",
-          "popular": false,
-          "spicy": true,
-          "variants": [
-            {
-              "label": "Medium",
-              "price": 1360
-            },
-            {
-              "label": "Large",
-              "price": 1960
-            },
-            {
-              "label": "XL",
-              "price": 2399
-            }
-          ],
-          "image": "/uploads/kebab-stuff.jpg",
           "addons": [
             {
               "label": "Extra Chicken",
@@ -483,26 +479,26 @@
                 }
               ]
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Special",
+          "id": "pz-kebabstuff",
+          "image": "/uploads/kebab-stuff.jpg"
         },
         {
-          "id": "pz-beef",
+          "spicy": false,
           "name": "Beef Pizza",
+          "variants": [
+            {
+              "label": "Medium",
+              "price": 1360
+            },
+            {
+              "label": "Large",
+              "price": 1960
+            }
+          ],
           "desc": "Rich seasoned beef with mozzarella on a hand-tossed base.",
-          "tag": "Special",
-          "popular": false,
-          "spicy": false,
-          "variants": [
-            {
-              "label": "Medium",
-              "price": 1360
-            },
-            {
-              "label": "Large",
-              "price": 1960
-            }
-          ],
-          "image": "/uploads/beef-pizza.jpg",
           "addons": [
             {
               "label": "Extra Chicken",
@@ -546,15 +542,15 @@
                 }
               ]
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Special",
+          "id": "pz-beef",
+          "image": "/uploads/beef-pizza.jpg"
         },
         {
-          "id": "pz-legendmuglai",
-          "name": "Legend Muglai",
-          "desc": "Mughlai spiced toppings with aromatic herbs and cheese.",
-          "tag": "Special",
-          "popular": true,
           "spicy": true,
+          "name": "Legend Muglai",
           "variants": [
             {
               "label": "Medium",
@@ -569,7 +565,7 @@
               "price": 2399
             }
           ],
-          "image": "/uploads/mughlai-pizza.jpg",
+          "desc": "Mughlai spiced toppings with aromatic herbs and cheese.",
           "addons": [
             {
               "label": "Extra Chicken",
@@ -613,15 +609,15 @@
                 }
               ]
             }
-          ]
-        },
-        {
-          "id": "pz-place",
-          "name": "Pizza Place",
-          "desc": "Our signature house pizza — a true crowd pleaser.",
-          "tag": "House Favourite",
+          ],
           "popular": true,
+          "tag": "Special",
+          "id": "pz-legendmuglai",
+          "image": "/uploads/mughlai-pizza.jpg"
+        },
+        {
           "spicy": false,
+          "name": "Pizza Place",
           "variants": [
             {
               "label": "Medium",
@@ -632,7 +628,7 @@
               "price": 1960
             }
           ],
-          "image": "/uploads/pizza-place.jpg",
+          "desc": "Our signature house pizza — a true crowd pleaser.",
           "addons": [
             {
               "label": "Extra Chicken",
@@ -676,15 +672,15 @@
                 }
               ]
             }
-          ]
+          ],
+          "popular": true,
+          "tag": "House Favourite",
+          "id": "pz-place",
+          "image": "/uploads/pizza-place.jpg"
         },
         {
-          "id": "pz-crown",
-          "name": "Crown-Crust",
-          "desc": "Crown crust stuffed with cheese for a royal treat.",
-          "tag": "Special",
-          "popular": false,
           "spicy": false,
+          "name": "Crown-Crust",
           "variants": [
             {
               "label": "Medium",
@@ -699,7 +695,7 @@
               "price": 2399
             }
           ],
-          "image": "/uploads/crown-crust.jpg",
+          "desc": "Crown crust stuffed with cheese for a royal treat.",
           "addons": [
             {
               "label": "Extra Chicken",
@@ -743,15 +739,15 @@
                 }
               ]
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Special",
+          "id": "pz-crown",
+          "image": "/uploads/crown-crust.jpg"
         },
         {
-          "id": "pz-pizzasta",
-          "name": "Pizzasta",
-          "desc": "A unique fusion of pizza and pasta flavours in every bite.",
-          "tag": "Fusion",
-          "popular": false,
           "spicy": false,
+          "name": "Pizzasta",
           "variants": [
             {
               "label": "Medium",
@@ -762,7 +758,7 @@
               "price": 1960
             }
           ],
-          "image": "/uploads/pizzasta.jpg.jpeg",
+          "desc": "A unique fusion of pizza and pasta flavours in every bite.",
           "addons": [
             {
               "label": "Extra Chicken",
@@ -806,7 +802,11 @@
                 }
               ]
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Fusion",
+          "id": "pz-pizzasta",
+          "image": "/uploads/pizzasta.jpg.jpeg"
         }
       ]
     },
@@ -815,14 +815,10 @@
       "icon": "🍔",
       "items": [
         {
-          "id": "bb-bbg",
+          "spicy": false,
+          "price": 1199,
           "name": "BBG Beef (Special)",
           "desc": "Our special BBG beef burger — bold, juicy, unforgettable.",
-          "price": 1199,
-          "tag": "Chef's Special",
-          "popular": true,
-          "spicy": false,
-          "image": "/uploads/bbg-burger.jpeg",
           "addons": [
             {
               "label": "Extra Base",
@@ -832,17 +828,17 @@
               "label": "Extra Cheese Slice",
               "price": 160
             }
-          ]
+          ],
+          "popular": true,
+          "tag": "Chef's Special",
+          "id": "bb-bbg",
+          "image": "/uploads/bbg-burger.jpeg"
         },
         {
-          "id": "bb-grill",
+          "spicy": false,
+          "price": 760,
           "name": "Grill Beef Burger",
           "desc": "Flame-grilled beef patty with fresh toppings.",
-          "price": 760,
-          "tag": "Grilled",
-          "popular": false,
-          "spicy": false,
-          "image": "/uploads/grill-beef-burger.jpeg",
           "addons": [
             {
               "label": "Extra Base",
@@ -852,17 +848,17 @@
               "label": "Extra Cheese Slice",
               "price": 160
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Grilled",
+          "id": "bb-grill",
+          "image": "/uploads/grill-beef-burger.jpeg"
         },
         {
-          "id": "bb-mushroom",
+          "spicy": false,
+          "price": 760,
           "name": "Beef Mushroom",
           "desc": "Juicy beef with sautéed mushrooms and creamy sauce.",
-          "price": 760,
-          "tag": "Classic",
-          "popular": false,
-          "spicy": false,
-          "image": "/uploads/beef-mashroom-burger.jpeg",
           "addons": [
             {
               "label": "Extra Base",
@@ -872,17 +868,17 @@
               "label": "Extra Cheese Slice",
               "price": 160
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Classic",
+          "id": "bb-mushroom",
+          "image": "/uploads/beef-mashroom-burger.jpeg"
         },
         {
-          "id": "bb-jalapeno",
+          "spicy": true,
+          "price": 760,
           "name": "Beef Jalapeño",
           "desc": "Beef patty loaded with jalapeños and spicy sauce.",
-          "price": 760,
-          "tag": "Spicy",
-          "popular": false,
-          "spicy": true,
-          "image": "/uploads/beef-jalapeno.jpeg",
           "addons": [
             {
               "label": "Extra Base",
@@ -892,7 +888,11 @@
               "label": "Extra Cheese Slice",
               "price": 160
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Spicy",
+          "id": "bb-jalapeno",
+          "image": "/uploads/beef-jalapeno.jpeg"
         }
       ]
     },
@@ -1601,13 +1601,19 @@
           "image": "/uploads/milk-bubble-tea.jpeg"
         },
         {
-          "id": "dr-chillers",
+          "spicy": false,
+          "price": 420,
           "name": "Chillers",
           "desc": "Blueberry, mango, red grapefruit, raspberry.",
-          "price": 420,
-          "tag": "Bar Section",
+          "addons": [
+            {
+              "label": "Blueberry",
+              "price": 420
+            }
+          ],
           "popular": false,
-          "spicy": false,
+          "tag": "Bar Section",
+          "id": "dr-chillers",
           "image": "/uploads/chillers.jpeg"
         },
         {
@@ -1840,20 +1846,20 @@
       "icon": "🧇",
       "items": [
         {
-          "id": "ds-waffle",
+          "spicy": false,
+          "price": 650,
           "name": "Bubble Waffle",
           "desc": "Vanilla, Chocolate, Pista, caramel, strawberry, kulfa, butterscotch, cottoncandy, strawberry cheese cake flavours. Add 120 for extra scoop.",
-          "price": 650,
-          "tag": "Signature",
-          "popular": true,
-          "spicy": false,
-          "image": "/uploads/dessert.jpeg",
           "addons": [
             {
               "label": "Extra Scoop of Ice Cream",
               "price": 120
             }
-          ]
+          ],
+          "popular": true,
+          "tag": "Signature",
+          "id": "ds-waffle",
+          "image": "/uploads/dessert.jpeg"
         }
       ]
     },
