@@ -1583,7 +1583,7 @@
         {
           "id": "dr-bubble",
           "name": "Bubble Tea",
-          "desc": "Pineapple, blueberry, peach, mango, green apple, redbull flavours.",
+          "desc": "Pineapple, blueberry, peach, mango, green apple, redbull, Honeydew, Raspberry, Strawberry flavours.",
           "price": 450,
           "tag": "Bar Section",
           "popular": true,
@@ -1605,12 +1605,7 @@
           "price": "",
           "name": "Chillers",
           "desc": "Blueberry, mango, red grapefruit, raspberry.",
-          "addons": [
-            {
-              "label": "Blueberry",
-              "price": 421
-            }
-          ],
+          "addons": [],
           "popular": false,
           "tag": "Bar Section",
           "id": "dr-chillers",
@@ -1619,7 +1614,7 @@
         {
           "id": "dr-icecream-shake",
           "name": "Ice-Cream Shakes",
-          "desc": "Mango, strawberry, chocolate, vanilla, pista.",
+          "desc": "Mango, strawberry, chocolate, vanilla, pista, Kulfa Strawberry cheesecake, butter scotch, cotton candy.",
           "price": 550,
           "tag": "Bar Section",
           "popular": false,
@@ -1849,7 +1844,7 @@
           "spicy": false,
           "price": 650,
           "name": "Bubble Waffle",
-          "desc": "Vanilla, Chocolate, Pista, caramel, strawberry, kulfa, butterscotch, cottoncandy, strawberry cheese cake flavours. Add 120 for extra scoop.",
+          "desc": "Vanilla, Chocolate, Pista, caramel, strawberry, kulfa, butterscotch, cottoncandy, strawberry cheese cake flavours. Add 120 for extra scoop of icecream.",
           "addons": [
             {
               "label": "Extra Scoop of Ice Cream",
