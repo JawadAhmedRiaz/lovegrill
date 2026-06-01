@@ -8,6 +8,8 @@ public_folder: "/uploads"
 collections:
   - name: "settings"
     label: "Site Settings"
+    editor:
+      preview: false
     files:
       - name: "about"
         label: "About & Contact"
@@ -24,6 +26,8 @@ collections:
 
   - name: "menu"
     label: "Menu"
+    editor:
+      preview: false
     files:
       - name: "menu"
         label: "Menu Items"

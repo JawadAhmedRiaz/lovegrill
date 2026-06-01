@@ -1465,7 +1465,21 @@
           "tag": "Hot Coffee",
           "popular": false,
           "spicy": false,
-          "image": "/uploads/americano.jpeg"
+          "image": "/uploads/americano.jpeg",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
         },
         {
           "id": "dr-latte-hot",
@@ -1484,7 +1498,21 @@
           "tag": "Hot Coffee",
           "popular": true,
           "spicy": false,
-          "image": "/uploads/hot-latte.jpeg"
+          "image": "/uploads/hot-latte.jpeg",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
         },
         {
           "id": "dr-cappuccino",
@@ -1503,7 +1531,21 @@
           "tag": "Hot Coffee",
           "popular": false,
           "spicy": false,
-          "image": "/uploads/cappuccino.jpeg"
+          "image": "/uploads/cappuccino.jpeg",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
         },
         {
           "id": "dr-espresso",
@@ -1518,7 +1560,21 @@
           "tag": "Hot Coffee",
           "popular": false,
           "spicy": false,
-          "image": "/uploads/espresso.jpeg"
+          "image": "/uploads/espresso.jpeg",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
         },
         {
           "id": "dr-icelatte",
@@ -1528,7 +1584,21 @@
           "tag": "Cold Coffee",
           "popular": false,
           "spicy": false,
-          "image": "/uploads/iced-latte.jpeg"
+          "image": "/uploads/iced-latte.jpeg",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
         },
         {
           "id": "dr-icelatte-flavor",
@@ -1538,7 +1608,27 @@
           "tag": "Cold Coffee",
           "popular": false,
           "spicy": false,
-          "image": "/uploads/iced-latte-flavoured-.jpeg"
+          "image": "/uploads/iced-latte-flavoured-.jpeg",
+          "flavors": [
+            "Caramel",
+            "Vanilla",
+            "Hazelnut"
+          ],
+          "flavorRequired": true,
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
         },
         {
           "id": "dr-feppachino",
@@ -1548,7 +1638,21 @@
           "tag": "Cold Coffee",
           "popular": true,
           "spicy": false,
-          "image": "/uploads/feppachino.jpeg"
+          "image": "/uploads/feppachino.jpeg",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
         },
         {
           "id": "dr-freddo",
@@ -1558,7 +1662,21 @@
           "tag": "Cold Coffee",
           "popular": false,
           "spicy": false,
-          "image": "/uploads/freddo-espresso.jpeg"
+          "image": "/uploads/freddo-espresso.jpeg",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
         },
         {
           "id": "dr-americano-cold",
@@ -1568,7 +1686,21 @@
           "tag": "Cold Coffee",
           "popular": false,
           "spicy": false,
-          "image": "/uploads/iced-americano.jpeg"
+          "image": "/uploads/iced-americano.jpeg",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
         },
         {
           "id": "dr-mintmarg",
@@ -1588,7 +1720,19 @@
           "tag": "Bar Section",
           "popular": true,
           "spicy": false,
-          "image": "/uploads/bubble-tea.jpeg"
+          "image": "/uploads/bubble-tea.jpeg",
+          "flavors": [
+            "Pineapple",
+            "Blueberry",
+            "Peach",
+            "Mango",
+            "Green Apple",
+            "Redbull",
+            "Honeydew",
+            "Raspberry",
+            "Strawberry"
+          ],
+          "flavorRequired": true
         },
         {
           "id": "dr-milkbubble",
@@ -1598,18 +1742,35 @@
           "tag": "Bar Section",
           "popular": false,
           "spicy": false,
-          "image": "/uploads/milk-bubble-tea.jpeg"
+          "image": "/uploads/milk-bubble-tea.jpeg",
+          "flavors": [
+            "Taro",
+            "Banana",
+            "Coconut",
+            "Blueberry",
+            "Mango",
+            "Strawberry",
+            "Chocolate"
+          ],
+          "flavorRequired": true
         },
         {
           "spicy": false,
-          "price": "",
+          "price": 450,
           "name": "Chillers",
           "desc": "Blueberry, mango, red grapefruit, raspberry.",
           "addons": [],
           "popular": false,
           "tag": "Bar Section",
           "id": "dr-chillers",
-          "image": "/uploads/chillers.jpeg"
+          "image": "/uploads/chillers.jpeg",
+          "flavors": [
+            "Blueberry",
+            "Mango",
+            "Red Grapefruit",
+            "Raspberry"
+          ],
+          "flavorRequired": true
         },
         {
           "id": "dr-icecream-shake",
@@ -1619,7 +1780,19 @@
           "tag": "Bar Section",
           "popular": false,
           "spicy": false,
-          "image": "/uploads/icecream-shakes.jpeg"
+          "image": "/uploads/icecream-shakes.jpeg",
+          "flavors": [
+            "Mango",
+            "Strawberry",
+            "Chocolate",
+            "Vanilla",
+            "Pista",
+            "Kulfa",
+            "Strawberry Cheesecake",
+            "Butter Scotch",
+            "Cotton Candy"
+          ],
+          "flavorRequired": true
         }
       ]
     },
@@ -1854,7 +2027,19 @@
           "popular": true,
           "tag": "Signature",
           "id": "ds-waffle",
-          "image": "/uploads/dessert.jpeg"
+          "image": "/uploads/dessert.jpeg",
+          "flavors": [
+            "Vanilla",
+            "Chocolate",
+            "Pista",
+            "Caramel",
+            "Strawberry",
+            "Kulfa",
+            "Butterscotch",
+            "Cotton Candy",
+            "Strawberry Cheese Cake"
+          ],
+          "flavorRequired": true
         }
       ]
     },

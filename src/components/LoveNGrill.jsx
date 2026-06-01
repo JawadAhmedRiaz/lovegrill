@@ -1052,7 +1052,17 @@ function MenuGrid({ category, cart, onAdd, onChangeQty, searchQuery = "", isSear
   const [selVar, setSelVar] = useState({});
   const [detailItem, setDetailItem] = useState(null);
   const [addonQty, setAddonQty] = useState({});
-  useEffect(() => { setAddonQty({}); }, [detailItem?.item?.id]);
+  const [selectedFlavor, setSelectedFlavor] = useState(null);
+  useEffect(() => { setAddonQty({}); setSelectedFlavor(null); }, [detailItem?.item?.id]);
+
+  // Normalize CMS flavours (supports ["Mango"] or [{name:"Mango"}])
+  const getFlavors = (item) => {
+    const raw = item?.flavors;
+    if (!Array.isArray(raw)) return [];
+    return raw.map(f => (typeof f === "string" ? f : (f?.name || f?.label || ""))).filter(Boolean);
+  };
+  const needsFlavor = (item) => !!item?.flavorRequired && getFlavors(item).length > 0;
+
 
   const getAddonUnitPrice = (a, selLabel) => {
     if (a.variantPrices && a.variantPrices.length && selLabel) {
@@ -1144,11 +1154,19 @@ function MenuGrid({ category, cart, onAdd, onChangeQty, searchQuery = "", isSear
               <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",background:"rgba(255,102,0,.12)",border:"1.5px solid rgba(255,102,0,.5)",borderRadius:8,padding:"0.313em 0.625em"}}>
                 <button className="qbtn" style={{width:26,height:26,fontSize:"1rem",border:"none",background:"none"}} onClick={()=>onChangeQty(cid,-1)}>−</button>
                 <span style={{fontFamily:"'Inter',sans-serif",fontSize:"0.875rem",fontWeight:800,color:"#fff"}}>{qty}</span>
-                <button className="qbtn" style={{width:26,height:26,fontSize:"1rem",border:"none",background:"none"}} onClick={()=>onAdd({id:cid,name:item.name,variant:sel?.label||null,price})}>+</button>
+                <button className="qbtn" style={{width:26,height:26,fontSize:"1rem",border:"none",background:"none"}} onClick={()=>{
+                  if (needsFlavor(item)) { SFX.click(); setDetailItem({item,price,sel,img}); return; }
+                  onAdd({id:cid,name:item.name,variant:sel?.label||null,price});
+                }}>+</button>
               </div>
             ):(
-              <button className="btn-f ripple-host" style={{width:"100%",fontSize:"0.688rem",padding:"10px 4px",letterSpacing:".08em",borderRadius:8,display:"block"}} onClick={e=>{addRipple(e);onAdd({id:cid,name:item.name,variant:sel?.label||null,price});}}>+ Add to Cart</button>
+              <button className="btn-f ripple-host" style={{width:"100%",fontSize:"0.688rem",padding:"10px 4px",letterSpacing:".08em",borderRadius:8,display:"block"}} onClick={e=>{
+                addRipple(e);
+                if (needsFlavor(item)) { SFX.click(); setDetailItem({item,price,sel,img}); return; }
+                onAdd({id:cid,name:item.name,variant:sel?.label||null,price});
+              }}>+ Add to Cart</button>
             )}
+
           </div>
         </div>
       </div>
@@ -1187,7 +1205,41 @@ function MenuGrid({ category, cart, onAdd, onChangeQty, searchQuery = "", isSear
                 <div style={{fontFamily:"'Inter',sans-serif",fontSize:"0.688rem",color:"rgba(255,255,255,.55)",letterSpacing:".1em",textTransform:"uppercase",marginBottom:10}}>{detailItem.sel.label}</div>
               )}
               <div style={{fontFamily:"'Barlow',sans-serif",fontSize:"0.938rem",color:"rgba(255,255,255,.78)",lineHeight:1.6,marginBottom:18,whiteSpace:"pre-wrap"}}>{detailItem.item.desc}</div>
+              {(() => {
+                const flavors = getFlavors(detailItem.item);
+                if (!flavors.length) return null;
+                const required = !!detailItem.item.flavorRequired;
+                return (
+                  <div style={{marginBottom:18,paddingTop:14,borderTop:"1px dashed rgba(255,102,0,.22)"}}>
+                    <div style={{fontFamily:"'Inter',sans-serif",fontSize:"0.688rem",fontWeight:800,letterSpacing:".16em",textTransform:"uppercase",color:"#FF8844",marginBottom:10}}>
+                      Choose Flavour {required && <span style={{color:"#ff5555"}}>*</span>}
+                    </div>
+                    <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
+                      {flavors.map(f => (
+                        <button key={f}
+                          type="button"
+                          onClick={()=>{SFX.tabSwitch();setSelectedFlavor(f);}}
+                          style={{
+                            fontFamily:"'Inter',sans-serif",fontSize:"0.75rem",fontWeight:600,
+                            padding:"6px 12px",borderRadius:20,cursor:"pointer",
+                            border: selectedFlavor===f ? "1.5px solid #FF6600" : "1px solid rgba(255,255,255,.18)",
+                            background: selectedFlavor===f ? "rgba(255,102,0,.18)" : "transparent",
+                            color: selectedFlavor===f ? "#FF6600" : "rgba(255,255,255,.78)"
+                          }}>
+                          {f}
+                        </button>
+                      ))}
+                    </div>
+                    {required && !selectedFlavor && (
+                      <div style={{fontFamily:"'Barlow',sans-serif",fontSize:"0.75rem",color:"rgba(255,255,255,.55)",marginTop:8}}>
+                        Please select a flavour to continue.
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
               {detailItem.item.addons?.length>0 && (() => {
+
                 const hasVariantPriced = detailItem.item.addons.some(a => a.variantPrices?.length);
                 return (
                   <div style={{marginBottom:18,paddingTop:14,borderTop:"1px dashed rgba(255,102,0,.22)"}}>
@@ -1232,13 +1284,19 @@ function MenuGrid({ category, cart, onAdd, onChangeQty, searchQuery = "", isSear
                       addRipple(e);
                       const it = detailItem.item;
                       const s = detailItem.sel;
-                      const addonKey = extras.sig ? `-${extras.sig.replace(/[^a-z0-9]/gi,"_")}` : "";
-                      const cid = it.id + (s ? `-${s.label}` : "") + addonKey;
-                      const variantStr = [s?.label||null, extras.summary||null].filter(Boolean).join(" · ") || null;
+                      if (needsFlavor(it) && !selectedFlavor) {
+                        alert(`Please choose a flavour for ${it.name}.`);
+                        return;
+                      }
+                      const flavorKey = selectedFlavor ? `-${selectedFlavor.replace(/[^a-z0-9]/gi,"_")}` : "";
+                      const addonKey  = extras.sig ? `-${extras.sig.replace(/[^a-z0-9]/gi,"_")}` : "";
+                      const cid = it.id + (s ? `-${s.label}` : "") + flavorKey + addonKey;
+                      const variantStr = [s?.label||null, selectedFlavor||null, extras.summary||null].filter(Boolean).join(" · ") || null;
                       onAdd({id:cid,name:it.name,variant:variantStr,price:totalPrice});
                       setDetailItem(null);
                     }}
-                    style={{fontSize:"0.75rem",padding:"12px 24px"}}>+ Add to Cart</button>
+                    style={{fontSize:"0.75rem",padding:"12px 24px",opacity: (needsFlavor(detailItem.item) && !selectedFlavor) ? 0.55 : 1}}>+ Add to Cart</button>
+
                   <button
                     onClick={()=>shareItem(detailItem.item, totalPrice)}
                     style={{fontSize:"0.75rem",padding:"12px 18px",borderRadius:4,border:"1px solid rgba(255,255,255,.18)",background:"transparent",color:"#fff",cursor:"pointer",fontFamily:"'Inter',sans-serif",fontWeight:700,letterSpacing:".08em",textTransform:"uppercase"}}>Share</button>
