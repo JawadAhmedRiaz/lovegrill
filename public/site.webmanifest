@@ -1,6 +1,6 @@
 {
-  "name": "Lovable App",
-  "short_name": "Lovable",
+  "name": "Love N' Grill",
+  "short_name": "Love N' Grill",
   "icons": [
     { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
     { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
