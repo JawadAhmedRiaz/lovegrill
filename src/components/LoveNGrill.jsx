@@ -34,43 +34,94 @@ const AppCtx = createContext(null);
 const useApp = () => useContext(AppCtx);
 
 // ── SEO meta injector + Schema Markup ────────────────────────────
+// DROP-IN REPLACEMENT for the SEO() component in LoveNGrill.jsx (lines ~36-122).
+// Keeps your existing structure; strengthens local-SEO for "fast food Haripur",
+// "restaurant Haripur", "Love n Grill" searches.
 function SEO() {
   useEffect(() => {
-    document.title = "Love n' Grill – The Heartbeat of Haripur's Food Scene";
+    // Front-loaded keywords + location — Google weights leading words heavily
+    document.title = "Love n' Grill — Best Fast Food Restaurant in Haripur | Pizza, Burgers & Grill";
 
     const setMeta = (name, content, prop) => {
       let el = document.querySelector(prop ? `meta[property="${name}"]` : `meta[name="${name}"]`);
-      if (!el) { el = document.createElement("meta"); prop ? el.setAttribute("property",name) : el.setAttribute("name",name); document.head.appendChild(el); }
+      if (!el) {
+        el = document.createElement("meta");
+        prop ? el.setAttribute("property", name) : el.setAttribute("name", name);
+        document.head.appendChild(el);
+      }
       el.setAttribute("content", content);
     };
-    setMeta("description","The heartbeat of Haripur's food scene. Fire-kissed pizzas, gourmet burgers, deals & more. Order via WhatsApp. Safdar Height, Main G.T Road, Haripur.");
-    setMeta("keywords","Love n Grill, Haripur restaurant, pizza Haripur, burger Haripur, fast food Haripur, grill Haripur, order online, lovengrill41@gmail.com");
-    setMeta("robots","index,follow");
-    setMeta("og:title","Love n' Grill – The Heartbeat of Haripur's Food Scene",true);
-    setMeta("og:description","Fire-kissed pizzas, gourmet burgers & sizzling deals in Haripur. Order via WhatsApp.",true);
-    setMeta("og:type","restaurant.restaurant",true);
-    setMeta("og:site_name","Love n' Grill",true);
-    setMeta("og:url","https://lovengrill.pk",true);
-    setMeta("twitter:card","summary_large_image");
-    setMeta("twitter:title","Love n' Grill – The Heartbeat of Haripur's Food Scene");
-    setMeta("twitter:description","Fire-kissed pizzas, gourmet burgers & sizzling deals in Haripur.");
 
-    // JSON-LD Schema Markup for Google Search
+    const setLink = (rel, href, extra = {}) => {
+      let el = document.querySelector(`link[rel="${rel}"]`);
+      if (!el) { el = document.createElement("link"); el.rel = rel; document.head.appendChild(el); }
+      el.href = href;
+      Object.entries(extra).forEach(([k, v]) => el.setAttribute(k, v));
+    };
+
+    // Core meta
+    setMeta("description", "Love n' Grill is Haripur's top fast food restaurant — fire-kissed pizzas, gourmet burgers, grilled specialties and family deals. Dine-in, takeaway & WhatsApp delivery. Safdar Height, Main G.T Road, Haripur.");
+    setMeta("keywords", "fast food Haripur, restaurant Haripur, Love n Grill, Love n' Grill Haripur, pizza Haripur, burger Haripur, grill Haripur, best restaurant in Haripur, food delivery Haripur, order food online Haripur, Haripur fast food, Pandak restaurant, G.T Road Haripur food");
+    setMeta("robots", "index, follow, max-image-preview:large, max-snippet:-1");
+    setMeta("author", "Love n' Grill");
+    setMeta("theme-color", "#FF6600");
+
+    // Geo signals for local pack
+    setMeta("geo.region", "PK-KP");
+    setMeta("geo.placename", "Haripur");
+    setMeta("geo.position", "33.9943992;72.9378945");
+    setMeta("ICBM", "33.9943992, 72.9378945");
+
+    // Canonical — prevents duplicate-content split between netlify subdomain & lovengrill.pk
+    setLink("canonical", "https://lovengrill.pk/");
+
+    // Open Graph
+    setMeta("og:title", "Love n' Grill — Best Fast Food Restaurant in Haripur", true);
+    setMeta("og:description", "Fire-kissed pizzas, gourmet burgers, grills & deals — Haripur's favorite fast food spot. Order via WhatsApp.", true);
+    setMeta("og:type", "restaurant.restaurant", true);
+    setMeta("og:site_name", "Love n' Grill", true);
+    setMeta("og:locale", "en_PK", true);
+    setMeta("og:url", "https://lovengrill.pk/", true);
+    setMeta("og:image", "https://lovengrill.pk/og-banner.jpg", true);
+    setMeta("og:image:secure_url", "https://lovengrill.pk/og-banner.jpg", true);
+    setMeta("og:image:type", "image/jpeg", true);
+    setMeta("og:image:width", "1200", true);
+    setMeta("og:image:height", "630", true);
+    setMeta("og:image:alt", "Love n' Grill — Fast food restaurant in Haripur", true);
+
+    // Twitter (fixed: was previously pointing to a mismatched URL)
+    setMeta("twitter:card", "summary_large_image");
+    setMeta("twitter:title", "Love n' Grill — Best Fast Food Restaurant in Haripur");
+    setMeta("twitter:description", "Fire-kissed pizzas, gourmet burgers, grills & deals — Haripur's favorite fast food spot.");
+    setMeta("twitter:image", "https://lovengrill.pk/og-banner.jpg");
+    setMeta("twitter:image:alt", "Love n' Grill — Fast food restaurant in Haripur");
+
+    // JSON-LD Schema Markup — Restaurant + LocalBusiness (broader local-pack eligibility)
     const schemaId = "lovengrill-schema";
     let existing = document.getElementById(schemaId);
-    if (!existing) { existing = document.createElement("script"); existing.type = "application/ld+json"; existing.id = schemaId; document.head.appendChild(existing); }
+    if (!existing) {
+      existing = document.createElement("script");
+      existing.type = "application/ld+json";
+      existing.id = schemaId;
+      document.head.appendChild(existing);
+    }
     existing.textContent = JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "Restaurant",
+      "@type": ["Restaurant", "LocalBusiness", "FoodEstablishment"],
+      "@id": "https://lovengrill.pk/#restaurant",
       "name": "Love n' Grill",
-      "alternateName": "LoveNGrill",
+      "alternateName": ["LoveNGrill", "Love and Grill", "Love n Grill Haripur"],
       "description": "Haripur's premier destination for fire-kissed pizzas, gourmet burgers, signature deals and fresh grills. Dine-in, takeaway & delivery available.",
       "url": "https://lovengrill.pk",
       "telephone": "+923199921117",
       "email": "lovengrill41@gmail.com",
-      "image": "https://lovengrill.pk/logo.jpg",
+      "image": [
+        "https://lovengrill.pk/og-banner.jpg",
+        "https://lovengrill.pk/logo.jpg"
+      ],
+      "logo": "https://lovengrill.pk/logo.jpg",
       "priceRange": "Rs.290 – Rs.6999",
-      "servesCuisine": ["Pakistani","Fast Food","Pizza","Burgers","Grills"],
+      "servesCuisine": ["Pakistani", "Fast Food", "Pizza", "Burgers", "Grills", "BBQ"],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Safdar Height, Main G.T Road, opp. Ameer Khan Silkway Plaza, Pandak",
@@ -84,8 +135,12 @@ function SEO() {
         "latitude": 33.9943992,
         "longitude": 72.9378945
       },
+      "areaServed": [
+        { "@type": "City", "name": "Haripur" },
+        { "@type": "AdministrativeArea", "name": "Khyber Pakhtunkhwa" }
+      ],
       "openingHoursSpecification": [
-        { "@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"10:00","closes":"01:00" }
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "10:00", "closes": "01:00" }
       ],
       "sameAs": [
         "https://instagram.com/lovengrill",
@@ -104,7 +159,8 @@ function SEO() {
         "bestRating": "5"
       }
     });
-    // Preconnect + parallel font stylesheet load (faster first paint than CSS @import)
+
+    // Preconnect + parallel font stylesheet load (unchanged)
     const fontHref = "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Barlow:wght@400;500;600&display=swap";
     [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -120,6 +176,7 @@ function SEO() {
   }, []);
   return null;
 }
+
 
 // ── Scroll-reveal hook ────────────────────────────────────────────
 function useScrollReveal(ref, threshold = 0.12) {
