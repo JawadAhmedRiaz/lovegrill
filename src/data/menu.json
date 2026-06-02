@@ -1484,16 +1484,7 @@
         {
           "spicy": false,
           "name": "Latte (Hot)",
-          "variants": [
-            {
-              "label": "Regular",
-              "price": 399
-            },
-            {
-              "label": "Large",
-              "price": 399
-            }
-          ],
+          "variants": [],
           "desc": "Espresso with steamed milk — creamy and comforting.",
           "addons": [
             {
