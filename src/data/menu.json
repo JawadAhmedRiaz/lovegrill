@@ -1449,9 +1449,8 @@
       "icon": "🥤",
       "items": [
         {
-          "id": "dr-americano-hot",
+          "spicy": false,
           "name": "Americano (Hot)",
-          "desc": "Classic rich espresso with hot water — bold and smooth.",
           "variants": [
             {
               "label": "Regular",
@@ -1462,10 +1461,7 @@
               "price": 399
             }
           ],
-          "tag": "Hot Coffee",
-          "popular": false,
-          "spicy": false,
-          "image": "/uploads/americano.jpeg",
+          "desc": "Classic rich espresso with hot water — bold and smooth.",
           "addons": [
             {
               "label": "Extra pump of Caramel",
@@ -1479,45 +1475,48 @@
               "label": "Extra pump of Vanilla",
               "price": 120
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Hot Coffee",
+          "id": "dr-americano-hot",
+          "image": "/uploads/americano.jpeg"
         },
         {
-          "id": "dr-latte-hot",
+          "spicy": false,
           "name": "Latte (Hot)",
+          "variants": [
+            {
+              "label": "Regular",
+              "price": 399
+            },
+            {
+              "label": "Large",
+              "price": 399
+            }
+          ],
           "desc": "Espresso with steamed milk — creamy and comforting.",
-          "variants": [
+          "addons": [
             {
-              "label": "Regular",
-              "price": 399
+              "label": "Extra pump of Caramel",
+              "price": 120
             },
             {
-              "label": "Large",
-              "price": 399
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
             }
           ],
-          "tag": "Hot Coffee",
           "popular": true,
-          "spicy": false,
-          "image": "/uploads/hot-latte.jpeg",
-          "addons": [
-            {
-              "label": "Extra pump of Caramel",
-              "price": 120
-            },
-            {
-              "label": "Extra pump of Hazelnut",
-              "price": 120
-            },
-            {
-              "label": "Extra pump of Vanilla",
-              "price": 120
-            }
-          ]
+          "tag": "Hot Coffee",
+          "id": "dr-latte-hot",
+          "image": "/uploads/hot-latte.jpeg"
         },
         {
-          "id": "dr-cappuccino",
+          "spicy": false,
           "name": "Cappuccino",
-          "desc": "Espresso topped with thick frothy milk foam.",
           "variants": [
             {
               "label": "Regular",
@@ -1528,10 +1527,7 @@
               "price": 399
             }
           ],
-          "tag": "Hot Coffee",
-          "popular": false,
-          "spicy": false,
-          "image": "/uploads/cappuccino.jpeg",
+          "desc": "Espresso topped with thick frothy milk foam.",
           "addons": [
             {
               "label": "Extra pump of Caramel",
@@ -1545,22 +1541,22 @@
               "label": "Extra pump of Vanilla",
               "price": 120
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Hot Coffee",
+          "id": "dr-cappuccino",
+          "image": "/uploads/cappuccino.jpeg"
         },
         {
-          "id": "dr-espresso",
+          "spicy": false,
           "name": "Espresso",
-          "desc": "Pure concentrated espresso shot — intense and rich.",
           "variants": [
             {
               "label": "Regular",
               "price": 399
             }
           ],
-          "tag": "Hot Coffee",
-          "popular": false,
-          "spicy": false,
-          "image": "/uploads/espresso.jpeg",
+          "desc": "Pure concentrated espresso shot — intense and rich.",
           "addons": [
             {
               "label": "Extra pump of Caramel",
@@ -1574,17 +1570,17 @@
               "label": "Extra pump of Vanilla",
               "price": 120
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Hot Coffee",
+          "id": "dr-espresso",
+          "image": "/uploads/espresso.jpeg"
         },
         {
-          "id": "dr-icelatte",
+          "spicy": false,
+          "price": 550,
           "name": "Ice Latte",
           "desc": "Chilled espresso with milk and ice — refreshing pick-me-up.",
-          "price": 550,
-          "tag": "Cold Coffee",
-          "popular": false,
-          "spicy": false,
-          "image": "/uploads/iced-latte.jpeg",
           "addons": [
             {
               "label": "Extra pump of Caramel",
@@ -1598,47 +1594,47 @@
               "label": "Extra pump of Vanilla",
               "price": 120
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Cold Coffee",
+          "id": "dr-icelatte",
+          "image": "/uploads/iced-latte.jpeg"
         },
         {
-          "id": "dr-icelatte-flavor",
+          "spicy": false,
+          "price": 497,
           "name": "Ice Latte (Flavoured)",
           "desc": "Ice latte with caramel, vanilla, or hazelnut flavour.",
-          "price": 497,
-          "tag": "Cold Coffee",
-          "popular": false,
-          "spicy": false,
-          "image": "/uploads/iced-latte-flavoured-.jpeg",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ],
           "flavors": [
             "Caramel",
             "Vanilla",
             "Hazelnut"
           ],
-          "flavorRequired": true,
-          "addons": [
-            {
-              "label": "Extra pump of Caramel",
-              "price": 120
-            },
-            {
-              "label": "Extra pump of Hazelnut",
-              "price": 120
-            },
-            {
-              "label": "Extra pump of Vanilla",
-              "price": 120
-            }
-          ]
+          "popular": false,
+          "tag": "Cold Coffee",
+          "id": "dr-icelatte-flavor",
+          "image": "/uploads/iced-latte-flavoured-.jpeg",
+          "flavorRequired": true
         },
         {
-          "id": "dr-feppachino",
+          "spicy": false,
+          "price": 399,
           "name": "Feppachino",
           "desc": "Our signature blended cold coffee — creamy and indulgent.",
-          "price": 399,
-          "tag": "Cold Coffee",
-          "popular": true,
-          "spicy": false,
-          "image": "/uploads/feppachino.jpeg",
           "addons": [
             {
               "label": "Extra pump of Caramel",
@@ -1652,17 +1648,17 @@
               "label": "Extra pump of Vanilla",
               "price": 120
             }
-          ]
+          ],
+          "popular": true,
+          "tag": "Cold Coffee",
+          "id": "dr-feppachino",
+          "image": "/uploads/feppachino.jpeg"
         },
         {
-          "id": "dr-freddo",
+          "spicy": false,
+          "price": 399,
           "name": "Freddo Espresso",
           "desc": "Cold Greek-style shaken espresso over ice.",
-          "price": 399,
-          "tag": "Cold Coffee",
-          "popular": false,
-          "spicy": false,
-          "image": "/uploads/freddo-espresso.jpeg",
           "addons": [
             {
               "label": "Extra pump of Caramel",
@@ -1676,17 +1672,17 @@
               "label": "Extra pump of Vanilla",
               "price": 120
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Cold Coffee",
+          "id": "dr-freddo",
+          "image": "/uploads/freddo-espresso.jpeg"
         },
         {
-          "id": "dr-americano-cold",
+          "spicy": false,
+          "price": 350,
           "name": "Ice Americano / Black",
           "desc": "Cold brew black coffee — bold and refreshing.",
-          "price": 350,
-          "tag": "Cold Coffee",
-          "popular": false,
-          "spicy": false,
-          "image": "/uploads/iced-americano.jpeg",
           "addons": [
             {
               "label": "Extra pump of Caramel",
@@ -1700,7 +1696,11 @@
               "label": "Extra pump of Vanilla",
               "price": 120
             }
-          ]
+          ],
+          "popular": false,
+          "tag": "Cold Coffee",
+          "id": "dr-americano-cold",
+          "image": "/uploads/iced-americano.jpeg"
         },
         {
           "id": "dr-mintmarg",
@@ -1713,14 +1713,10 @@
           "image": "/uploads/mint-margarita.jpeg"
         },
         {
-          "id": "dr-bubble",
-          "name": "Bubble Tea",
-          "desc": "Pineapple, blueberry, peach, mango, green apple, redbull, Honeydew, Raspberry, Strawberry flavours.",
-          "price": 450,
-          "tag": "Bar Section",
-          "popular": true,
           "spicy": false,
-          "image": "/uploads/bubble-tea.jpeg",
+          "price": 450,
+          "name": "Bubble Tea",
+          "desc": "Refreshing iced tea paired with our signature chewy tapioca pearls.",
           "flavors": [
             "Pineapple",
             "Blueberry",
@@ -1732,17 +1728,17 @@
             "Raspberry",
             "Strawberry"
           ],
+          "popular": true,
+          "tag": "Bar Section",
+          "id": "dr-bubble",
+          "image": "/uploads/bubble-tea.jpeg",
           "flavorRequired": true
         },
         {
-          "id": "dr-milkbubble",
-          "name": "Milk Bubble Tea",
-          "desc": "Taro, banana, coconut, blueberry, mango, strawberry, chocolate.",
-          "price": 599,
-          "tag": "Bar Section",
-          "popular": false,
           "spicy": false,
-          "image": "/uploads/milk-bubble-tea.jpeg",
+          "price": 599,
+          "name": "Milk Bubble Tea",
+          "desc": "A rich, creamy blend of sweetened milk tea and classic boba.",
           "flavors": [
             "Taro",
             "Banana",
@@ -1752,35 +1748,35 @@
             "Strawberry",
             "Chocolate"
           ],
+          "popular": false,
+          "tag": "Bar Section",
+          "id": "dr-milkbubble",
+          "image": "/uploads/milk-bubble-tea.jpeg",
           "flavorRequired": true
         },
         {
           "spicy": false,
           "price": 450,
           "name": "Chillers",
-          "desc": "Blueberry, mango, red grapefruit, raspberry.",
+          "desc": "Icy, blended beverages for a vibrant burst of refreshment.",
           "addons": [],
-          "popular": false,
-          "tag": "Bar Section",
-          "id": "dr-chillers",
-          "image": "/uploads/chillers.jpeg",
           "flavors": [
             "Blueberry",
             "Mango",
             "Red Grapefruit",
             "Raspberry"
           ],
+          "popular": false,
+          "tag": "Bar Section",
+          "id": "dr-chillers",
+          "image": "/uploads/chillers.jpeg",
           "flavorRequired": true
         },
         {
-          "id": "dr-icecream-shake",
-          "name": "Ice-Cream Shakes",
-          "desc": "Mango, strawberry, chocolate, vanilla, pista, Kulfa Strawberry cheesecake, butter scotch, cotton candy.",
-          "price": 550,
-          "tag": "Bar Section",
-          "popular": false,
           "spicy": false,
-          "image": "/uploads/icecream-shakes.jpeg",
+          "price": 550,
+          "name": "Ice-Cream Shakes",
+          "desc": "Thick, hand-spun shakes crafted with premium ice cream.",
           "flavors": [
             "Mango",
             "Strawberry",
@@ -1792,6 +1788,10 @@
             "Butter Scotch",
             "Cotton Candy"
           ],
+          "popular": false,
+          "tag": "Bar Section",
+          "id": "dr-icecream-shake",
+          "image": "/uploads/icecream-shakes.jpeg",
           "flavorRequired": true
         }
       ]
@@ -2017,17 +2017,13 @@
           "spicy": false,
           "price": 650,
           "name": "Bubble Waffle",
-          "desc": "Vanilla, Chocolate, Pista, caramel, strawberry, kulfa, butterscotch, cottoncandy, strawberry cheese cake flavours. Add 120 for extra scoop of icecream.",
+          "desc": "Crispy, golden waffles with soft, fluffy bubbles and decadent toppings.",
           "addons": [
             {
               "label": "Extra Scoop of Ice Cream",
               "price": 120
             }
           ],
-          "popular": true,
-          "tag": "Signature",
-          "id": "ds-waffle",
-          "image": "/uploads/dessert.jpeg",
           "flavors": [
             "Vanilla",
             "Chocolate",
@@ -2039,6 +2035,10 @@
             "Cotton Candy",
             "Strawberry Cheese Cake"
           ],
+          "popular": true,
+          "tag": "Signature",
+          "id": "ds-waffle",
+          "image": "/uploads/bubble-waffle2.jpg",
           "flavorRequired": true
         }
       ]
