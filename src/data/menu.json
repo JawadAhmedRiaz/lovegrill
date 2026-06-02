@@ -1450,17 +1450,8 @@
       "items": [
         {
           "spicy": false,
+          "price": 350,
           "name": "Americano (Hot)",
-          "variants": [
-            {
-              "label": "Regular",
-              "price": 350
-            },
-            {
-              "label": "Large",
-              "price": 399
-            }
-          ],
           "desc": "Classic rich espresso with hot water — bold and smooth.",
           "addons": [
             {
@@ -1483,6 +1474,7 @@
         },
         {
           "spicy": false,
+          "price": 499,
           "name": "Latte (Hot)",
           "desc": "Espresso with steamed milk — creamy and comforting.",
           "addons": [
@@ -1506,17 +1498,8 @@
         },
         {
           "spicy": false,
+          "price": 399,
           "name": "Cappuccino",
-          "variants": [
-            {
-              "label": "Regular",
-              "price": 399
-            },
-            {
-              "label": "Large",
-              "price": 399
-            }
-          ],
           "desc": "Espresso topped with thick frothy milk foam.",
           "addons": [
             {
@@ -1539,13 +1522,8 @@
         },
         {
           "spicy": false,
+          "price": 399,
           "name": "Espresso",
-          "variants": [
-            {
-              "label": "Regular",
-              "price": 399
-            }
-          ],
           "desc": "Pure concentrated espresso shot — intense and rich.",
           "addons": [
             {

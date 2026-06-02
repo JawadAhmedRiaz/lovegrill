@@ -660,12 +660,7 @@ function PublicSite() {
             <button className="btn-o" onClick={()=>{SFX.click();goTo("About");}} style={{fontSize:"clamp(11px,1.4vw,13px)",padding:"11px 22px"}}>Our Story</button>
           </div>
           <div style={{display:"flex",gap:"clamp(24px,6vw,52px)",justifyContent:"center",flexWrap:"nowrap"}}>
-            {[["4.9★","Avg Rating"],["50k+","Happy Guests"],["100%","Fresh Daily"]].map(([n,l])=>(
-              <div key={l} style={{cursor:"default",textAlign:"center"}}>
-                <div className="fd" style={{fontSize:"clamp(20px,4vw,28px)",fontWeight:700,color:"#FF6600"}}>{n}</div>
-                <div className="fc" style={{fontSize:"clamp(7px,1.5vw,9px)",letterSpacing:".2em",color:"rgba(255,255,255,.4)",textTransform:"uppercase",marginTop:3}}>{l}</div>
-              </div>
-            ))}
+            
           </div>
         </div>
 
@@ -816,12 +811,7 @@ function PublicSite() {
 
           {/* Stats row */}
           <div className="reveal" style={{display:"flex",gap:"1rem",justifyContent:"center",flexWrap:"wrap",padding:"20px 0",borderTop:"1px solid rgba(255,255,255,.05)",borderBottom:"1px solid rgba(255,255,255,.05)"}}>
-            {[["4.9★","Google Rating"],["50k+","Happy Guests"],["100%","Fresh Ingredients"],["20 min","Avg Prep Time"]].map(([val,label])=>(
-              <div key={label} style={{textAlign:"center",minWidth:110,padding:"12px 16px"}}>
-                <div className="fd" style={{fontSize:"clamp(22px,3vw,32px)",fontWeight:700,color:"#FF6600"}}>{val}</div>
-                <div className="fc" style={{fontSize:"0.625rem",letterSpacing:".18em",color:"rgba(255,255,255,.35)",textTransform:"uppercase",marginTop:4}}>{label}</div>
-              </div>
-            ))}
+            
           </div>
         </div>
       </section>
