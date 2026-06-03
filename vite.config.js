@@ -28,7 +28,7 @@ export default defineConfig({
         globPatterns: ["**/*.{js,css,html,svg,png,jpg,jpeg,webp,woff2,json,webmanifest}"],
         navigateFallback: "/index.html",
         
-        runtimeCaching: [
+       runtimeCaching: [
           {
             // HTML pages
             urlPattern: ({ request }) => request.mode === "navigate",
@@ -48,7 +48,7 @@ export default defineConfig({
             },
           },
           {
-            // FIX: Captures BOTH raw local images AND Netlify's optimized CDN paths
+            // Captures BOTH raw local images AND Netlify's optimized CDN paths
             urlPattern: ({ url, request }) => 
               request.destination === "image" || url.pathname.startsWith('/.netlify/images'),
             handler: "CacheFirst", // CacheFirst ensures instant offline rendering
@@ -70,15 +70,36 @@ export default defineConfig({
             },
           },
           {
-            // Google Fonts
+            // FIXED: Google Fonts with cross-origin caching permissions allowed
             urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
             handler: "StaleWhileRevalidate",
-            options: { cacheName: "google-fonts-cache" },
+            options: { 
+              cacheName: "google-fonts-cache",
+              cacheableResponse: {
+                statuses: [0, 200], // Required for cross-origin assets
+              },
+            },
           },
-        ],
+          {
+            // FIXED: Explicitly captures and caches the Netlify Identity widget script
+            urlPattern: /^https:\/\/identity\.netlify\.com\/v1\/netlify-identity-widget\.js/i,
+            handler: "StaleWhileRevalidate",
+            options: {
+              cacheName: "external-identity-cache",
+              cacheableResponse: {
+                statuses: [0, 200], // Required for cross-origin assets
+              },
+            },
+          },],
+      }, // Correctly closes workbox configuration
+      devOptions: { 
+        enabled: true, 
+        type: "module" 
       },
-      devOptions: { enabled: true, type: "module" },
     }),
-  ],
-  server: { port: 3000 },
+  ], // Correctly closes the plugins array
+  
+  server: { 
+    port: 3000 
+  },
 });
