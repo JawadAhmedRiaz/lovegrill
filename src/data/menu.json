@@ -72,7 +72,7 @@
           ],
           "popular": true,
           "tag": "Classic",
-          "id": "pz-ctiva",
+          "id": "pz-ctikka",
           "image": "/uploads/chicken-tiva.jpg"
         },
         {
@@ -932,7 +932,7 @@
         },
         {
           "id": "cb-double",
-          "name": "Double Degger",
+          "name": "Double Decker",
           "desc": "Double-stacked chicken degger burger for big appetites.",
           "price": 750,
           "tag": "Double",
