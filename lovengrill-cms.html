@@ -1,782 +1,1352 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Love n' Grill — CMS</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<style>
-  :root {
-    --fire: #FF4500;
-    --ember: #FF8C00;
-    --gold: #FFD700;
-    --coal: #0D0D0D;
-    --ash: #1A1A1A;
-    --smoke: #252525;
-    --cinder: #333;
-    --text: #F0EAE0;
-    --muted: #888;
-    --success: #22C55E;
-    --radius: 8px;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--coal);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  /* ── HEADER ── */
-  header {
-    background: var(--ash);
-    border-bottom: 1px solid #2a2a2a;
-    padding: 0 2rem;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky; top: 0; z-index: 100;
-  }
-  .brand { display: flex; align-items: center; gap: 0.75rem; }
-  .brand-flame { font-size: 1.5rem; }
-  .brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 2px; color: var(--fire); }
-  .brand-sub { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
-  .save-btn {
-    background: linear-gradient(135deg, var(--fire), var(--ember));
-    border: none; color: #fff; font-family: 'DM Sans', sans-serif;
-    font-size: 0.875rem; font-weight: 600; padding: 0.5rem 1.5rem;
-    border-radius: var(--radius); cursor: pointer; transition: opacity 0.2s;
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-  .save-btn:hover { opacity: 0.88; }
-  .save-btn.saved { background: linear-gradient(135deg, #22C55E, #16a34a); }
-  /* ── LAYOUT ── */
-  .app { display: flex; flex: 1; }
-  /* ── SIDEBAR ── */
-  nav {
-    width: 220px; flex-shrink: 0;
-    background: var(--ash);
-    border-right: 1px solid #2a2a2a;
-    padding: 1.5rem 0;
-    display: flex; flex-direction: column; gap: 0.25rem;
-  }
-  .nav-label {
-    font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 1.5px; color: var(--muted); padding: 0 1.25rem;
-    margin-bottom: 0.5rem; margin-top: 1rem;
-  }
-  .nav-label:first-child { margin-top: 0; }
-  nav button {
-    background: none; border: none; width: 100%;
-    text-align: left; padding: 0.6rem 1.25rem;
-    color: #aaa; font-family: 'DM Sans', sans-serif; font-size: 0.875rem;
-    cursor: pointer; display: flex; align-items: center; gap: 0.6rem;
-    transition: all 0.15s; border-left: 3px solid transparent;
-  }
-  nav button:hover { color: var(--text); background: var(--smoke); }
-  nav button.active {
-    color: var(--ember); background: rgba(255,140,0,0.08);
-    border-left-color: var(--fire);
-  }
-  /* ── MAIN ── */
-  main { flex: 1; overflow-y: auto; padding: 2rem; }
-  .section { display: none; }
-  .section.active { display: block; }
-  h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem; letter-spacing: 2px; color: var(--ember);
-    margin-bottom: 0.25rem;
-  }
-  .section-desc { color: var(--muted); font-size: 0.875rem; margin-bottom: 2rem; }
-  /* ── CARDS ── */
-  .card {
-    background: var(--ash); border: 1px solid #2a2a2a;
-    border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem;
-  }
-  .card-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 1.25rem;
-  }
-  .card-title { font-weight: 600; font-size: 1rem; }
-  .card-icon { font-size: 1.5rem; }
-  /* ── FORM ELEMENTS ── */
-  .field { margin-bottom: 1rem; }
-  label {
-    display: block; font-size: 0.78rem; font-weight: 500;
-    color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px;
-    margin-bottom: 0.4rem;
-  }
-  input[type="text"], input[type="email"], input[type="number"],
-  input[type="url"], textarea, select {
-    width: 100%; background: var(--smoke); border: 1px solid var(--cinder);
-    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
-    padding: 0.6rem 0.85rem; border-radius: var(--radius);
-    outline: none; transition: border-color 0.15s;
-  }
-  input:focus, textarea:focus, select:focus {
-    border-color: var(--fire); box-shadow: 0 0 0 3px rgba(255,69,0,0.12);
-  }
-  textarea { resize: vertical; min-height: 80px; }
-  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
-  /* ── TOGGLE ── */
-  .toggle-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
-  .toggle-label { font-size: 0.875rem; color: var(--text); }
-  .toggle {
-    position: relative; width: 40px; height: 22px;
-    cursor: pointer; flex-shrink: 0;
-  }
-  .toggle input { opacity: 0; width: 0; height: 0; }
-  .toggle-track {
-    position: absolute; inset: 0; background: var(--cinder);
-    border-radius: 22px; transition: background 0.2s;
-  }
-  .toggle input:checked + .toggle-track { background: var(--fire); }
-  .toggle-thumb {
-    position: absolute; left: 3px; top: 3px;
-    width: 16px; height: 16px; background: #fff;
-    border-radius: 50%; transition: transform 0.2s; pointer-events: none;
-  }
-  .toggle input:checked ~ .toggle-thumb { transform: translateX(18px); }
-  /* ── MENU ITEMS ── */
-  .menu-category { margin-bottom: 2rem; }
-  .category-header {
-    display: flex; align-items: center; gap: 0.75rem;
-    margin-bottom: 1rem; padding-bottom: 0.75rem;
-    border-bottom: 1px solid #2a2a2a;
-  }
-  .category-icon-badge {
-    width: 40px; height: 40px; border-radius: 10px;
-    background: rgba(255,140,0,0.12); display: flex;
-    align-items: center; justify-content: center; font-size: 1.25rem;
-  }
-  .category-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 1px; color: var(--ember); }
-  .item-card {
-    background: var(--smoke); border: 1px solid #2a2a2a;
-    border-radius: 10px; margin-bottom: 0.75rem; overflow: hidden;
-  }
-  .item-header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0.85rem 1rem; cursor: pointer; user-select: none;
-    transition: background 0.15s;
-  }
-  .item-header:hover { background: rgba(255,255,255,0.03); }
-  .item-title-row { display: flex; align-items: center; gap: 0.75rem; }
-  .item-name { font-weight: 600; font-size: 0.95rem; }
-  .item-price { font-size: 0.8rem; color: var(--ember); font-weight: 500; }
-  .item-badges { display: flex; gap: 0.35rem; }
-  .badge {
-    font-size: 0.65rem; font-weight: 600; padding: 2px 7px;
-    border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px;
-  }
-  .badge-pop { background: rgba(255,215,0,0.15); color: var(--gold); border: 1px solid rgba(255,215,0,0.3); }
-  .badge-spicy { background: rgba(255,69,0,0.15); color: var(--fire); border: 1px solid rgba(255,69,0,0.3); }
-  .chevron { color: var(--muted); transition: transform 0.2s; font-size: 0.75rem; }
-  .item-body { padding: 1rem; border-top: 1px solid #2a2a2a; display: none; }
-  .item-body.open { display: block; }
-  /* ── IMAGE UPLOAD ── */
-  .img-upload {
-    border: 2px dashed var(--cinder); border-radius: var(--radius);
-    padding: 1.5rem; text-align: center; cursor: pointer;
-    transition: border-color 0.15s; position: relative;
-  }
-  .img-upload:hover { border-color: var(--fire); }
-  .img-upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; }
-  .img-upload-icon { font-size: 2rem; margin-bottom: 0.5rem; }
-  .img-upload-text { font-size: 0.8rem; color: var(--muted); }
-  .img-preview { width: 100%; max-height: 140px; object-fit: cover; border-radius: var(--radius); margin-top: 0.75rem; }
-  /* ── VARIANTS ── */
-  .variants-list { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem; }
-  .variant-row { display: flex; gap: 0.5rem; align-items: center; }
-  .variant-row input { flex: 1; }
-  .btn-icon {
-    background: none; border: 1px solid var(--cinder); color: var(--muted);
-    width: 32px; height: 32px; border-radius: 6px; cursor: pointer;
-    font-size: 1rem; display: flex; align-items: center; justify-content: center;
-    transition: all 0.15s; flex-shrink: 0;
-  }
-  .btn-icon:hover { border-color: var(--fire); color: var(--fire); }
-  .btn-icon.del:hover { border-color: #ef4444; color: #ef4444; }
-  .add-btn {
-    background: none; border: 1px dashed var(--cinder);
-    color: var(--muted); font-family: 'DM Sans', sans-serif;
-    font-size: 0.8rem; padding: 0.5rem 1rem; border-radius: var(--radius);
-    cursor: pointer; width: 100%; margin-top: 0.5rem; transition: all 0.15s;
-  }
-  .add-btn:hover { border-color: var(--fire); color: var(--ember); }
-  /* ── ADD ITEM ── */
-  .add-item-btn {
-    background: rgba(255,140,0,0.06); border: 1px dashed rgba(255,140,0,0.3);
-    color: var(--ember); font-family: 'DM Sans', sans-serif; font-size: 0.875rem;
-    font-weight: 500; padding: 0.75rem; border-radius: 10px;
-    cursor: pointer; width: 100%; transition: all 0.15s;
-    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-  }
-  .add-item-btn:hover { background: rgba(255,140,0,0.12); }
-  /* ── HOURS TABLE ── */
-  .hours-row {
-    display: grid; grid-template-columns: 1fr 1fr 1fr auto;
-    gap: 0.75rem; align-items: center; margin-bottom: 0.5rem;
-  }
-  /* ── TOAST ── */
-  .toast {
-    position: fixed; bottom: 2rem; right: 2rem;
-    background: #22C55E; color: #fff; padding: 0.75rem 1.5rem;
-    border-radius: var(--radius); font-weight: 500; font-size: 0.875rem;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-    transform: translateY(100px); opacity: 0;
-    transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
-    z-index: 999; pointer-events: none;
-  }
-  .toast.show { transform: translateY(0); opacity: 1; }
-  /* ── EXPORT PANEL ── */
-  .export-code {
-    background: var(--smoke); border: 1px solid var(--cinder);
-    border-radius: var(--radius); padding: 1rem; font-family: monospace;
-    font-size: 0.75rem; color: #aaa; max-height: 300px; overflow-y: auto;
-    white-space: pre-wrap; word-break: break-all;
-  }
-  .copy-btn {
-    background: var(--smoke); border: 1px solid var(--cinder);
-    color: var(--text); font-family: 'DM Sans', sans-serif;
-    font-size: 0.8rem; padding: 0.45rem 1rem; border-radius: var(--radius);
-    cursor: pointer; transition: all 0.15s; margin-top: 0.75rem;
-  }
-  .copy-btn:hover { border-color: var(--ember); color: var(--ember); }
-  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
-  .stat { background: var(--ash); border: 1px solid #2a2a2a; border-radius: 10px; padding: 1rem 1.25rem; }
-  .stat-val { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--ember); }
-  .stat-key { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love n' Grill — CMS Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #141407;
+      --surface:     #1c1c09;
+      --card:        #242410;
+      --card-alt:    #2c2c14;
+      --border:      rgba(255,160,51,0.18);
+      --border-hi:   rgba(255,160,51,0.42);
+      --accent:      #FFA033;
+      --accent-pale: #FFED7A;
+      --accent-dark: #CC5500;
+      --olive:       #5C5C2A;
+      --olive-dark:  #2A2A10;
+      --text:        #f0ead8;
+      --muted:       #8a8055;
+      --danger:      #e03020;
+      --success:     #6aaa30;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Barlow', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    /* ── LAYOUT ── */
+    .app { display: flex; height: 100vh; }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: 230px;
+      min-width: 230px;
+      background: var(--olive-dark);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .sidebar-brand {
+      padding: 22px 18px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .brand-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .brand-sub {
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .brand-badge {
+      display: inline-block;
+      background: rgba(255,160,51,0.14);
+      color: var(--accent);
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 9px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,160,51,0.28);
+      margin-top: 9px;
+    }
+
+    .nav { padding: 10px 8px; flex: 1; }
+    .nav-label {
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 10px 4px;
+      margin-top: 6px;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 11px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background 0.14s, color 0.14s;
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 2px;
+      border: 1px solid transparent;
+      user-select: none;
+    }
+    .nav-item:hover { background: rgba(255,160,51,0.08); color: var(--text); }
+    .nav-item.active {
+      background: rgba(255,160,51,0.15);
+      color: var(--accent);
+      border-color: rgba(255,160,51,0.25);
+      font-weight: 600;
+    }
+    .nav-icon { font-size: 0.95rem; width: 18px; text-align: center; }
+
+    .sidebar-footer {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+    }
+    .sidebar-footer p { font-size: 0.63rem; color: var(--muted); line-height: 1.6; }
+    .sidebar-footer code { color: var(--accent-pale); font-size: 0.6rem; }
+
+    /* ── MAIN ── */
+    .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: var(--surface); }
+
+    .topbar {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 57px;
+      flex-shrink: 0;
+    }
+    .topbar-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .topbar-actions { display: flex; gap: 8px; align-items: center; }
+
+    .content { flex: 1; overflow-y: auto; padding: 22px 26px 40px; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 15px;
+      border-radius: 7px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: filter 0.14s, transform 0.14s, background 0.14s;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff;
+    }
+    .btn-primary:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .btn-secondary {
+      background: rgba(255,160,51,0.12);
+      color: var(--accent);
+      border: 1px solid rgba(255,160,51,0.3);
+    }
+    .btn-secondary:hover { background: rgba(255,160,51,0.22); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { color: var(--text); border-color: var(--border-hi); }
+    .btn-danger {
+      background: rgba(224,48,32,0.12);
+      color: var(--danger);
+      border: 1px solid rgba(224,48,32,0.28);
+    }
+    .btn-danger:hover { background: rgba(224,48,32,0.22); }
+    .btn-sm { padding: 5px 11px; font-size: 0.74rem; border-radius: 6px; }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .card + .card { margin-top: 14px; }
+    .card-header {
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0,0,0,0.18);
+    }
+    .card-header h3 {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .card-body { padding: 18px; }
+
+    /* ── FORMS ── */
+    .form-group { margin-bottom: 14px; }
+    .form-group:last-child { margin-bottom: 0; }
+    .form-label {
+      display: block;
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+    .form-hint { font-size: 0.62rem; color: var(--muted); margin-top: 4px; }
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.87rem;
+      padding: 9px 11px;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255,160,51,0.11);
+    }
+    .form-textarea { resize: vertical; min-height: 72px; }
+    .form-select { cursor: pointer; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* ── TOGGLE ── */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .toggle-row:last-child { border-bottom: none; }
+    .toggle-label { font-size: 0.85rem; color: var(--text); }
+    .toggle-desc { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+    .toggle { position: relative; width: 40px; height: 22px; flex-shrink: 0; }
+    .toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background: rgba(255,255,255,0.1);
+      border-radius: 100px;
+      transition: 0.18s;
+    }
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 16px; height: 16px;
+      left: 3px; top: 3px;
+      background: #bbb;
+      border-radius: 50%;
+      transition: 0.18s;
+    }
+    .toggle input:checked + .toggle-slider { background: var(--accent); }
+    .toggle input:checked + .toggle-slider::before { transform: translateX(18px); background: #fff; }
+
+    /* ── CATEGORY TABS ── */
+    .cat-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .tab-btn {
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: 0.77rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-family: 'Barlow', sans-serif;
+      transition: all 0.14s;
+      user-select: none;
+    }
+    .tab-btn:hover { border-color: var(--border-hi); color: var(--text); }
+    .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 700; }
+
+    /* ── ITEM LIST ── */
+    .item-list { display: flex; flex-direction: column; gap: 7px; }
+    .item-row {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 14px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      transition: border-color 0.14s;
+    }
+    .item-row:hover { border-color: var(--border-hi); }
+    .item-thumb {
+      width: 46px; height: 46px;
+      border-radius: 7px;
+      flex-shrink: 0;
+      background: var(--olive-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .item-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .item-info { flex: 1; min-width: 0; }
+    .item-name { font-size: 0.88rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .item-sub { font-size: 0.7rem; color: var(--muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .item-price { font-size: 0.87rem; font-weight: 700; color: var(--accent); flex-shrink: 0; min-width: 80px; text-align: right; }
+    .badges { display: flex; gap: 4px; flex-shrink: 0; }
+    .badge { font-size: 0.62rem; font-weight: 700; padding: 2px 7px; border-radius: 100px; }
+    .badge-pop { background: rgba(255,160,51,0.18); color: var(--accent); border: 1px solid rgba(255,160,51,0.32); }
+    .badge-hot { background: rgba(220,50,30,0.18); color: #ff6644; border: 1px solid rgba(220,50,30,0.32); }
+    .item-actions { display: flex; gap: 5px; flex-shrink: 0; }
+
+    /* ── VARIANTS EDITOR ── */
+    .variant-list { display: flex; flex-direction: column; gap: 7px; }
+    .variant-row { display: grid; grid-template-columns: 1fr 100px 36px; gap: 7px; align-items: center; }
+
+    /* ── MODAL ── */
+    .modal-wrap {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s;
+    }
+    .modal-wrap.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 560px;
+      max-height: 88vh;
+      overflow-y: auto;
+      transform: translateY(18px) scale(0.98);
+      transition: transform 0.18s;
+    }
+    .modal-wrap.open .modal { transform: translateY(0) scale(1); }
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky; top: 0;
+      background: var(--card);
+      z-index: 2;
+    }
+    .modal-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .modal-close {
+      background: none; border: none; color: var(--muted);
+      cursor: pointer; font-size: 1.1rem; padding: 4px 6px;
+      border-radius: 5px; transition: color 0.13s, background 0.13s; line-height: 1;
+    }
+    .modal-close:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .modal-body { padding: 20px; }
+    .modal-footer {
+      padding: 13px 20px;
+      border-top: 1px solid var(--border);
+      display: flex; gap: 8px; justify-content: flex-end;
+      position: sticky; bottom: 0;
+      background: var(--card); z-index: 2;
+    }
+
+    /* ── MISC ── */
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+
+    .load-zone {
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+      padding: 38px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.16s, background 0.16s;
+    }
+    .load-zone:hover { border-color: var(--accent); background: rgba(255,160,51,0.04); }
+    .load-zone .lz-icon { font-size: 2rem; }
+    .load-zone .lz-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-top: 10px; }
+    .load-zone .lz-sub { font-size: 0.78rem; color: var(--muted); margin-top: 6px; }
+    .load-zone code { color: var(--accent-pale); }
+
+    .section-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .section-count { font-size: 0.74rem; color: var(--muted); }
+
+    .empty { text-align: center; padding: 50px 20px; color: var(--muted); }
+    .empty .e-icon { font-size: 2.2rem; }
+    .empty h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin: 10px 0 5px; }
+    .empty p { font-size: 0.8rem; margin-bottom: 14px; }
+
+    .hours-row { display: flex; gap: 8px; align-items: flex-end; margin-bottom: 8px; }
+    .hours-row .form-group { margin: 0; flex: 1; }
+
+    /* ── TOAST ── */
+    .toast-wrap { position: fixed; bottom: 22px; right: 22px; z-index: 9999; display: flex; flex-direction: column; gap: 7px; }
+    .toast {
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 11px 15px;
+      font-size: 0.83rem;
+      color: var(--text);
+      min-width: 200px; max-width: 280px;
+      box-shadow: 0 4px 22px rgba(0,0,0,0.45);
+      animation: toastIn 0.18s ease;
+    }
+    .toast.ok  { border-left-color: var(--success); }
+    .toast.err { border-left-color: var(--danger); }
+    @keyframes toastIn {
+      from { transform: translateX(30px); opacity: 0; }
+      to   { transform: translateX(0);    opacity: 1; }
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--olive); border-radius: 4px; }
+
+    /* ── IMAGE PICKER ── */
+    .img-picker-modal { max-width: 720px; }
+
+    .img-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+      gap: 8px;
+      max-height: 420px;
+      overflow-y: auto;
+      padding: 2px;
+    }
+
+    .img-cell {
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 1;
+      background: var(--olive-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      position: relative;
+      transition: border-color 0.14s, transform 0.12s;
+    }
+    .img-cell:hover { border-color: var(--accent); transform: scale(1.04); }
+    .img-cell.selected { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+
+    .img-cell img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .img-cell-label {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      background: rgba(0,0,0,0.65);
+      font-size: 0.55rem;
+      color: #f0ead8;
+      padding: 3px 5px;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      line-height: 1.3;
+    }
+
+    .img-preview-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+      padding: 8px 10px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+    }
+    .img-preview-box img {
+      width: 54px; height: 54px;
+      border-radius: 6px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: var(--olive-dark);
+    }
+    .img-preview-box .img-preview-path {
+      font-size: 0.72rem;
+      color: var(--muted);
+      word-break: break-all;
+    }
+  </style>
 </head>
 <body>
-
-<header>
-  <div class="brand">
-    <span class="brand-flame">🔥</span>
-    <div>
-      <div class="brand-name">Love n' Grill</div>
-      <div class="brand-sub">Content Manager</div>
-    </div>
-  </div>
-  <button class="save-btn" id="saveBtn" onclick="saveAll()">
-    <span>💾</span> Save Changes
-  </button>
-</header>
-
 <div class="app">
-  <nav>
-    <div class="nav-label">Content</div>
-    <button class="active" onclick="showSection('dashboard', this)">📊 Dashboard</button>
-    <button onclick="showSection('menu', this)">🍽️ Menu</button>
-    <button onclick="showSection('about', this)">🏪 About Us</button>
-    <button onclick="showSection('hours', this)">🕐 Hours</button>
-    <button onclick="showSection('contact', this)">📞 Contact</button>
-    <div class="nav-label">Export</div>
-    <button onclick="showSection('export', this)">⬇️ Export JSON</button>
-  </nav>
 
-  <main>
-
-    <!-- DASHBOARD -->
-    <div class="section active" id="s-dashboard">
-      <h2>Dashboard</h2>
-      <p class="section-desc">Overview of your Love n' Grill content.</p>
-      <div class="stat-grid" id="statsGrid"></div>
-      <div class="card">
-        <div class="card-header"><span class="card-title">Quick Info</span></div>
-        <p style="color:var(--muted);font-size:0.875rem;line-height:1.7">
-          Use the sidebar to navigate between sections. Changes are stored in your browser until you click <strong style="color:var(--ember)">Save Changes</strong>, which downloads updated JSON files for your project.<br><br>
-          To deploy with Decap CMS, place the <code style="background:var(--smoke);padding:2px 6px;border-radius:4px">public/admin/</code> folder in your site root and connect your Git repository.
-        </p>
-      </div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-name">&#x1F525; Love n' Grill</div>
+      <div class="brand-sub">Haripur's Finest</div>
+      <div class="brand-badge">CMS Dashboard</div>
     </div>
 
-    <!-- MENU -->
-    <div class="section" id="s-menu">
-      <h2>Menu Editor</h2>
-      <p class="section-desc">Edit items, prices, descriptions, images and variants.</p>
-      <div id="menuEditor"></div>
-    </div>
+    <nav class="nav">
+      <div class="nav-label">Menu Content</div>
+      <div class="nav-item active" id="nav-menu" onclick="go('menu')">
+        <span class="nav-icon">&#x1F355;</span> Menu Items
+      </div>
+      <div class="nav-item" id="nav-deals" onclick="go('deals')">
+        <span class="nav-icon">&#x1F381;</span> Deals
+      </div>
 
-    <!-- ABOUT -->
-    <div class="section" id="s-about">
-      <h2>About Us</h2>
-      <p class="section-desc">Update your restaurant description and location.</p>
-      <div class="card">
-        <div class="field">
-          <label>Restaurant Description</label>
-          <textarea id="ab-description" rows="3"></textarea>
-        </div>
-        <div class="field">
-          <label>Location / Address</label>
-          <textarea id="ab-location" rows="2"></textarea>
-        </div>
-        <div class="row">
-          <div class="field">
-            <label>Instagram URL</label>
-            <input type="url" id="ab-instagram"/>
-          </div>
-          <div class="field">
-            <label>TikTok URL</label>
-            <input type="url" id="ab-tiktok"/>
-          </div>
-        </div>
+      <div class="nav-label">Restaurant Info</div>
+      <div class="nav-item" id="nav-about" onclick="go('about')">
+        <span class="nav-icon">&#x1F4CD;</span> About &amp; Contact
       </div>
-    </div>
+      <div class="nav-item" id="nav-hours" onclick="go('hours')">
+        <span class="nav-icon">&#x1F550;</span> Opening Hours
+      </div>
+    </nav>
 
-    <!-- HOURS -->
-    <div class="section" id="s-hours">
-      <h2>Opening Hours</h2>
-      <p class="section-desc">Set your weekly schedule and any special notices.</p>
-      <div class="card">
-        <div class="card-header">
-          <span class="card-title">Weekly Schedule</span>
-          <button class="btn-icon" onclick="addHoursRow()" title="Add row">＋</button>
-        </div>
-        <div id="hoursTable"></div>
-        <div class="field" style="margin-top:1.25rem">
-          <label>Special Notice (optional)</label>
-          <input type="text" id="hr-notice" placeholder="e.g. Closed on Eid / public holidays"/>
-        </div>
-      </div>
+    <div class="sidebar-footer">
+      <p>
+        1. Load your JSON file<br>
+        2. Make edits here<br>
+        3. Download &amp; drop into <code>src/data/</code><br>
+        4. Redeploy on Netlify &#x2705;
+      </p>
     </div>
+  </aside>
 
-    <!-- CONTACT -->
-    <div class="section" id="s-contact">
-      <h2>Contact Details</h2>
-      <p class="section-desc">Keep your phone, WhatsApp and email up to date.</p>
-      <div class="card">
-        <div class="row">
-          <div class="field">
-            <label>Phone Number</label>
-            <input type="text" id="ct-phone" placeholder="+92 300 0000000"/>
-          </div>
-          <div class="field">
-            <label>WhatsApp Number (digits only)</label>
-            <input type="text" id="ct-whatsapp" placeholder="923000000000"/>
-          </div>
-        </div>
-        <div class="field">
-          <label>Email Address</label>
-          <input type="email" id="ct-email"/>
-        </div>
-        <div class="field" style="margin-top:0.5rem">
-          <label>Hours Summary Line (shown on website)</label>
-          <input type="text" id="ct-hours" placeholder="Mon–Sat: 11am–11pm  |  Sun: 12pm–10pm"/>
-        </div>
-      </div>
+  <!-- MAIN -->
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-title" id="topbar-title">Menu Items</div>
+      <div class="topbar-actions" id="topbar-actions"></div>
     </div>
-
-    <!-- EXPORT -->
-    <div class="section" id="s-export">
-      <h2>Export JSON</h2>
-      <p class="section-desc">Download your data files to drop into your project.</p>
-      <div class="card">
-        <div class="card-header"><span class="card-title">menu.json</span><button class="copy-btn" onclick="downloadFile('menu')">⬇ Download</button></div>
-        <div class="export-code" id="ex-menu"></div>
-      </div>
-      <div class="card">
-        <div class="card-header"><span class="card-title">about.json</span><button class="copy-btn" onclick="downloadFile('about')">⬇ Download</button></div>
-        <div class="export-code" id="ex-about"></div>
-      </div>
-      <div class="card">
-        <div class="card-header"><span class="card-title">hours.json</span><button class="copy-btn" onclick="downloadFile('hours')">⬇ Download</button></div>
-        <div class="export-code" id="ex-hours"></div>
-      </div>
-    </div>
-
-  </main>
+    <div class="content" id="content"></div>
+  </div>
 </div>
 
-<div class="toast" id="toast">✓ Changes saved!</div>
+<!-- ITEM MODAL -->
+<div class="modal-wrap" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">Edit Item</div>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveItem()">&#x1F4BE; Save Item</button>
+    </div>
+  </div>
+</div>
+
+<!-- IMAGE PICKER MODAL -->
+<div class="modal-wrap" id="img-modal">
+  <div class="modal img-picker-modal">
+    <div class="modal-header">
+      <div class="modal-title">&#x1F5BC; Pick an Image</div>
+      <button class="modal-close" onclick="closeImgPicker()">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+        <button class="btn btn-primary btn-sm" onclick="triggerFolderLoad()">
+          &#x1F4C2; Load uploads folder
+        </button>
+        <span id="img-folder-status" style="font-size:0.74rem;color:var(--muted);">
+          No folder loaded yet
+        </span>
+      </div>
+      <!-- hidden folder input -->
+      <input type="file" id="img-folder-input" accept="image/*" multiple
+        style="display:none;" onchange="onFolderLoaded(this)" />
+
+      <div id="img-grid-wrap">
+        <div class="empty" style="padding:30px 0;">
+          <div class="e-icon">&#x1F5BC;</div>
+          <h4>No images loaded</h4>
+          <p>Click "Load uploads folder" and select your<br><code style="color:var(--accent-pale);">public/uploads</code> folder</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeImgPicker()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOASTS -->
+<div class="toast-wrap" id="toasts"></div>
 
 <script>
-// ── State ──────────────────────────────────────────────────────────
-let state = {
-  menu: { categories: [
-    { name:"Pizza", icon:"🍕", items:[
-      { id:"pz-reg", name:"Regular Pizza", desc:"Classic hand-tossed base with rich tomato sauce and fresh mozzarella, baked to golden perfection.", tag:"House Favourite", popular:true, spicy:false, variants:[{label:"Small",price:650},{label:"Medium",price:1199},{label:"Large",price:1699},{label:"XL",price:2099}] },
-      { id:"pz-spl", name:"Special Pizza", desc:"Loaded with premium toppings on a thick artisan crust with extra cheese pull guaranteed.", tag:"Chef's Special", popular:false, spicy:true, variants:[{label:"Medium",price:1299},{label:"Large",price:1850},{label:"XL",price:2399}] },
-    ]},
-    { name:"Burgers", icon:"🍔", items:[
-      { id:"bg-zc", name:"Zinger Crispo", desc:"Crispy golden chicken fillet, fiery spicy mayo, crunchy slaw, toasted brioche bun.", price:449, tag:"Hot Pick", popular:false, spicy:true },
-      { id:"bg-ct", name:"Classic Thunder", desc:"Double smash patty, aged cheddar, tangy pickles, mustard, toasted sesame bun.", price:499, tag:"Best Seller", popular:true, spicy:true },
-      { id:"bg-cb", name:"Classic Beef", desc:"100% prime beef, slow-caramelised onions, truffle aioli, fresh lettuce & tomato.", price:699, tag:"Premium", popular:false, spicy:false },
-    ]},
-    { name:"Deals", icon:"🎁", items:[
-      { id:"dl-1", name:"Deal 1", desc:"1 Signature Burger + Crispy Fries + Chilled Drink.", price:1699, tag:"Solo", popular:true, spicy:false },
-      { id:"dl-4", name:"Deal 4", desc:"Mini Pizza + Zinger Crispo + Drink.", price:799, tag:"Value", popular:false, spicy:false },
-      { id:"dl-fam", name:"Family Deal", desc:"1 Large Pizza + 2 Burgers + 4 Drinks + 2 Large Fries.", price:2999, tag:"Family", popular:true, spicy:false },
-      { id:"dl-pty", name:"Party Deal", desc:"2 XL Pizzas + 6 Burgers + 8 Drinks + 4 Sides + Dessert.", price:6999, tag:"Party", popular:false, spicy:false },
-    ]},
-    { name:"Extras", icon:"🍟", items:[
-      { id:"ex-rl", name:"Rolls", desc:"Crispy golden rolls stuffed with spiced chicken or fresh veggie filling.", price:290, pricePrefix:"Starting", tag:"Snack", popular:false, spicy:true },
-      { id:"ex-fc", name:"Fried Chicken", desc:"Southern-style crispy pieces with our signature spice rub.", price:599, pricePrefix:"From", tag:"Crunchy", popular:false, spicy:false },
-      { id:"ex-pa", name:"Pasta", desc:"Creamy arrabbiata or white sauce penne tossed with fresh herbs.", price:749, pricePrefix:"From", tag:"Comfort", popular:false, spicy:false },
-    ]},
-  ]},
-  about: {
-    location:"Safdar Height, Main G.T Road, opp. Ameer Khan Silkway Plaza, Pandak, Haripur",
-    description:"Haripur's premier destination for fresh grills, signature pizzas, and gourmet burgers.",
-    phone:"+92 319 9921117", whatsapp:"923199921117", email:"lovengrill41@gmail.com",
-    hours:"Mon–Sat: 11am–11pm  |  Sun: 12pm–10pm",
-    instagram:"https://instagram.com/lovengrill",
-    tiktok:"https://www.tiktok.com/@lovengrill",
-  },
-  hours: {
-    schedule:[
-      { days:"Mon–Sat", opens:"11:00 AM", closes:"11:00 PM" },
-      { days:"Sunday",  opens:"12:00 PM", closes:"10:00 PM" },
-    ],
-    notice:""
-  }
+// ── STATE ────────────────────────────────────────
+const S = { menu: null, about: null, hours: null };
+let section  = 'menu';
+let catIdx   = 0;
+let _catIdx  = null;
+let _itemIdx = null;
+let _variants = [];
+let _imageFiles = {}; // filename → objectURL (persists between modal opens)
+
+// ── ROUTING ─────────────────────────────────────
+const TITLES = {
+  menu:  '&#x1F355; Menu Items',
+  deals: '&#x1F381; Deals',
+  about: '&#x1F4CD; About &amp; Contact',
+  hours: '&#x1F550; Opening Hours',
 };
 
-// ── Nav ───────────────────────────────────────────────────────────
-function showSection(id, btn) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-  document.getElementById('s-' + id).classList.add('active');
-  btn.classList.add('active');
-  if (id === 'export') refreshExport();
-  if (id === 'dashboard') refreshStats();
+function go(id) {
+  section = id;
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  const el = document.getElementById('nav-' + id);
+  if (el) el.classList.add('active');
+  document.getElementById('topbar-title').innerHTML = TITLES[id];
+  render();
 }
 
-// ── MENU EDITOR ───────────────────────────────────────────────────
-function buildMenuEditor() {
-  const el = document.getElementById('menuEditor');
-  el.innerHTML = '';
-  state.menu.categories.forEach((cat, ci) => {
-    const sec = document.createElement('div');
-    sec.className = 'menu-category';
-    sec.innerHTML = `
-      <div class="category-header">
-        <div class="category-icon-badge">${cat.icon}</div>
-        <div>
-          <div class="category-name">${cat.name}</div>
-          <div style="font-size:0.78rem;color:var(--muted)">${cat.items.length} item${cat.items.length!==1?'s':''}</div>
-        </div>
-      </div>
-      <div id="items-${ci}"></div>
-      <button class="add-item-btn" onclick="addItem(${ci})">＋ Add Item to ${cat.name}</button>
-    `;
-    el.appendChild(sec);
-    cat.items.forEach((item, ii) => buildItemCard(ci, ii));
-  });
+function render() {
+  ({ menu: renderMenu, deals: renderDeals, about: renderAbout, hours: renderHours }[section] || function(){})();
 }
 
-function buildItemCard(ci, ii) {
-  const container = document.getElementById(`items-${ci}`);
-  const item = state.menu.categories[ci].items[ii];
-  const priceStr = item.variants ? `from Rs. ${Math.min(...item.variants.map(v=>v.price))}` : (item.price ? `Rs. ${item.price}` : '');
-
-  const card = document.createElement('div');
-  card.className = 'item-card';
-  card.id = `card-${ci}-${ii}`;
-  card.innerHTML = `
-    <div class="item-header" onclick="toggleItem(${ci},${ii})">
-      <div class="item-title-row">
-        <span class="item-name">${item.name}</span>
-        <span class="item-price">${priceStr}</span>
-        <div class="item-badges">
-          ${item.popular ? '<span class="badge badge-pop">⭐ Popular</span>' : ''}
-          ${item.spicy ? '<span class="badge badge-spicy">🌶 Spicy</span>' : ''}
-        </div>
-      </div>
-      <div style="display:flex;align-items:center;gap:0.75rem">
-        <button class="btn-icon del" onclick="event.stopPropagation();deleteItem(${ci},${ii})" title="Delete">✕</button>
-        <span class="chevron" id="chev-${ci}-${ii}">▼</span>
-      </div>
-    </div>
-    <div class="item-body" id="body-${ci}-${ii}">
-      <div class="row">
-        <div class="field">
-          <label>Item Name</label>
-          <input type="text" value="${item.name}" oninput="updateItem(${ci},${ii},'name',this.value)"/>
-        </div>
-        <div class="field">
-          <label>Tag Badge</label>
-          <input type="text" value="${item.tag||''}" placeholder="e.g. Chef's Special" oninput="updateItem(${ci},${ii},'tag',this.value)"/>
-        </div>
-      </div>
-      <div class="field">
-        <label>Description</label>
-        <textarea oninput="updateItem(${ci},${ii},'desc',this.value)">${item.desc}</textarea>
-      </div>
-      <div class="row">
-        ${item.variants ? '' : `
-        <div class="field">
-          <label>Price (Rs)</label>
-          <input type="number" value="${item.price||''}" oninput="updateItem(${ci},${ii},'price',+this.value)"/>
-        </div>
-        <div class="field">
-          <label>Price Prefix</label>
-          <input type="text" value="${item.pricePrefix||''}" placeholder="e.g. Starting / From" oninput="updateItem(${ci},${ii},'pricePrefix',this.value)"/>
-        </div>
-        `}
-      </div>
-      <div class="toggle-row">
-        <label class="toggle"><input type="checkbox" ${item.popular?'checked':''} onchange="updateItem(${ci},${ii},'popular',this.checked)"><span class="toggle-track"></span><span class="toggle-thumb"></span></label>
-        <span class="toggle-label">Popular</span>
-        <label class="toggle" style="margin-left:1rem"><input type="checkbox" ${item.spicy?'checked':''} onchange="updateItem(${ci},${ii},'spicy',this.checked)"><span class="toggle-track"></span><span class="toggle-thumb"></span></label>
-        <span class="toggle-label">Spicy</span>
-      </div>
-
-      <!-- Image -->
-      <div class="field">
-        <label>Item Image</label>
-        <div class="img-upload" id="imgup-${ci}-${ii}">
-          <input type="file" accept="image/*" onchange="handleImage(${ci},${ii},this)"/>
-          <div class="img-upload-icon">📷</div>
-          <div class="img-upload-text">Click to upload image (JPG, PNG, WebP)</div>
-          ${item.image ? `<img class="img-preview" src="${item.image}" alt="preview"/>` : ''}
-        </div>
-      </div>
-
-      ${item.variants ? `
-      <!-- Variants -->
-      <div class="field">
-        <label>Size Variants</label>
-        <div class="variants-list" id="vars-${ci}-${ii}">
-          ${item.variants.map((v,vi)=>`
-            <div class="variant-row" id="vr-${ci}-${ii}-${vi}">
-              <input type="text" placeholder="Label" value="${v.label}" oninput="updateVariant(${ci},${ii},${vi},'label',this.value)"/>
-              <input type="number" placeholder="Price" value="${v.price}" oninput="updateVariant(${ci},${ii},${vi},'price',+this.value)" style="max-width:110px"/>
-              <button class="btn-icon del" onclick="removeVariant(${ci},${ii},${vi})">✕</button>
-            </div>
-          `).join('')}
-        </div>
-        <button class="add-btn" onclick="addVariant(${ci},${ii})">＋ Add Size</button>
-      </div>
-      ` : ''}
-    </div>
-  `;
-  container.appendChild(card);
-}
-
-function toggleItem(ci, ii) {
-  const body = document.getElementById(`body-${ci}-${ii}`);
-  const chev = document.getElementById(`chev-${ci}-${ii}`);
-  const open = body.classList.toggle('open');
-  chev.textContent = open ? '▲' : '▼';
-}
-
-function updateItem(ci, ii, key, val) {
-  state.menu.categories[ci].items[ii][key] = val;
-  // refresh badges in header
-  const card = document.getElementById(`card-${ci}-${ii}`);
-  if (!card) return;
-  const item = state.menu.categories[ci].items[ii];
-  const nm = card.querySelector('.item-name');
-  if (nm) nm.textContent = item.name;
-  const badges = card.querySelector('.item-badges');
-  if (badges) badges.innerHTML = `
-    ${item.popular ? '<span class="badge badge-pop">⭐ Popular</span>' : ''}
-    ${item.spicy ? '<span class="badge badge-spicy">🌶 Spicy</span>' : ''}
-  `;
-}
-
-function handleImage(ci, ii, input) {
-  const file = input.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    state.menu.categories[ci].items[ii].image = e.target.result;
-    const box = document.getElementById(`imgup-${ci}-${ii}`);
-    let prev = box.querySelector('.img-preview');
-    if (!prev) { prev = document.createElement('img'); prev.className = 'img-preview'; box.appendChild(prev); }
-    prev.src = e.target.result;
+// ── FILE I/O ─────────────────────────────────────
+function loadFile(key, cb) {
+  const inp = document.createElement('input');
+  inp.type = 'file';
+  inp.accept = '.json,application/json';
+  inp.onchange = e => {
+    const f = e.target.files[0];
+    if (!f) return;
+    const r = new FileReader();
+    r.onload = ev => {
+      try {
+        S[key] = JSON.parse(ev.target.result);
+        toast('Loaded ' + f.name, 'ok');
+        if (cb) cb();
+        render();
+      } catch(_) {
+        toast('Invalid JSON — please check the file.', 'err');
+      }
+    };
+    r.readAsText(f);
   };
-  reader.readAsDataURL(file);
+  inp.click();
 }
 
-function addItem(ci) {
-  const id = 'item-' + Date.now();
-  state.menu.categories[ci].items.push({ id, name:"New Item", desc:"", tag:"", popular:false, spicy:false, price:0 });
-  const ii = state.menu.categories[ci].items.length - 1;
-  buildItemCard(ci, ii);
-  setTimeout(() => toggleItem(ci, ii), 50);
-}
-
-function deleteItem(ci, ii) {
-  if (!confirm('Delete this item?')) return;
-  state.menu.categories[ci].items.splice(ii, 1);
-  buildMenuEditor();
-}
-
-function updateVariant(ci, ii, vi, key, val) {
-  state.menu.categories[ci].items[ii].variants[vi][key] = val;
-}
-
-function addVariant(ci, ii) {
-  if (!state.menu.categories[ci].items[ii].variants) state.menu.categories[ci].items[ii].variants = [];
-  const vi = state.menu.categories[ci].items[ii].variants.length;
-  state.menu.categories[ci].items[ii].variants.push({ label:"", price:0 });
-  const list = document.getElementById(`vars-${ci}-${ii}`);
-  const row = document.createElement('div');
-  row.className = 'variant-row';
-  row.id = `vr-${ci}-${ii}-${vi}`;
-  row.innerHTML = `
-    <input type="text" placeholder="Label" oninput="updateVariant(${ci},${ii},${vi},'label',this.value)"/>
-    <input type="number" placeholder="Price" oninput="updateVariant(${ci},${ii},${vi},'price',+this.value)" style="max-width:110px"/>
-    <button class="btn-icon del" onclick="removeVariant(${ci},${ii},${vi})">✕</button>
-  `;
-  list.appendChild(row);
-}
-
-function removeVariant(ci, ii, vi) {
-  state.menu.categories[ci].items[ii].variants.splice(vi, 1);
-  buildMenuEditor();
-  document.getElementById(`body-${ci}-${ii}`).classList.add('open');
-  document.getElementById(`chev-${ci}-${ii}`).textContent = '▲';
-}
-
-// ── ABOUT ─────────────────────────────────────────────────────────
-function loadAbout() {
-  document.getElementById('ab-description').value = state.about.description;
-  document.getElementById('ab-location').value = state.about.location;
-  document.getElementById('ab-instagram').value = state.about.instagram;
-  document.getElementById('ab-tiktok').value = state.about.tiktok;
-  ['ab-description','ab-location','ab-instagram','ab-tiktok'].forEach(id => {
-    document.getElementById(id).addEventListener('input', syncAbout);
-  });
-}
-
-function syncAbout() {
-  state.about.description = document.getElementById('ab-description').value;
-  state.about.location    = document.getElementById('ab-location').value;
-  state.about.instagram   = document.getElementById('ab-instagram').value;
-  state.about.tiktok      = document.getElementById('ab-tiktok').value;
-}
-
-// ── HOURS ─────────────────────────────────────────────────────────
-function buildHoursTable() {
-  const table = document.getElementById('hoursTable');
-  table.innerHTML = '';
-  state.hours.schedule.forEach((row, i) => {
-    const div = document.createElement('div');
-    div.className = 'hours-row';
-    div.innerHTML = `
-      <div class="field" style="margin:0">
-        <label>Days</label>
-        <input type="text" value="${row.days}" placeholder="Mon–Sat" oninput="updateHours(${i},'days',this.value)"/>
-      </div>
-      <div class="field" style="margin:0">
-        <label>Opens</label>
-        <input type="text" value="${row.opens}" placeholder="11:00 AM" oninput="updateHours(${i},'opens',this.value)"/>
-      </div>
-      <div class="field" style="margin:0">
-        <label>Closes</label>
-        <input type="text" value="${row.closes}" placeholder="11:00 PM" oninput="updateHours(${i},'closes',this.value)"/>
-      </div>
-      <button class="btn-icon del" style="margin-top:20px" onclick="removeHoursRow(${i})">✕</button>
-    `;
-    table.appendChild(div);
-  });
-  document.getElementById('hr-notice').value = state.hours.notice || '';
-}
-
-function updateHours(i, key, val) {
-  state.hours.schedule[i][key] = val;
-  updateHoursSummary();
-}
-
-function updateHoursSummary() {
-  const summary = state.hours.schedule.map(r => `${r.days}: ${r.opens}–${r.closes}`).join('  |  ');
-  state.about.hours = summary;
-  const el = document.getElementById('ct-hours');
-  if (el) el.value = summary;
-}
-
-function addHoursRow() {
-  state.hours.schedule.push({ days:"", opens:"", closes:"" });
-  buildHoursTable();
-}
-
-function removeHoursRow(i) {
-  state.hours.schedule.splice(i, 1);
-  buildHoursTable();
-}
-
-// ── CONTACT ───────────────────────────────────────────────────────
-function loadContact() {
-  document.getElementById('ct-phone').value    = state.about.phone;
-  document.getElementById('ct-whatsapp').value = state.about.whatsapp;
-  document.getElementById('ct-email').value    = state.about.email;
-  document.getElementById('ct-hours').value    = state.about.hours;
-  ['ct-phone','ct-whatsapp','ct-email','ct-hours'].forEach(id => {
-    document.getElementById(id).addEventListener('input', syncContact);
-  });
-}
-
-function syncContact() {
-  state.about.phone    = document.getElementById('ct-phone').value;
-  state.about.whatsapp = document.getElementById('ct-whatsapp').value;
-  state.about.email    = document.getElementById('ct-email').value;
-  state.about.hours    = document.getElementById('ct-hours').value;
-}
-
-// ── EXPORT ────────────────────────────────────────────────────────
-function refreshExport() {
-  document.getElementById('ex-menu').textContent  = JSON.stringify(state.menu, null, 2);
-  document.getElementById('ex-about').textContent = JSON.stringify(state.about, null, 2);
-  document.getElementById('ex-hours').textContent = JSON.stringify(state.hours, null, 2);
-}
-
-function downloadFile(type) {
-  let data, name;
-  if (type === 'menu')  { data = state.menu;  name = 'menu.json'; }
-  if (type === 'about') { data = state.about; name = 'about.json'; }
-  if (type === 'hours') { data = state.hours; name = 'hours.json'; }
+function download(data, filename) {
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = name;
-  a.click();
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = filename; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 800);
+  toast('Downloaded ' + filename, 'ok');
 }
 
-// ── STATS ─────────────────────────────────────────────────────────
-function refreshStats() {
-  const totalItems = state.menu.categories.reduce((s,c)=>s+c.items.length,0);
-  const popular    = state.menu.categories.reduce((s,c)=>s+c.items.filter(i=>i.popular).length,0);
-  const spicy      = state.menu.categories.reduce((s,c)=>s+c.items.filter(i=>i.spicy).length,0);
-  document.getElementById('statsGrid').innerHTML = `
-    <div class="stat"><div class="stat-val">${state.menu.categories.length}</div><div class="stat-key">Categories</div></div>
-    <div class="stat"><div class="stat-val">${totalItems}</div><div class="stat-key">Menu Items</div></div>
-    <div class="stat"><div class="stat-val">${popular}</div><div class="stat-key">Popular Items</div></div>
-    <div class="stat"><div class="stat-val">${spicy}</div><div class="stat-key">Spicy Items</div></div>
+// ── HELPERS ──────────────────────────────────────
+function esc(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function priceLabel(item) {
+  if (item.price != null) return 'Rs. ' + item.price;
+  if (item.variants && item.variants.length) {
+    const prices = item.variants.map(v => v.price);
+    const lo = Math.min(...prices), hi = Math.max(...prices);
+    return lo === hi ? 'Rs. ' + lo : 'Rs. ' + lo + ' \u2013 ' + hi;
+  }
+  return '\u2014';
+}
+
+function setHtml(id, html) { const el = document.getElementById(id); if (el) el.innerHTML = html; }
+function setActions(html) { setHtml('topbar-actions', html); }
+
+function loadZone(key, filename, hint) {
+  setActions(`<button class="btn btn-primary" onclick="loadFile('${key}')">&#x1F4C2; Load ${filename}</button>`);
+  setHtml('content', `
+    <div class="load-zone" onclick="loadFile('${key}')">
+      <div class="lz-icon">&#x1F4C2;</div>
+      <div class="lz-title">Load ${filename}</div>
+      <div class="lz-sub">${hint}</div>
+    </div>`);
+}
+
+// ── MENU ─────────────────────────────────────────
+function renderMenu() {
+  if (!S.menu) { loadZone('menu','menu.json','Click to load <code>src/data/menu.json</code> from your project'); return; }
+
+  const allCats = S.menu.categories || [];
+  const cats    = allCats.filter(c => c.name !== 'Deals');
+  if (catIdx >= cats.length) catIdx = 0;
+
+  setActions(`
+    <button class="btn btn-ghost btn-sm"     onclick="loadFile('menu',()=>{catIdx=0;})">&#x1F4C2; Re-load</button>
+    <button class="btn btn-secondary btn-sm" onclick="addCategory()">&#xFF0B; Category</button>
+    <button class="btn btn-primary btn-sm"   onclick="download(S.menu,'menu.json')">&#x2B07; Download menu.json</button>
+  `);
+
+  const tabs = cats.map((c, i) => `
+    <button class="tab-btn ${i===catIdx?'active':''}" onclick="switchCat(${i})">${esc(c.icon||'')} ${esc(c.name)}</button>
+  `).join('');
+
+  const cat     = cats[catIdx];
+  const realIdx = allCats.indexOf(cat);
+  const items   = cat.items || [];
+
+  const rows = items.map((item, ii) => {
+    const imgHtml = item.image
+      ? `<div class="item-thumb"><img src="${esc(item.image)}" alt="" onerror="this.parentElement.textContent='&#x1F37D;'"/></div>`
+      : `<div class="item-thumb">&#x1F37D;</div>`;
+    const desc = item.desc ? esc(item.desc.substring(0,55)) + (item.desc.length>55?'\u2026':'') : '\u2014';
+    return `
+      <div class="item-row">
+        ${imgHtml}
+        <div class="item-info">
+          <div class="item-name">${esc(item.name||'Unnamed')}</div>
+          <div class="item-sub">${desc}</div>
+        </div>
+        <div class="badges">
+          ${item.popular?'<span class="badge badge-pop">&#x1F525; Popular</span>':''}
+          ${item.spicy  ?'<span class="badge badge-hot">&#x1F336; Spicy</span>':''}
+        </div>
+        <div class="item-price">${priceLabel(item)}</div>
+        <div class="item-actions">
+          <button class="btn btn-ghost btn-sm"    onclick="openImgPickerForItem(${realIdx},${ii})" title="Change image">&#x1F5BC; Photo</button>
+          <button class="btn btn-secondary btn-sm" onclick="openEdit(${realIdx},${ii})">Edit</button>
+          <button class="btn btn-danger btn-sm"    onclick="deleteItem(${realIdx},${ii})">&#x2715;</button>
+        </div>
+      </div>`;
+  }).join('');
+
+  setHtml('content', `
+    <div class="cat-tabs">${tabs}</div>
+    <div class="section-bar">
+      <div class="section-count">${items.length} item${items.length!==1?'s':''} in ${esc(cat.name)}</div>
+      <button class="btn btn-secondary btn-sm" onclick="openAdd(${realIdx})">&#xFF0B; Add Item</button>
+    </div>
+    <div class="item-list">
+      ${rows||'<div class="empty"><div class="e-icon">&#x1F37D;</div><h4>No items yet</h4><p>Click "+ Add Item" to get started.</p></div>'}
+    </div>`);
+}
+
+function switchCat(i) { catIdx = i; render(); }
+
+function addCategory() {
+  const name = prompt('Category name (e.g. Salads):');
+  if (!name || !name.trim()) return;
+  const icon = prompt('Emoji icon (e.g. \uD83E\uDD57):') || '&#x1F37D;';
+  S.menu.categories.push({ name: name.trim(), icon: icon.trim(), items: [] });
+  catIdx = S.menu.categories.filter(c=>c.name!=='Deals').length - 1;
+  render();
+  toast('Category "' + name.trim() + '" added', 'ok');
+}
+
+// ── DEALS ────────────────────────────────────────
+function renderDeals() {
+  if (!S.menu) { loadZone('menu','menu.json','Deals are stored inside <code>menu.json</code>'); return; }
+
+  setActions(`
+    <button class="btn btn-ghost btn-sm"   onclick="loadFile('menu')">&#x1F4C2; Re-load</button>
+    <button class="btn btn-primary btn-sm" onclick="download(S.menu,'menu.json')">&#x2B07; Download menu.json</button>
+  `);
+
+  const allCats = S.menu.categories || [];
+  let di = allCats.findIndex(c => c.name === 'Deals');
+
+  if (di === -1) {
+    setHtml('content',`
+      <div class="empty">
+        <div class="e-icon">&#x1F381;</div>
+        <h4>No "Deals" category found</h4>
+        <p>Your menu.json doesn't have a Deals category yet.</p>
+        <button class="btn btn-primary" onclick="createDeals()">&#xFF0B; Create Deals Category</button>
+      </div>`);
+    return;
+  }
+
+  const deals = allCats[di].items || [];
+  const rows  = deals.map((item, ii) => `
+    <div class="item-row">
+      <div class="item-thumb">&#x1F381;</div>
+      <div class="item-info">
+        <div class="item-name">${esc(item.name)}</div>
+        <div class="item-sub">${item.desc?esc(item.desc.substring(0,70)):'\u2014'}</div>
+      </div>
+      <div class="item-price">${priceLabel(item)}</div>
+      <div class="item-actions">
+        <button class="btn btn-ghost btn-sm"    onclick="openImgPickerForItem(${di},${ii})" title="Change image">&#x1F5BC; Photo</button>
+        <button class="btn btn-secondary btn-sm" onclick="openEdit(${di},${ii})">Edit</button>
+        <button class="btn btn-danger btn-sm"    onclick="deleteItem(${di},${ii})">&#x2715;</button>
+      </div>
+    </div>`).join('');
+
+  setHtml('content', `
+    <div class="section-bar">
+      <div class="section-count">${deals.length} deal${deals.length!==1?'s':''}</div>
+      <button class="btn btn-secondary btn-sm" onclick="openAdd(${di})">&#xFF0B; Add Deal</button>
+    </div>
+    <div class="item-list">
+      ${rows||'<div class="empty"><div class="e-icon">&#x1F381;</div><h4>No deals yet</h4><p>Click "+ Add Deal" to create one.</p></div>'}
+    </div>`);
+}
+
+function createDeals() { S.menu.categories.push({ name:'Deals', icon:'&#x1F381;', items:[] }); render(); }
+
+// ── ABOUT ────────────────────────────────────────
+function renderAbout() {
+  if (!S.about) { loadZone('about','about.json','Click to load <code>src/data/about.json</code>'); return; }
+
+  setActions(`
+    <button class="btn btn-ghost btn-sm" onclick="loadFile('about')">&#x1F4C2; Re-load</button>
+    <button class="btn btn-primary"      onclick="saveAbout()">&#x2B07; Save &amp; Download</button>
+  `);
+
+  const a = S.about;
+  setHtml('content', `
+    <div class="card">
+      <div class="card-header"><h3>Restaurant Info</h3></div>
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label">Description / Tagline</label>
+          <textarea class="form-textarea" id="a-desc" rows="3">${esc(a.description||'')}</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Address</label>
+          <input class="form-input" id="a-loc" value="${esc(a.location||'')}" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Phone (display)</label>
+            <input class="form-input" id="a-phone" value="${esc(a.phone||'')}" placeholder="+92 319 9921117" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">WhatsApp (digits only)</label>
+            <input class="form-input" id="a-wa" value="${esc(a.whatsapp||'')}" placeholder="923199921117" />
+            <div class="form-hint">No spaces, dashes, or + sign.</div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input class="form-input" id="a-email" type="email" value="${esc(a.email||'')}" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Hours summary text</label>
+            <input class="form-input" id="a-hours" value="${esc(a.hours||'')}" placeholder="Mon\u2013Sun: 10 AM \u2013 1 AM" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>Social Links</h3></div>
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label">Instagram URL</label>
+          <input class="form-input" id="a-ig" value="${esc(a.instagram||'')}" placeholder="https://instagram.com/lovengrill" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">TikTok URL</label>
+          <input class="form-input" id="a-tt" value="${esc(a.tiktok||'')}" placeholder="https://www.tiktok.com/@lovengrill" />
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;">
+      <button class="btn btn-primary" onclick="saveAbout()" style="width:100%;padding:12px;justify-content:center;font-size:0.88rem;">
+        &#x2B07; Save &amp; Download about.json
+      </button>
+    </div>`);
+}
+
+function saveAbout() {
+  const g = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+  S.about = {
+    description: g('a-desc'),
+    location:    g('a-loc'),
+    phone:       g('a-phone'),
+    whatsapp:    g('a-wa'),
+    email:       g('a-email'),
+    hours:       g('a-hours'),
+    instagram:   g('a-ig'),
+    tiktok:      g('a-tt'),
+  };
+  download(S.about, 'about.json');
+}
+
+// ── HOURS ────────────────────────────────────────
+function renderHours() {
+  if (!S.hours) { loadZone('hours','hours.json','Click to load <code>src/data/hours.json</code>'); return; }
+
+  setActions(`
+    <button class="btn btn-ghost btn-sm" onclick="loadFile('hours')">&#x1F4C2; Re-load</button>
+    <button class="btn btn-primary"      onclick="saveHours()">&#x2B07; Save &amp; Download</button>
+  `);
+
+  const rows = (S.hours.schedule||[]).map((r,i) => `
+    <div class="hours-row">
+      <div class="form-group">
+        <label class="form-label">Days</label>
+        <input class="form-input" id="hr-days-${i}" value="${esc(r.days||'')}" placeholder="Mon\u2013Fri" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Opens</label>
+        <input class="form-input" id="hr-open-${i}" value="${esc(r.opens||'')}" placeholder="11:00 AM" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Closes</label>
+        <input class="form-input" id="hr-close-${i}" value="${esc(r.closes||'')}" placeholder="11:00 PM" />
+      </div>
+      <div style="align-self:flex-end;padding-bottom:1px;">
+        <button class="btn btn-danger btn-sm" onclick="removeHrRow(${i})" style="height:37px;">&#x2715;</button>
+      </div>
+    </div>`).join('');
+
+  setHtml('content', `
+    <div class="card">
+      <div class="card-header">
+        <h3>Weekly Schedule</h3>
+        <button class="btn btn-secondary btn-sm" onclick="addHrRow()">&#xFF0B; Add Row</button>
+      </div>
+      <div class="card-body" id="hr-rows">
+        ${rows||'<div class="empty" style="padding:20px 0;"><div class="e-icon">&#x1F550;</div><h4>No schedule yet</h4><p>Click "+ Add Row" to start.</p></div>'}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>Special Notice</h3></div>
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label">Notice (optional)</label>
+          <input class="form-input" id="hr-notice" value="${esc(S.hours.notice||'')}" placeholder="e.g. Closed on public holidays" />
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;">
+      <button class="btn btn-primary" onclick="saveHours()" style="width:100%;padding:12px;justify-content:center;font-size:0.88rem;">
+        &#x2B07; Save &amp; Download hours.json
+      </button>
+    </div>`);
+}
+
+function collectHours() {
+  (S.hours.schedule||[]).forEach((_,i) => {
+    const d=document.getElementById('hr-days-'+i),
+          o=document.getElementById('hr-open-'+i),
+          c=document.getElementById('hr-close-'+i);
+    if (d) S.hours.schedule[i]={days:d.value,opens:o.value,closes:c.value};
+  });
+  const n=document.getElementById('hr-notice');
+  if (n) S.hours.notice=n.value;
+}
+
+function addHrRow()      { collectHours(); S.hours.schedule.push({days:'',opens:'',closes:''}); render(); }
+function removeHrRow(i)  { collectHours(); S.hours.schedule.splice(i,1); render(); }
+function saveHours()     { collectHours(); download(S.hours,'hours.json'); }
+
+// ── ITEM MODAL ───────────────────────────────────
+function openEdit(ci, ii) {
+  _catIdx=ci; _itemIdx=ii;
+  const item=S.menu.categories[ci].items[ii];
+  document.getElementById('modal-title').textContent='Edit: '+(item.name||'Item');
+  fillModal(item); openModal();
+}
+
+function openAdd(ci) {
+  _catIdx=ci; _itemIdx=null;
+  document.getElementById('modal-title').textContent='Add New Item';
+  fillModal({}); openModal();
+}
+
+function fillModal(item) {
+  const hasV = !!(item.variants && item.variants.length);
+  _variants  = hasV ? JSON.parse(JSON.stringify(item.variants)) : [];
+  const mode = hasV ? 'variants' : 'flat';
+
+  setHtml('modal-body', `
+    <div class="form-group">
+      <label class="form-label">Item Name *</label>
+      <input class="form-input" id="m-name" value="${esc(item.name||'')}" placeholder="e.g. Chicken Fajita" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Description</label>
+      <textarea class="form-textarea" id="m-desc" rows="2">${esc(item.desc||'')}</textarea>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Tag / Badge</label>
+        <input class="form-input" id="m-tag" value="${esc(item.tag||'')}" placeholder="e.g. Best Seller" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Image</label>
+        <div style="display:flex;gap:7px;">
+          <input class="form-input" id="m-img" value="${esc(item.image||'')}" placeholder="/uploads/item.jpg" oninput="updateImgPreview()" />
+          <button class="btn btn-secondary btn-sm" onclick="openImgPicker()" style="flex-shrink:0;white-space:nowrap;">&#x1F5BC; Browse</button>
+        </div>
+        <div id="m-img-preview"></div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Pricing type</label>
+      <select class="form-select" id="m-mode" onchange="onModeChange(this.value)">
+        <option value="flat"     ${mode==='flat'    ?'selected':''}>Single flat price</option>
+        <option value="variants" ${mode==='variants'?'selected':''}>Multiple sizes / variants</option>
+      </select>
+    </div>
+
+    <div id="m-flat" style="display:${mode==='flat'?'block':'none'};" class="form-row">
+      <div class="form-group">
+        <label class="form-label">Price (Rs)</label>
+        <input class="form-input" id="m-price" type="number" min="0" value="${item.price!=null?item.price:''}" placeholder="599" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Price prefix (optional)</label>
+        <input class="form-input" id="m-prefix" value="${esc(item.pricePrefix||'')}" placeholder="e.g. Starting" />
+      </div>
+    </div>
+
+    <div id="m-variants" style="display:${mode==='variants'?'block':'none'};">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <label class="form-label" style="margin:0;">Sizes &amp; Prices</label>
+        <button class="btn btn-secondary btn-sm" onclick="addVariant()">&#xFF0B; Add Size</button>
+      </div>
+      <div class="variant-list" id="m-vlist"></div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">&#x1F525; Popular</div>
+        <div class="toggle-desc">Shows a Popular badge on the menu card</div>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="m-pop" ${item.popular?'checked':''}>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <div>
+        <div class="toggle-label">&#x1F336; Spicy</div>
+        <div class="toggle-desc">Shows a Spicy badge on the menu card</div>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="m-spicy" ${item.spicy?'checked':''}>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>`);
+
+  renderVariants();
+  updateImgPreview();
+}
+
+function onModeChange(v) {
+  document.getElementById('m-flat').style.display     = v==='flat'     ? 'block' : 'none';
+  document.getElementById('m-variants').style.display = v==='variants' ? 'block' : 'none';
+  if (v==='variants' && _variants.length===0) {
+    _variants=[{label:'Small',price:''},{label:'Medium',price:''}];
+    renderVariants();
+  }
+}
+
+function renderVariants() {
+  const list=document.getElementById('m-vlist');
+  if (!list) return;
+  list.innerHTML=_variants.map((v,i)=>`
+    <div class="variant-row">
+      <input class="form-input" placeholder="Label (e.g. Small)"
+        value="${esc(v.label||'')}" oninput="_variants[${i}].label=this.value" />
+      <input class="form-input" type="number" min="0" placeholder="Price"
+        value="${v.price!==''?v.price:''}" oninput="_variants[${i}].price=Number(this.value)" />
+      <button class="btn btn-danger btn-sm" onclick="removeVariant(${i})"
+        style="height:37px;width:36px;padding:0;justify-content:center;">&#x2715;</button>
+    </div>`).join('');
+}
+
+function addVariant()     { _variants.push({label:'',price:''}); renderVariants(); }
+function removeVariant(i) { _variants.splice(i,1); renderVariants(); }
+
+function saveItem() {
+  const val = id => { const el=document.getElementById(id); return el?el.value.trim():''; };
+  const chk = id => { const el=document.getElementById(id); return el?el.checked:false; };
+
+  const name=val('m-name');
+  if (!name) { toast('Item name is required','err'); return; }
+
+  const mode = document.getElementById('m-mode')?.value||'flat';
+
+  const item = {
+    id:      _itemIdx!==null
+               ? (S.menu.categories[_catIdx].items[_itemIdx].id||('item-'+Date.now()))
+               : 'item-'+Date.now(),
+    name,
+    desc:    val('m-desc'),
+    tag:     val('m-tag'),
+    image:   val('m-img'),
+    popular: chk('m-pop'),
+    spicy:   chk('m-spicy'),
+  };
+
+  if (mode==='flat') {
+    const p=val('m-price');
+    if (p!=='') item.price=Number(p);
+    const pf=val('m-prefix');
+    if (pf) item.pricePrefix=pf;
+  } else {
+    // sync any last typed values
+    document.querySelectorAll('#m-vlist .variant-row').forEach((row,i)=>{
+      const ins=row.querySelectorAll('input');
+      if (ins[0]&&_variants[i]) {
+        _variants[i].label=ins[0].value;
+        _variants[i].price=Number(ins[1].value);
+      }
+    });
+    item.variants=_variants.filter(v=>v.label||v.price);
+  }
+
+  if (_itemIdx!==null) {
+    const orig=S.menu.categories[_catIdx].items[_itemIdx];
+    if (orig.addons) item.addons=orig.addons; // preserve add-ons
+    S.menu.categories[_catIdx].items[_itemIdx]=item;
+    toast('"'+name+'" updated','ok');
+  } else {
+    S.menu.categories[_catIdx].items.push(item);
+    toast('"'+name+'" added','ok');
+  }
+
+  closeModal(); render();
+}
+
+function deleteItem(ci,ii) {
+  const name=S.menu.categories[ci].items[ii].name||'this item';
+  if (!confirm('Delete "'+name+'"?\nThis cannot be undone.')) return;
+  S.menu.categories[ci].items.splice(ii,1);
+  render();
+  toast('"'+name+'" deleted');
+}
+
+// ── MODAL ────────────────────────────────────────
+function openModal()  { document.getElementById('modal').classList.add('open'); }
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target===e.currentTarget) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeModal(); });
+
+// ── IMAGE PICKER & PREVIEW ───────────────────────
+let _imgPickerTarget = null; // null = active edit modal input (#m-img), or { ci, ii } for direct item row change
+
+// Pre-populate known files from project's public/uploads/
+const KNOWN_IMAGES = [
+  "alfredo-pasta.jpeg","americano.jpeg","baked-wings.jpg","bbg-burger.jpeg",
+  "bbq-cheese-wrap.jpeg","bbq-wings.jpg","beef-jalapeno.jpeg","beef-mashroom-burger.jpeg",
+  "beef-pizza.jpg","bubble-tea.jpeg","bubble-waffle.webp","bubble-waffle2.jpg",
+  "butter-scotch.jpeg","cappuccino.jpeg","caramel-icecream.jpeg","cheese-cake.jpeg",
+  "cheese-gold1.jpg","chicken-chowmin.jpg","chicken-fajita.jpg","chicken-supreme.jpg",
+  "chicken-tiva.jpg","chillers.jpeg","chocolate-icecream.jpeg","classic-thunder.jpeg",
+  "corn-soup.jpeg","cotton-candy.jpeg","creamy-pasta.jpeg","crispo-burger.jpeg",
+  "crispo-wings.jpg","crown-crust.jpg","crunchy-pasta.jpeg","crunchy-wrap.jpeg",
+  "dessert.jpeg","doctor-deal.jpeg","double-degger.jpeg","egg-fried-rice.jpeg",
+  "espresso.jpeg","feppachino.jpeg","fillet-burger.jpeg","fish-burger.png",
+  "fish-fillet.jpg","freddo-espresso.jpeg","garlic-rice.jpeg","grill-beef-burger.jpeg",
+  "haripur-deal.jpeg","hot-latte.jpeg","hot-spicy.jpg","hotshot-12pcs.jpeg",
+  "hotshot-6pcs.jpeg","icecream-shakes.jpeg","iced-americano.jpeg","iced-latte-flavoured-.jpeg",
+  "iced-latte.jpeg","injected-broast-2pcs.jpeg","injected-broast-3pcs.jpeg","injected-broast-5pcs.jpeg",
+  "jalapeno-broast-1pc.jpeg","jalapeno-broast-3pcs.jpeg","jalapeno-broast-5pcs.jpeg","kebab-stuff.jpg",
+  "kids-burger.jpeg","kids-deal.png","lawyers-deal.jpeg","loaded-fries.jpeg",
+  "love-n-grill-wrap.jpeg","mango-icecream.jpeg","masala-fries.jpeg","masala-rice.jpeg",
+  "mayo-fries.jpeg","milk-bubble-tea.jpeg","mint-margarita.jpeg","mughlai-pizza.jpg",
+  "nuggets-12pcs.jpeg","nuggets-6pcs.jpeg","pagal-deal.jpeg","pak-austria-deal.jpeg",
+  "party-deal.jpeg","peri-peri.jpg","pista-icecream.jpeg","pizza-place.jpg",
+  "pizzasta.jpg.jpeg","plain-rice.jpeg","simple-fries.jpeg","special-soup.jpeg",
+  "strawberry-icecream.jpeg","student-deal-burger.jpeg","student-deal-pizza.jpeg","tikka-roll-paratha.jpeg",
+  "twister-wrap.jpeg","uoh-deal.jpeg","vanilla-icecream.jpeg","veg-chowmin.jpg",
+  "yaari-deal.jpeg","zinger.jpeg"
+];
+
+function getImageSrc(filename) {
+  if (_imageFiles[filename]) return _imageFiles[filename];
+  return '/uploads/' + filename;
+}
+
+function updateImgPreview() {
+  const box = document.getElementById('m-img-preview');
+  if (!box) return;
+  const path = (document.getElementById('m-img')?.value || '').trim();
+  if (!path) {
+    box.innerHTML = '';
+    return;
+  }
+  const cleanName = path.replace(/^\/uploads\//, '');
+  const src = _imageFiles[cleanName] || path;
+  box.innerHTML = `
+    <div class="img-preview-box">
+      <img src="${esc(src)}" alt="preview" onerror="this.style.display='none';this.nextElementSibling.innerHTML+=' <span style=\\'color:var(--danger)\\'>[Image preview not found]</span>'"/>
+      <div class="img-preview-path">${esc(path)}</div>
+    </div>
   `;
 }
 
-// ── SAVE ──────────────────────────────────────────────────────────
-function saveAll() {
-  syncAbout(); syncContact();
-  state.hours.notice = document.getElementById('hr-notice').value;
-
-  // Download all three files
-  ['menu','about','hours'].forEach(downloadFile);
-
-  const btn = document.getElementById('saveBtn');
-  btn.classList.add('saved');
-  btn.innerHTML = '<span>✓</span> Saved!';
-  const toast = document.getElementById('toast');
-  toast.classList.add('show');
-  setTimeout(() => {
-    toast.classList.remove('show');
-    btn.classList.remove('saved');
-    btn.innerHTML = '<span>💾</span> Save Changes';
-  }, 3000);
+function openImgPicker() {
+  _imgPickerTarget = null;
+  document.getElementById('img-modal').classList.add('open');
+  renderImgGrid();
 }
 
-// ── INIT ──────────────────────────────────────────────────────────
-buildMenuEditor();
-loadAbout();
-buildHoursTable();
-loadContact();
-refreshStats();
+function openImgPickerForItem(ci, ii) {
+  _imgPickerTarget = { ci, ii };
+  const item = S.menu.categories[ci].items[ii];
+  document.getElementById('img-modal').classList.add('open');
+  renderImgGrid(item.image);
+}
+
+function closeImgPicker() {
+  document.getElementById('img-modal').classList.remove('open');
+  _imgPickerTarget = null;
+}
+
+document.getElementById('img-modal')?.addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeImgPicker();
+});
+
+function triggerFolderLoad() {
+  const inp = document.getElementById('img-folder-input');
+  if (inp) inp.click();
+}
+
+function onFolderLoaded(input) {
+  const files = Array.from(input.files || []);
+  if (!files.length) return;
+  files.forEach(f => {
+    _imageFiles[f.name] = URL.createObjectURL(f);
+  });
+  const st = document.getElementById('img-folder-status');
+  if (st) st.textContent = `${files.length} images loaded into browser memory`;
+  toast(`Loaded ${files.length} images from folder`, 'ok');
+  renderImgGrid();
+}
+
+function renderImgGrid(selectedPath) {
+  const wrap = document.getElementById('img-grid-wrap');
+  if (!wrap) return;
+
+  const currentVal = selectedPath || (document.getElementById('m-img')?.value || '');
+  const allNames = Array.from(new Set([...Object.keys(_imageFiles), ...KNOWN_IMAGES])).sort();
+
+  if (!allNames.length) {
+    wrap.innerHTML = `
+      <div class="empty" style="padding:30px 0;">
+        <div class="e-icon">&#x1F5BC;</div>
+        <h4>No images found</h4>
+        <p>Click "Load uploads folder" and select your <code style="color:var(--accent-pale);">public/uploads</code> folder.</p>
+      </div>`;
+    return;
+  }
+
+  const cells = allNames.map(name => {
+    const fullPath = '/uploads/' + name;
+    const isSelected = currentVal === fullPath || currentVal.endsWith('/' + name);
+    const src = getImageSrc(name);
+
+    return `
+      <div class="img-cell ${isSelected ? 'selected' : ''}" onclick="selectImage('${esc(name)}')">
+        <img src="${esc(src)}" alt="${esc(name)}" loading="lazy" onerror="this.style.opacity='0.2'" />
+        <div class="img-cell-label">${esc(name)}</div>
+      </div>
+    `;
+  }).join('');
+
+  wrap.innerHTML = `<div class="img-grid">${cells}</div>`;
+}
+
+function selectImage(filename) {
+  const fullPath = '/uploads/' + filename;
+  if (_imgPickerTarget) {
+    const { ci, ii } = _imgPickerTarget;
+    if (S.menu && S.menu.categories[ci] && S.menu.categories[ci].items[ii]) {
+      S.menu.categories[ci].items[ii].image = fullPath;
+      toast(`Updated photo for "${S.menu.categories[ci].items[ii].name}"`, 'ok');
+      render();
+    }
+  } else {
+    const inp = document.getElementById('m-img');
+    if (inp) {
+      inp.value = fullPath;
+      updateImgPreview();
+    }
+  }
+  closeImgPicker();
+}
+
+// ── TOAST ────────────────────────────────────────
+function toast(msg, type) {
+  const c=document.getElementById('toasts');
+  const el=document.createElement('div');
+  el.className='toast '+(type||'');
+  el.textContent=msg;
+  c.appendChild(el);
+  setTimeout(()=>{ el.style.transition='opacity 0.3s'; el.style.opacity='0'; setTimeout(()=>el.remove(),320); }, 2800);
+}
+
+// ── BOOT ─────────────────────────────────────────
+go('menu');
 </script>
 </body>
 </html>

@@ -1,13 +1,1154 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Love n' Grill — Content Manager</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+  <title>Love n' Grill — CMS</title>
+  <!-- Netlify Identity (same one the old Decap CMS used) -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #141407;
+      --surface:     #1c1c09;
+      --card:        #242410;
+      --card-alt:    #2c2c14;
+      --border:      rgba(255,160,51,0.18);
+      --border-hi:   rgba(255,160,51,0.42);
+      --accent:      #FFA033;
+      --accent-pale: #FFED7A;
+      --accent-dark: #CC5500;
+      --olive:       #5C5C2A;
+      --olive-dark:  #2A2A10;
+      --text:        #f0ead8;
+      --muted:       #8a8055;
+      --danger:      #e03020;
+      --success:     #6aaa30;
+    }
+
+    html, body { height: 100%; font-family: 'Barlow', system-ui, sans-serif; background: var(--bg); color: var(--text); overflow: hidden; }
+
+    /* ── LOGIN GATE ── */
+    #login-gate {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .login-box { text-align: center; max-width: 340px; padding: 20px; }
+    .login-flame { font-size: 3.5rem; margin-bottom: 12px; }
+    .login-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem; font-weight: 900;
+      color: var(--accent); letter-spacing: 0.05em;
+      text-transform: uppercase; line-height: 1;
+    }
+    .login-sub { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; margin: 6px 0 28px; }
+    .login-status { font-size: 0.74rem; color: var(--muted); margin-top: 14px; min-height: 20px; }
+    .login-divider { border: none; border-top: 1px solid var(--border); margin: 22px 0; }
+    .login-note { font-size: 0.68rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── LAYOUT ── */
+    .app { display: flex; height: 100vh; }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: 230px; min-width: 230px;
+      background: var(--olive-dark);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      height: 100vh; overflow-y: auto;
+    }
+    .sidebar-brand { padding: 22px 18px 18px; border-bottom: 1px solid var(--border); }
+    .brand-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.35rem; font-weight: 900; color: var(--accent); letter-spacing: 0.05em; text-transform: uppercase; line-height: 1; }
+    .brand-sub { font-size: 0.62rem; color: var(--muted); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 4px; }
+    .brand-badge { display: inline-block; background: rgba(255,160,51,0.14); color: var(--accent); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 9px; border-radius: 100px; border: 1px solid rgba(255,160,51,0.28); margin-top: 9px; }
+
+    .nav { padding: 10px 8px; flex: 1; }
+    .nav-label { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); padding: 10px 10px 4px; margin-top: 6px; }
+    .nav-item { display: flex; align-items: center; gap: 9px; padding: 9px 11px; border-radius: 7px; cursor: pointer; transition: background 0.14s, color 0.14s; font-size: 0.86rem; font-weight: 500; color: var(--muted); margin-bottom: 2px; border: 1px solid transparent; user-select: none; }
+    .nav-item:hover { background: rgba(255,160,51,0.08); color: var(--text); }
+    .nav-item.active { background: rgba(255,160,51,0.15); color: var(--accent); border-color: rgba(255,160,51,0.25); font-weight: 600; }
+    .nav-icon { font-size: 0.95rem; width: 18px; text-align: center; }
+
+    /* ── USER BAR ── */
+    .user-bar { padding: 12px 16px; border-top: 1px solid var(--border); }
+    .user-info { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .user-avatar { width: 30px; height: 30px; border-radius: 50%; background: rgba(255,160,51,0.2); border: 1px solid rgba(255,160,51,0.3); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; overflow: hidden; }
+    .user-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .user-name { font-size: 0.78rem; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .user-email { font-size: 0.62rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .user-details { min-width: 0; flex: 1; }
+    .publish-status { font-size: 0.62rem; color: var(--muted); text-align: center; padding: 4px 0; }
+    .publish-status.ok { color: var(--success); }
+    .publish-status.err { color: var(--danger); }
+
+    /* ── MAIN ── */
+    .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; background: var(--surface); }
+    .topbar { background: var(--card); border-bottom: 1px solid var(--border); padding: 12px 26px; display: flex; align-items: center; justify-content: space-between; min-height: 57px; flex-shrink: 0; }
+    .topbar-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; }
+    .topbar-actions { display: flex; gap: 8px; align-items: center; }
+    .content { flex: 1; overflow-y: auto; padding: 22px 26px 40px; }
+
+    /* ── BUTTONS ── */
+    .btn { display: inline-flex; align-items: center; gap: 5px; padding: 8px 15px; border-radius: 7px; font-family: 'Barlow', sans-serif; font-size: 0.8rem; font-weight: 700; cursor: pointer; border: none; transition: filter 0.14s, transform 0.14s, background 0.14s; white-space: nowrap; }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: #fff; }
+    .btn-primary:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .btn-secondary { background: rgba(255,160,51,0.12); color: var(--accent); border: 1px solid rgba(255,160,51,0.3); }
+    .btn-secondary:hover { background: rgba(255,160,51,0.22); }
+    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .btn-ghost:hover { color: var(--text); border-color: var(--border-hi); }
+    .btn-danger { background: rgba(224,48,32,0.12); color: var(--danger); border: 1px solid rgba(224,48,32,0.28); }
+    .btn-danger:hover { background: rgba(224,48,32,0.22); }
+    .btn-sm { padding: 5px 11px; font-size: 0.74rem; border-radius: 6px; }
+
+    /* ── CARDS ── */
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .card + .card { margin-top: 14px; }
+    .card-header { padding: 13px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: rgba(0,0,0,0.18); }
+    .card-header h3 { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); }
+    .card-body { padding: 18px; }
+
+    /* ── FORMS ── */
+    .form-group { margin-bottom: 14px; }
+    .form-group:last-child { margin-bottom: 0; }
+    .form-label { display: block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+    .form-hint { font-size: 0.62rem; color: var(--muted); margin-top: 4px; }
+    .form-input, .form-textarea, .form-select { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 7px; color: var(--text); font-family: 'Barlow', sans-serif; font-size: 0.87rem; padding: 9px 11px; transition: border-color 0.15s, box-shadow 0.15s; outline: none; }
+    .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(255,160,51,0.11); }
+    .form-textarea { resize: vertical; min-height: 72px; }
+    .form-select { cursor: pointer; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* ── TOGGLE ── */
+    .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); }
+    .toggle-row:last-child { border-bottom: none; }
+    .toggle-label { font-size: 0.85rem; color: var(--text); }
+    .toggle-desc { font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
+    .toggle { position: relative; width: 40px; height: 22px; flex-shrink: 0; }
+    .toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .toggle-slider { position: absolute; cursor: pointer; inset: 0; background: rgba(255,255,255,0.1); border-radius: 100px; transition: 0.18s; }
+    .toggle-slider::before { content: ''; position: absolute; width: 16px; height: 16px; left: 3px; top: 3px; background: #bbb; border-radius: 50%; transition: 0.18s; }
+    .toggle input:checked + .toggle-slider { background: var(--accent); }
+    .toggle input:checked + .toggle-slider::before { transform: translateX(18px); background: #fff; }
+
+    /* ── CATEGORY TABS ── */
+    .cat-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .tab-btn { padding: 5px 14px; border-radius: 100px; font-size: 0.77rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--muted); font-family: 'Barlow', sans-serif; transition: all 0.14s; user-select: none; }
+    .tab-btn:hover { border-color: var(--border-hi); color: var(--text); }
+    .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 700; }
+
+    /* ── ITEM LIST ── */
+    .item-list { display: flex; flex-direction: column; gap: 7px; }
+    .item-row { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 11px 14px; display: flex; align-items: center; gap: 11px; transition: border-color 0.14s; }
+    .item-row:hover { border-color: var(--border-hi); }
+    .item-thumb { width: 46px; height: 46px; border-radius: 7px; flex-shrink: 0; background: var(--olive-dark); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; overflow: hidden; border: 1px solid var(--border); }
+    .item-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .item-info { flex: 1; min-width: 0; }
+    .item-name { font-size: 0.88rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .item-sub { font-size: 0.7rem; color: var(--muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .item-price { font-size: 0.87rem; font-weight: 700; color: var(--accent); flex-shrink: 0; min-width: 80px; text-align: right; }
+    .badges { display: flex; gap: 4px; flex-shrink: 0; }
+    .badge { font-size: 0.62rem; font-weight: 700; padding: 2px 7px; border-radius: 100px; }
+    .badge-pop { background: rgba(255,160,51,0.18); color: var(--accent); border: 1px solid rgba(255,160,51,0.32); }
+    .badge-hot { background: rgba(220,50,30,0.18); color: #ff6644; border: 1px solid rgba(220,50,30,0.32); }
+    .item-actions { display: flex; gap: 5px; flex-shrink: 0; }
+
+    /* ── VARIANTS ── */
+    .variant-list { display: flex; flex-direction: column; gap: 7px; }
+    .variant-row { display: grid; grid-template-columns: 1fr 100px 36px; gap: 7px; align-items: center; }
+
+    /* ── MODAL ── */
+    .modal-wrap { position: fixed; inset: 0; background: rgba(0,0,0,0.72); backdrop-filter: blur(5px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.18s; }
+    .modal-wrap.open { opacity: 1; pointer-events: all; }
+    .modal { background: var(--card); border: 1px solid var(--border); border-radius: 12px; width: 100%; max-width: 560px; max-height: 88vh; overflow-y: auto; transform: translateY(18px) scale(0.98); transition: transform 0.18s; }
+    .modal-wrap.open .modal { transform: translateY(0) scale(1); }
+    .modal-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: var(--card); z-index: 2; }
+    .modal-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+    .modal-close { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1.1rem; padding: 4px 6px; border-radius: 5px; transition: color 0.13s, background 0.13s; line-height: 1; }
+    .modal-close:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .modal-body { padding: 20px; }
+    .modal-footer { padding: 13px 20px; border-top: 1px solid var(--border); display: flex; gap: 8px; justify-content: flex-end; position: sticky; bottom: 0; background: var(--card); z-index: 2; }
+
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+
+    /* ── LOAD ZONE ── */
+    .load-zone { border: 2px dashed var(--border); border-radius: 10px; padding: 38px 24px; text-align: center; cursor: pointer; transition: border-color 0.16s, background 0.16s; }
+    .load-zone:hover { border-color: var(--accent); background: rgba(255,160,51,0.04); }
+    .load-zone .lz-icon { font-size: 2rem; }
+    .load-zone .lz-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-top: 10px; }
+    .load-zone .lz-sub { font-size: 0.78rem; color: var(--muted); margin-top: 6px; }
+    .load-zone code { color: var(--accent-pale); }
+
+    .section-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .section-count { font-size: 0.74rem; color: var(--muted); }
+
+    .empty { text-align: center; padding: 50px 20px; color: var(--muted); }
+    .empty .e-icon { font-size: 2.2rem; }
+    .empty h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin: 10px 0 5px; }
+    .empty p { font-size: 0.8rem; margin-bottom: 14px; }
+
+    .hours-row { display: flex; gap: 8px; align-items: flex-end; margin-bottom: 8px; }
+    .hours-row .form-group { margin: 0; flex: 1; }
+
+    /* ── IMAGE PICKER ── */
+    .img-picker-modal { max-width: 720px; }
+    .img-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: 8px; max-height: 420px; overflow-y: auto; padding: 2px; }
+    .img-cell { border: 2px solid var(--border); border-radius: 8px; overflow: hidden; cursor: pointer; aspect-ratio: 1; background: var(--olive-dark); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; position: relative; transition: border-color 0.14s, transform 0.12s; }
+    .img-cell:hover { border-color: var(--accent); transform: scale(1.04); }
+    .img-cell.selected { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+    .img-cell img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-cell-label { position: relative; z-index: 1; width: 100%; background: rgba(0,0,0,0.65); font-size: 0.55rem; color: #f0ead8; padding: 3px 5px; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.3; }
+    .img-preview-box { display: flex; align-items: center; gap: 10px; margin-top: 8px; padding: 8px 10px; background: var(--bg); border: 1px solid var(--border); border-radius: 7px; }
+    .img-preview-box img { width: 54px; height: 54px; border-radius: 6px; object-fit: cover; flex-shrink: 0; background: var(--olive-dark); }
+    .img-preview-box .img-preview-path { font-size: 0.72rem; color: var(--muted); word-break: break-all; }
+
+    /* ── PUBLISH BUTTON GROUP ── */
+    .btn-group { display: flex; gap: 7px; }
+
+    /* ── TOAST ── */
+    .toast-wrap { position: fixed; bottom: 22px; right: 22px; z-index: 9999; display: flex; flex-direction: column; gap: 7px; }
+    .toast { background: var(--card-alt); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px; padding: 11px 15px; font-size: 0.83rem; color: var(--text); min-width: 200px; max-width: 300px; box-shadow: 0 4px 22px rgba(0,0,0,0.45); animation: toastIn 0.18s ease; }
+    .toast.ok  { border-left-color: var(--success); }
+    .toast.err { border-left-color: var(--danger); }
+    @keyframes toastIn { from { transform: translateX(30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--olive); border-radius: 4px; }
+
+    /* ── SPINNER ── */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner { display: inline-block; animation: spin 0.9s linear infinite; }
+  </style>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+<!-- LOGIN GATE (shown by default, hidden after successful login) -->
+<div id="login-gate">
+  <div class="login-box">
+    <div class="login-flame">&#x1F525;</div>
+    <div class="login-brand">Love n' Grill</div>
+    <div class="login-sub">CMS Dashboard</div>
+    <button class="btn btn-primary" id="login-btn"
+      onclick="netlifyIdentity.open('login')"
+      style="padding:12px 36px;font-size:0.95rem;">
+      &#x1F510; Log In
+    </button>
+    <div class="login-status" id="login-status"></div>
+    <hr class="login-divider">
+    <p class="login-note">
+      Use the same email &amp; password you set up<br>
+      in Netlify Identity. Changes you save here<br>
+      will auto-publish to <strong>lovengrill.pk</strong>.
+    </p>
+  </div>
+</div>
+
+<!-- MAIN APP (hidden until logged in) -->
+<div class="app" id="app" style="display:none;">
+
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-name">&#x1F525; Love n' Grill</div>
+      <div class="brand-sub">Haripur's Finest</div>
+      <div class="brand-badge">CMS Dashboard</div>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-label">Menu Content</div>
+      <div class="nav-item active" id="nav-menu"  onclick="go('menu')"><span class="nav-icon">&#x1F355;</span> Menu Items</div>
+      <div class="nav-item"        id="nav-deals" onclick="go('deals')"><span class="nav-icon">&#x1F381;</span> Deals</div>
+
+      <div class="nav-label">Restaurant Info</div>
+      <div class="nav-item" id="nav-about" onclick="go('about')"><span class="nav-icon">&#x1F4CD;</span> About &amp; Contact</div>
+      <div class="nav-item" id="nav-hours" onclick="go('hours')"><span class="nav-icon">&#x1F550;</span> Opening Hours</div>
+    </nav>
+
+    <!-- User bar -->
+    <div class="user-bar">
+      <div class="user-info">
+        <div class="user-avatar" id="user-avatar">&#x1F464;</div>
+        <div class="user-details">
+          <div class="user-name"  id="user-name">Loading…</div>
+          <div class="user-email" id="user-email"></div>
+        </div>
+      </div>
+      <div id="publish-status" class="publish-status"></div>
+      <div class="nav-item" onclick="netlifyIdentity.logout()" style="margin-top:4px;">
+        <span class="nav-icon">&#x1F6AA;</span> Log out
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-title" id="topbar-title">Menu Items</div>
+      <div class="topbar-actions" id="topbar-actions"></div>
+    </div>
+    <div class="content" id="content"></div>
+  </div>
+</div>
+
+<!-- ITEM MODAL -->
+<div class="modal-wrap" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">Edit Item</div>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveItem()">&#x1F4BE; Save Item</button>
+    </div>
+  </div>
+</div>
+
+<!-- IMAGE PICKER MODAL -->
+<div class="modal-wrap" id="img-modal">
+  <div class="modal img-picker-modal">
+    <div class="modal-header">
+      <div class="modal-title">&#x1F5BC; Pick an Image</div>
+      <button class="modal-close" onclick="closeImgPicker()">&#x2715;</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+        <button class="btn btn-primary btn-sm" onclick="triggerFolderLoad()">&#x1F4C2; Load uploads folder</button>
+        <span id="img-folder-status" style="font-size:0.74rem;color:var(--muted);">No folder loaded yet</span>
+      </div>
+      <input type="file" id="img-folder-input" accept="image/*" multiple style="display:none;" onchange="onFolderLoaded(this)" />
+      <div id="img-grid-wrap">
+        <div class="empty" style="padding:30px 0;">
+          <div class="e-icon">&#x1F5BC;</div>
+          <h4>No images loaded</h4>
+          <p>Click "Load uploads folder" to browse your images</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeImgPicker()">Cancel</button></div>
+  </div>
+</div>
+
+<!-- TOASTS -->
+<div class="toast-wrap" id="toasts"></div>
+
+<script>
+// ── STATE ────────────────────────────────────────
+const S = { menu: null, about: null, hours: null };
+let section  = 'menu';
+let catIdx   = 0;
+let _catIdx  = null;
+let _itemIdx = null;
+let _variants  = [];
+let _imageFiles = {};
+let _imgPickerTarget = null;
+
+// ── AUTH STATE ───────────────────────────────────
+let _user    = null;
+let _fileShas = {}; // stores GitHub SHA for each file (needed for PUT)
+let _isSaving = false;
+
+// ── NETLIFY IDENTITY ─────────────────────────────
+if (window.netlifyIdentity) {
+  netlifyIdentity.on('init', user => {
+    if (user) {
+      onLogin(user);
+    }
+  });
+  netlifyIdentity.on('login', user => {
+    netlifyIdentity.close();
+    onLogin(user);
+  });
+  netlifyIdentity.on('logout', () => {
+    _user = null;
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('login-gate').style.display = 'flex';
+  });
+  netlifyIdentity.on('error', err => {
+    setLoginStatus('Error: ' + err.message);
+  });
+} else {
+  setLoginStatus('Netlify Identity not available — open this page at lovengrill.pk/admin');
+}
+
+async function onLogin(user) {
+  _user = user;
+  document.getElementById('login-gate').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+
+  // Update user bar
+  const name = user.user_metadata?.full_name || user.email.split('@')[0];
+  document.getElementById('user-name').textContent  = name;
+  document.getElementById('user-email').textContent = user.email;
+  if (user.user_metadata?.avatar_url) {
+    document.getElementById('user-avatar').innerHTML = `<img src="${esc(user.user_metadata.avatar_url)}" alt="" />`;
+  }
+
+  // Auto-load all data from GitHub
+  showSpinner('Loading your data from GitHub…');
+  await Promise.all([
+    gitLoad('menu',  'src/data/menu.json'),
+    gitLoad('about', 'src/data/about.json'),
+    gitLoad('hours', 'src/data/hours.json'),
+  ]);
+
+  go('menu');
+}
+
+function setLoginStatus(msg) {
+  const el = document.getElementById('login-status');
+  if (el) el.textContent = msg;
+}
+
+function setPublishStatus(msg, type) {
+  const el = document.getElementById('publish-status');
+  if (!el) return;
+  el.textContent = msg;
+  el.className = 'publish-status ' + (type || '');
+  if (msg) setTimeout(() => { if (el.textContent === msg) el.textContent = ''; }, 8000);
+}
+
+// ── GIT GATEWAY API ──────────────────────────────
+function getToken() {
+  return _user?.token?.access_token || '';
+}
+
+function toBase64(str) {
+  // Proper UTF-8 → base64 encoding (handles non-ASCII characters)
+  return btoa(unescape(encodeURIComponent(str)));
+}
+
+function fromBase64(b64) {
+  // Proper base64 → UTF-8 decoding
+  return decodeURIComponent(escape(atob(b64.replace(/\n/g, ''))));
+}
+
+async function gitLoad(key, path) {
+  try {
+    const res = await fetch('/.netlify/git/github/contents/' + path, {
+      headers: { Authorization: 'Bearer ' + getToken() }
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    _fileShas[key] = data.sha;
+    S[key] = JSON.parse(fromBase64(data.content));
+  } catch(e) {
+    toast('Could not load ' + key + ': ' + e.message, 'err');
+  }
+}
+
+async function publishFile(key, path) {
+  if (!_user) { toast('Not logged in', 'err'); return; }
+  if (_isSaving) return;
+  if (!S[key]) { toast('No data to publish for ' + key, 'err'); return; }
+
+  _isSaving = true;
+  setPublishStatus('Publishing…');
+  setTopbarButtons(true); // disable buttons while saving
+
+  const content = JSON.stringify(S[key], null, 2);
+  const filename = path.split('/').pop();
+
+  const body = {
+    message: 'CMS: Update ' + filename,
+    content: toBase64(content),
+  };
+  if (_fileShas[key]) body.sha = _fileShas[key];
+
+  try {
+    const res = await fetch('/.netlify/git/github/contents/' + path, {
+      method: 'PUT',
+      headers: {
+        Authorization: 'Bearer ' + getToken(),
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      throw new Error(errData.message || 'HTTP ' + res.status);
+    }
+
+    const result = await res.json();
+    _fileShas[key] = result.content.sha; // update SHA for next publish
+    toast('\u2705 ' + filename + ' published! Site rebuilding (~1\u20132 min)\u2026', 'ok');
+    setPublishStatus('\u2705 Published ' + filename, 'ok');
+  } catch(e) {
+    toast('\u274C Publish failed: ' + e.message + '. Downloading backup\u2026', 'err');
+    setPublishStatus('\u274C Publish failed', 'err');
+    download(S[key], filename); // fallback to download
+  } finally {
+    _isSaving = false;
+    setTopbarButtons(false);
+  }
+}
+
+function setTopbarButtons(disabled) {
+  document.querySelectorAll('.topbar-actions .btn').forEach(b => b.disabled = disabled);
+}
+
+// ── ROUTING ──────────────────────────────────────
+const TITLES = {
+  menu:  '&#x1F355; Menu Items',
+  deals: '&#x1F381; Deals',
+  about: '&#x1F4CD; About &amp; Contact',
+  hours: '&#x1F550; Opening Hours',
+};
+
+function go(id) {
+  section = id;
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  const el = document.getElementById('nav-' + id);
+  if (el) el.classList.add('active');
+  document.getElementById('topbar-title').innerHTML = TITLES[id];
+  render();
+}
+
+function render() {
+  ({ menu: renderMenu, deals: renderDeals, about: renderAbout, hours: renderHours }[section] || function(){})();
+}
+
+// ── HELPERS ──────────────────────────────────────
+function esc(str) {
+  if (str == null) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function priceLabel(item) {
+  if (item.price != null) return 'Rs. ' + item.price;
+  if (item.variants && item.variants.length) {
+    const prices = item.variants.map(v => v.price);
+    const lo = Math.min(...prices), hi = Math.max(...prices);
+    return lo === hi ? 'Rs. ' + lo : 'Rs. ' + lo + ' \u2013 ' + hi;
+  }
+  return '\u2014';
+}
+
+function setHtml(id, html) { const el = document.getElementById(id); if (el) el.innerHTML = html; }
+function setActions(html)  { setHtml('topbar-actions', html); }
+
+function showSpinner(msg) {
+  setHtml('content', `
+    <div class="empty">
+      <div class="e-icon spinner">&#x23F3;</div>
+      <h4 style="margin-top:14px;">${msg}</h4>
+    </div>`);
+  setActions('');
+}
+
+function loadZone(key, filename, hint) {
+  setActions(`<button class="btn btn-secondary" onclick="loadFile('${key}')">&#x1F4C2; Load ${filename} manually</button>`);
+  setHtml('content', `
+    <div class="load-zone" onclick="loadFile('${key}')">
+      <div class="lz-icon">&#x1F4C2;</div>
+      <div class="lz-title">Could not load ${filename} automatically</div>
+      <div class="lz-sub">${hint || 'Click to load the file manually from your computer.'}</div>
+    </div>`);
+}
+
+// Fallback: let user load file manually (same as offline CMS)
+function loadFile(key, cb) {
+  const inp = document.createElement('input');
+  inp.type = 'file'; inp.accept = '.json,application/json';
+  inp.onchange = e => {
+    const f = e.target.files[0]; if (!f) return;
+    const r = new FileReader();
+    r.onload = ev => {
+      try { S[key] = JSON.parse(ev.target.result); toast('Loaded ' + f.name, 'ok'); if (cb) cb(); render(); }
+      catch(_) { toast('Invalid JSON file', 'err'); }
+    };
+    r.readAsText(f);
+  };
+  inp.click();
+}
+
+function download(data, filename) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = filename; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 800);
+  toast('Downloaded ' + filename, 'ok');
+}
+
+// ── MENU ─────────────────────────────────────────
+function renderMenu() {
+  if (!S.menu) { loadZone('menu', 'menu.json', 'Connection to GitHub failed. Load manually as fallback.'); return; }
+
+  const allCats = S.menu.categories || [];
+  const cats    = allCats.filter(c => c.name !== 'Deals');
+  if (catIdx >= cats.length) catIdx = 0;
+
+  setActions(`
+    <button class="btn btn-ghost btn-sm"     onclick="go('menu')">&#x27F3; Refresh</button>
+    <button class="btn btn-secondary btn-sm" onclick="addCategory()">&#xFF0B; Category</button>
+    <button class="btn btn-ghost btn-sm"     onclick="download(S.menu,'menu.json')" title="Download backup">&#x2B07;</button>
+    <button class="btn btn-primary btn-sm"   id="pub-menu" onclick="publishFile('menu','src/data/menu.json')">&#x1F680; Publish Live</button>
+  `);
+
+  const tabs = cats.map((c, i) => `
+    <button class="tab-btn ${i===catIdx?'active':''}" onclick="switchCat(${i})">${esc(c.icon||'')} ${esc(c.name)}</button>
+  `).join('');
+
+  const cat     = cats[catIdx];
+  const realIdx = allCats.indexOf(cat);
+  const items   = cat.items || [];
+
+  const rows = items.map((item, ii) => {
+    const imgHtml = item.image
+      ? `<div class="item-thumb"><img src="${esc(item.image)}" alt="" onerror="this.parentElement.textContent='&#x1F37D;'"/></div>`
+      : `<div class="item-thumb">&#x1F37D;</div>`;
+    const desc = item.desc ? esc(item.desc.substring(0,55)) + (item.desc.length>55?'\u2026':'') : '\u2014';
+    return `
+      <div class="item-row">
+        ${imgHtml}
+        <div class="item-info">
+          <div class="item-name">${esc(item.name||'Unnamed')}</div>
+          <div class="item-sub">${desc}</div>
+        </div>
+        <div class="badges">
+          ${item.popular?'<span class="badge badge-pop">&#x1F525; Popular</span>':''}
+          ${item.spicy  ?'<span class="badge badge-hot">&#x1F336; Spicy</span>':''}
+        </div>
+        <div class="item-price">${priceLabel(item)}</div>
+        <div class="item-actions">
+          <button class="btn btn-ghost btn-sm"    onclick="openImgPickerForItem(${realIdx},${ii})" title="Change image">&#x1F5BC;</button>
+          <button class="btn btn-secondary btn-sm" onclick="openEdit(${realIdx},${ii})">Edit</button>
+          <button class="btn btn-danger btn-sm"    onclick="deleteItem(${realIdx},${ii})">&#x2715;</button>
+        </div>
+      </div>`;
+  }).join('');
+
+  setHtml('content', `
+    <div class="cat-tabs">${tabs}</div>
+    <div class="section-bar">
+      <div class="section-count">${items.length} item${items.length!==1?'s':''} in ${esc(cat.name)}</div>
+      <button class="btn btn-secondary btn-sm" onclick="openAdd(${realIdx})">&#xFF0B; Add Item</button>
+    </div>
+    <div class="item-list">
+      ${rows||'<div class="empty"><div class="e-icon">&#x1F37D;</div><h4>No items yet</h4><p>Click "+ Add Item" to get started.</p></div>'}
+    </div>`);
+}
+
+function switchCat(i) { catIdx = i; render(); }
+
+function addCategory() {
+  const name = prompt('Category name (e.g. Salads):');
+  if (!name || !name.trim()) return;
+  const icon = prompt('Emoji icon (e.g. \uD83E\uDD57):') || '&#x1F37D;';
+  S.menu.categories.push({ name: name.trim(), icon: icon.trim(), items: [] });
+  catIdx = S.menu.categories.filter(c => c.name !== 'Deals').length - 1;
+  render(); toast('Category "' + name.trim() + '" added', 'ok');
+}
+
+// ── DEALS ────────────────────────────────────────
+function renderDeals() {
+  if (!S.menu) { loadZone('menu', 'menu.json'); return; }
+
+  setActions(`
+    <button class="btn btn-ghost btn-sm"   onclick="download(S.menu,'menu.json')" title="Download backup">&#x2B07;</button>
+    <button class="btn btn-primary btn-sm" onclick="publishFile('menu','src/data/menu.json')">&#x1F680; Publish Live</button>
+  `);
+
+  const allCats = S.menu.categories || [];
+  let di = allCats.findIndex(c => c.name === 'Deals');
+
+  if (di === -1) {
+    setHtml('content',`
+      <div class="empty">
+        <div class="e-icon">&#x1F381;</div>
+        <h4>No "Deals" category found</h4>
+        <p>Your menu.json doesn't have a Deals category yet.</p>
+        <button class="btn btn-primary" onclick="createDeals()">&#xFF0B; Create Deals Category</button>
+      </div>`);
+    return;
+  }
+
+  const deals = allCats[di].items || [];
+  const rows  = deals.map((item, ii) => `
+    <div class="item-row">
+      <div class="item-thumb">&#x1F381;</div>
+      <div class="item-info">
+        <div class="item-name">${esc(item.name)}</div>
+        <div class="item-sub">${item.desc ? esc(item.desc.substring(0,70)) : '\u2014'}</div>
+      </div>
+      <div class="item-price">${priceLabel(item)}</div>
+      <div class="item-actions">
+        <button class="btn btn-ghost btn-sm"    onclick="openImgPickerForItem(${di},${ii})" title="Change image">&#x1F5BC;</button>
+        <button class="btn btn-secondary btn-sm" onclick="openEdit(${di},${ii})">Edit</button>
+        <button class="btn btn-danger btn-sm"    onclick="deleteItem(${di},${ii})">&#x2715;</button>
+      </div>
+    </div>`).join('');
+
+  setHtml('content', `
+    <div class="section-bar">
+      <div class="section-count">${deals.length} deal${deals.length!==1?'s':''}</div>
+      <button class="btn btn-secondary btn-sm" onclick="openAdd(${di})">&#xFF0B; Add Deal</button>
+    </div>
+    <div class="item-list">
+      ${rows||'<div class="empty"><div class="e-icon">&#x1F381;</div><h4>No deals yet</h4><p>Click "+ Add Deal" to create one.</p></div>'}
+    </div>`);
+}
+
+function createDeals() { S.menu.categories.push({ name:'Deals', icon:'&#x1F381;', items:[] }); render(); }
+
+// ── ABOUT ────────────────────────────────────────
+function renderAbout() {
+  if (!S.about) { loadZone('about', 'about.json'); return; }
+
+  setActions(`
+    <button class="btn btn-ghost btn-sm" onclick="downloadAbout()" title="Download backup">&#x2B07; Backup</button>
+    <button class="btn btn-primary"      onclick="saveAbout()">&#x1F680; Publish Live</button>
+  `);
+
+  const a = S.about;
+  setHtml('content', `
+    <div class="card">
+      <div class="card-header"><h3>Restaurant Info</h3></div>
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label">Description / Tagline</label>
+          <textarea class="form-textarea" id="a-desc" rows="3">${esc(a.description||'')}</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Address</label>
+          <input class="form-input" id="a-loc" value="${esc(a.location||'')}" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Phone (display)</label>
+            <input class="form-input" id="a-phone" value="${esc(a.phone||'')}" placeholder="+92 319 9921117" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">WhatsApp (digits only)</label>
+            <input class="form-input" id="a-wa" value="${esc(a.whatsapp||'')}" placeholder="923199921117" />
+            <div class="form-hint">No spaces, dashes, or + sign.</div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input class="form-input" id="a-email" type="email" value="${esc(a.email||'')}" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Hours summary text</label>
+            <input class="form-input" id="a-hours" value="${esc(a.hours||'')}" placeholder="Mon\u2013Sun: 10 AM \u2013 1 AM" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>Social Links</h3></div>
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label">Instagram URL</label>
+          <input class="form-input" id="a-ig" value="${esc(a.instagram||'')}" placeholder="https://instagram.com/lovengrill" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">TikTok URL</label>
+          <input class="form-input" id="a-tt" value="${esc(a.tiktok||'')}" placeholder="https://www.tiktok.com/@lovengrill" />
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-group" style="margin-top:14px;">
+      <button class="btn btn-primary" onclick="saveAbout()" style="flex:1;padding:12px;justify-content:center;font-size:0.88rem;">
+        &#x1F680; Publish Live to lovengrill.pk
+      </button>
+      <button class="btn btn-ghost" onclick="downloadAbout()" style="padding:12px;" title="Download a local backup copy">
+        &#x2B07;
+      </button>
+    </div>`);
+}
+
+function collectAbout() {
+  const g = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+  S.about = {
+    description: g('a-desc'),
+    location:    g('a-loc'),
+    phone:       g('a-phone'),
+    whatsapp:    g('a-wa'),
+    email:       g('a-email'),
+    hours:       g('a-hours'),
+    instagram:   g('a-ig'),
+    tiktok:      g('a-tt'),
+  };
+}
+
+async function saveAbout() { collectAbout(); await publishFile('about', 'src/data/about.json'); }
+function downloadAbout()   { collectAbout(); download(S.about, 'about.json'); }
+
+// ── HOURS ────────────────────────────────────────
+function renderHours() {
+  if (!S.hours) { loadZone('hours', 'hours.json'); return; }
+
+  setActions(`
+    <button class="btn btn-ghost btn-sm" onclick="downloadHours()" title="Download backup">&#x2B07; Backup</button>
+    <button class="btn btn-primary"      onclick="saveHours()">&#x1F680; Publish Live</button>
+  `);
+
+  const rows = (S.hours.schedule||[]).map((r,i) => `
+    <div class="hours-row">
+      <div class="form-group">
+        <label class="form-label">Days</label>
+        <input class="form-input" id="hr-days-${i}" value="${esc(r.days||'')}" placeholder="Mon\u2013Fri" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Opens</label>
+        <input class="form-input" id="hr-open-${i}" value="${esc(r.opens||'')}" placeholder="11:00 AM" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Closes</label>
+        <input class="form-input" id="hr-close-${i}" value="${esc(r.closes||'')}" placeholder="11:00 PM" />
+      </div>
+      <div style="align-self:flex-end;padding-bottom:1px;">
+        <button class="btn btn-danger btn-sm" onclick="removeHrRow(${i})" style="height:37px;">&#x2715;</button>
+      </div>
+    </div>`).join('');
+
+  setHtml('content', `
+    <div class="card">
+      <div class="card-header">
+        <h3>Weekly Schedule</h3>
+        <button class="btn btn-secondary btn-sm" onclick="addHrRow()">&#xFF0B; Add Row</button>
+      </div>
+      <div class="card-body">
+        ${rows||'<div class="empty" style="padding:20px 0;"><div class="e-icon">&#x1F550;</div><h4>No schedule rows yet</h4><p>Click "+ Add Row".</p></div>'}
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header"><h3>Special Notice</h3></div>
+      <div class="card-body">
+        <div class="form-group">
+          <label class="form-label">Notice (optional)</label>
+          <input class="form-input" id="hr-notice" value="${esc(S.hours.notice||'')}" placeholder="e.g. Closed on public holidays" />
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-group" style="margin-top:14px;">
+      <button class="btn btn-primary" onclick="saveHours()" style="flex:1;padding:12px;justify-content:center;font-size:0.88rem;">
+        &#x1F680; Publish Live to lovengrill.pk
+      </button>
+      <button class="btn btn-ghost" onclick="downloadHours()" style="padding:12px;" title="Download a local backup">
+        &#x2B07;
+      </button>
+    </div>`);
+}
+
+function collectHours() {
+  (S.hours.schedule||[]).forEach((_,i) => {
+    const d=document.getElementById('hr-days-'+i),
+          o=document.getElementById('hr-open-'+i),
+          c=document.getElementById('hr-close-'+i);
+    if (d) S.hours.schedule[i]={days:d.value,opens:o.value,closes:c.value};
+  });
+  const n=document.getElementById('hr-notice');
+  if (n) S.hours.notice=n.value;
+}
+
+function addHrRow()     { collectHours(); S.hours.schedule.push({days:'',opens:'',closes:''}); render(); }
+function removeHrRow(i) { collectHours(); S.hours.schedule.splice(i,1); render(); }
+async function saveHours()   { collectHours(); await publishFile('hours', 'src/data/hours.json'); }
+function downloadHours() { collectHours(); download(S.hours, 'hours.json'); }
+
+// ── ITEM MODAL ───────────────────────────────────
+function openEdit(ci, ii) {
+  _catIdx=ci; _itemIdx=ii;
+  const item=S.menu.categories[ci].items[ii];
+  document.getElementById('modal-title').textContent='Edit: '+(item.name||'Item');
+  fillModal(item); openModal();
+}
+
+function openAdd(ci) {
+  _catIdx=ci; _itemIdx=null;
+  document.getElementById('modal-title').textContent='Add New Item';
+  fillModal({}); openModal();
+}
+
+function fillModal(item) {
+  const hasV = !!(item.variants && item.variants.length);
+  _variants  = hasV ? JSON.parse(JSON.stringify(item.variants)) : [];
+  const mode = hasV ? 'variants' : 'flat';
+
+  setHtml('modal-body', `
+    <div class="form-group">
+      <label class="form-label">Item Name *</label>
+      <input class="form-input" id="m-name" value="${esc(item.name||'')}" placeholder="e.g. Chicken Fajita" />
+    </div>
+    <div class="form-group">
+      <label class="form-label">Description</label>
+      <textarea class="form-textarea" id="m-desc" rows="2">${esc(item.desc||'')}</textarea>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Tag / Badge</label>
+        <input class="form-input" id="m-tag" value="${esc(item.tag||'')}" placeholder="e.g. Best Seller" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Image</label>
+        <div style="display:flex;gap:7px;">
+          <input class="form-input" id="m-img" value="${esc(item.image||'')}" placeholder="/uploads/item.jpg" oninput="updateImgPreview()" />
+          <button class="btn btn-secondary btn-sm" onclick="openImgPicker()" style="flex-shrink:0;white-space:nowrap;">&#x1F5BC; Browse</button>
+        </div>
+        <div id="m-img-preview"></div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Pricing type</label>
+      <select class="form-select" id="m-mode" onchange="onModeChange(this.value)">
+        <option value="flat"     ${mode==='flat'    ?'selected':''}>Single flat price</option>
+        <option value="variants" ${mode==='variants'?'selected':''}>Multiple sizes / variants</option>
+      </select>
+    </div>
+
+    <div id="m-flat" style="display:${mode==='flat'?'block':'none'};" class="form-row">
+      <div class="form-group">
+        <label class="form-label">Price (Rs)</label>
+        <input class="form-input" id="m-price" type="number" min="0" value="${item.price!=null?item.price:''}" placeholder="599" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Price prefix (optional)</label>
+        <input class="form-input" id="m-prefix" value="${esc(item.pricePrefix||'')}" placeholder="e.g. Starting" />
+      </div>
+    </div>
+
+    <div id="m-variants" style="display:${mode==='variants'?'block':'none'};">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <label class="form-label" style="margin:0;">Sizes &amp; Prices</label>
+        <button class="btn btn-secondary btn-sm" onclick="addVariant()">&#xFF0B; Add Size</button>
+      </div>
+      <div class="variant-list" id="m-vlist"></div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="toggle-row">
+      <div><div class="toggle-label">&#x1F525; Popular</div><div class="toggle-desc">Shows Popular badge on the menu card</div></div>
+      <label class="toggle"><input type="checkbox" id="m-pop" ${item.popular?'checked':''}><span class="toggle-slider"></span></label>
+    </div>
+    <div class="toggle-row">
+      <div><div class="toggle-label">&#x1F336; Spicy</div><div class="toggle-desc">Shows Spicy badge on the menu card</div></div>
+      <label class="toggle"><input type="checkbox" id="m-spicy" ${item.spicy?'checked':''}><span class="toggle-slider"></span></label>
+    </div>`);
+
+  renderVariants();
+  updateImgPreview();
+}
+
+function onModeChange(v) {
+  document.getElementById('m-flat').style.display     = v==='flat'     ? 'block' : 'none';
+  document.getElementById('m-variants').style.display = v==='variants' ? 'block' : 'none';
+  if (v==='variants' && _variants.length===0) {
+    _variants=[{label:'Small',price:''},{label:'Medium',price:''}];
+    renderVariants();
+  }
+}
+
+function renderVariants() {
+  const list=document.getElementById('m-vlist');
+  if (!list) return;
+  list.innerHTML=_variants.map((v,i)=>`
+    <div class="variant-row">
+      <input class="form-input" placeholder="Label (e.g. Small)" value="${esc(v.label||'')}" oninput="_variants[${i}].label=this.value" />
+      <input class="form-input" type="number" min="0" placeholder="Price" value="${v.price!==''?v.price:''}" oninput="_variants[${i}].price=Number(this.value)" />
+      <button class="btn btn-danger btn-sm" onclick="removeVariant(${i})" style="height:37px;width:36px;padding:0;justify-content:center;">&#x2715;</button>
+    </div>`).join('');
+}
+
+function addVariant()     { _variants.push({label:'',price:''}); renderVariants(); }
+function removeVariant(i) { _variants.splice(i,1); renderVariants(); }
+
+function saveItem() {
+  const val = id => { const el=document.getElementById(id); return el?el.value.trim():''; };
+  const chk = id => { const el=document.getElementById(id); return el?el.checked:false; };
+
+  const name=val('m-name');
+  if (!name) { toast('Item name is required','err'); return; }
+
+  const mode = document.getElementById('m-mode')?.value||'flat';
+  const item = {
+    id:      _itemIdx!==null
+               ? (S.menu.categories[_catIdx].items[_itemIdx].id||('item-'+Date.now()))
+               : 'item-'+Date.now(),
+    name,
+    desc:    val('m-desc'),
+    tag:     val('m-tag'),
+    image:   val('m-img'),
+    popular: chk('m-pop'),
+    spicy:   chk('m-spicy'),
+  };
+
+  if (mode==='flat') {
+    const p=val('m-price');
+    if (p!=='') item.price=Number(p);
+    const pf=val('m-prefix');
+    if (pf) item.pricePrefix=pf;
+  } else {
+    document.querySelectorAll('#m-vlist .variant-row').forEach((row,i)=>{
+      const ins=row.querySelectorAll('input');
+      if (ins[0]&&_variants[i]) { _variants[i].label=ins[0].value; _variants[i].price=Number(ins[1].value); }
+    });
+    item.variants=_variants.filter(v=>v.label||v.price);
+  }
+
+  if (_itemIdx!==null) {
+    const orig=S.menu.categories[_catIdx].items[_itemIdx];
+    if (orig.addons) item.addons=orig.addons;
+    S.menu.categories[_catIdx].items[_itemIdx]=item;
+    toast('"'+name+'" updated','ok');
+  } else {
+    S.menu.categories[_catIdx].items.push(item);
+    toast('"'+name+'" added','ok');
+  }
+
+  closeModal(); render();
+}
+
+function deleteItem(ci,ii) {
+  const name=S.menu.categories[ci].items[ii].name||'this item';
+  if (!confirm('Delete "'+name+'"?\nThis cannot be undone.')) return;
+  S.menu.categories[ci].items.splice(ii,1);
+  render(); toast('"'+name+'" deleted');
+}
+
+// ── MODAL ────────────────────────────────────────
+function openModal()  { document.getElementById('modal').classList.add('open'); }
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+
+document.getElementById('modal').addEventListener('click', e => { if (e.target===e.currentTarget) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key==='Escape') { closeModal(); closeImgPicker(); } });
+
+// ── IMAGE PICKER ──────────────────────────────────
+const KNOWN_IMAGES = [
+  "alfredo-pasta.jpeg","americano.jpeg","baked-wings.jpg","bbg-burger.jpeg",
+  "bbq-cheese-wrap.jpeg","bbq-wings.jpg","beef-jalapeno.jpeg","beef-mashroom-burger.jpeg",
+  "beef-pizza.jpg","bubble-tea.jpeg","bubble-waffle.webp","bubble-waffle2.jpg",
+  "butter-scotch.jpeg","cappuccino.jpeg","caramel-icecream.jpeg","cheese-cake.jpeg",
+  "cheese-gold1.jpg","chicken-chowmin.jpg","chicken-fajita.jpg","chicken-supreme.jpg",
+  "chicken-tiva.jpg","chillers.jpeg","chocolate-icecream.jpeg","classic-thunder.jpeg",
+  "corn-soup.jpeg","cotton-candy.jpeg","creamy-pasta.jpeg","crispo-burger.jpeg",
+  "crispo-wings.jpg","crown-crust.jpg","crunchy-pasta.jpeg","crunchy-wrap.jpeg",
+  "dessert.jpeg","doctor-deal.jpeg","double-degger.jpeg","egg-fried-rice.jpeg",
+  "espresso.jpeg","feppachino.jpeg","fillet-burger.jpeg","fish-burger.png",
+  "fish-fillet.jpg","freddo-espresso.jpeg","garlic-rice.jpeg","grill-beef-burger.jpeg",
+  "haripur-deal.jpeg","hot-latte.jpeg","hot-spicy.jpg","hotshot-12pcs.jpeg",
+  "hotshot-6pcs.jpeg","icecream-shakes.jpeg","iced-americano.jpeg","iced-latte-flavoured-.jpeg",
+  "iced-latte.jpeg","injected-broast-2pcs.jpeg","injected-broast-3pcs.jpeg","injected-broast-5pcs.jpeg",
+  "jalapeno-broast-1pc.jpeg","jalapeno-broast-3pcs.jpeg","jalapeno-broast-5pcs.jpeg","kebab-stuff.jpg",
+  "kids-burger.jpeg","kids-deal.png","lawyers-deal.jpeg","loaded-fries.jpeg",
+  "love-n-grill-wrap.jpeg","mango-icecream.jpeg","masala-fries.jpeg","masala-rice.jpeg",
+  "mayo-fries.jpeg","milk-bubble-tea.jpeg","mint-margarita.jpeg","mughlai-pizza.jpg",
+  "nuggets-12pcs.jpeg","nuggets-6pcs.jpeg","pagal-deal.jpeg","pak-austria-deal.jpeg",
+  "party-deal.jpeg","peri-peri.jpg","pista-icecream.jpeg","pizza-place.jpg",
+  "pizzasta.jpg.jpeg","plain-rice.jpeg","simple-fries.jpeg","special-soup.jpeg",
+  "strawberry-icecream.jpeg","student-deal-burger.jpeg","student-deal-pizza.jpeg","tikka-roll-paratha.jpeg",
+  "twister-wrap.jpeg","uoh-deal.jpeg","vanilla-icecream.jpeg","veg-chowmin.jpg",
+  "yaari-deal.jpeg","zinger.jpeg"
+];
+
+function getImageSrc(name) { return _imageFiles[name] || ('/uploads/' + name); }
+
+function updateImgPreview() {
+  const box = document.getElementById('m-img-preview');
+  if (!box) return;
+  const path = (document.getElementById('m-img')?.value || '').trim();
+  if (!path) { box.innerHTML = ''; return; }
+  const cleanName = path.replace(/^\/uploads\//, '');
+  const src = _imageFiles[cleanName] || path;
+  box.innerHTML = `
+    <div class="img-preview-box">
+      <img src="${esc(src)}" alt="preview" onerror="this.style.opacity='0.2'" />
+      <div class="img-preview-path">${esc(path)}</div>
+    </div>`;
+}
+
+function openImgPicker() {
+  _imgPickerTarget = null;
+  document.getElementById('img-modal').classList.add('open');
+  renderImgGrid();
+}
+
+function openImgPickerForItem(ci, ii) {
+  _imgPickerTarget = { ci, ii };
+  const item = S.menu.categories[ci].items[ii];
+  document.getElementById('img-modal').classList.add('open');
+  renderImgGrid(item.image);
+}
+
+function closeImgPicker() {
+  document.getElementById('img-modal').classList.remove('open');
+  _imgPickerTarget = null;
+}
+
+document.getElementById('img-modal')?.addEventListener('click', e => { if (e.target===e.currentTarget) closeImgPicker(); });
+
+function triggerFolderLoad() { document.getElementById('img-folder-input')?.click(); }
+
+function onFolderLoaded(input) {
+  const files = Array.from(input.files || []);
+  if (!files.length) return;
+  files.forEach(f => { _imageFiles[f.name] = URL.createObjectURL(f); });
+  const st = document.getElementById('img-folder-status');
+  if (st) st.textContent = files.length + ' images loaded';
+  toast('Loaded ' + files.length + ' images', 'ok');
+  renderImgGrid();
+}
+
+function renderImgGrid(selectedPath) {
+  const wrap = document.getElementById('img-grid-wrap');
+  if (!wrap) return;
+  const currentVal = selectedPath || (document.getElementById('m-img')?.value || '');
+  const allNames   = Array.from(new Set([...Object.keys(_imageFiles), ...KNOWN_IMAGES])).sort();
+
+  const cells = allNames.map(name => {
+    const fullPath   = '/uploads/' + name;
+    const isSelected = currentVal === fullPath || currentVal.endsWith('/' + name);
+    const src        = getImageSrc(name);
+    return `
+      <div class="img-cell ${isSelected?'selected':''}" onclick="selectImage('${esc(name)}')">
+        <img src="${esc(src)}" alt="${esc(name)}" loading="lazy" onerror="this.style.opacity='0.2'" />
+        <div class="img-cell-label">${esc(name)}</div>
+      </div>`;
+  }).join('');
+
+  wrap.innerHTML = `<div class="img-grid">${cells}</div>`;
+}
+
+function selectImage(filename) {
+  const fullPath = '/uploads/' + filename;
+  if (_imgPickerTarget) {
+    const { ci, ii } = _imgPickerTarget;
+    if (S.menu?.categories[ci]?.items[ii]) {
+      S.menu.categories[ci].items[ii].image = fullPath;
+      toast('Photo updated \u2014 click \u201C\uD83D\uDE80 Publish Live\u201D to save', 'ok');
+      render();
+    }
+  } else {
+    const inp = document.getElementById('m-img');
+    if (inp) { inp.value = fullPath; updateImgPreview(); }
+  }
+  closeImgPicker();
+}
+
+// ── TOAST ────────────────────────────────────────
+function toast(msg, type) {
+  const c  = document.getElementById('toasts');
+  const el = document.createElement('div');
+  el.className = 'toast ' + (type||'');
+  el.textContent = msg;
+  c.appendChild(el);
+  setTimeout(() => { el.style.transition='opacity 0.3s'; el.style.opacity='0'; setTimeout(()=>el.remove(),320); }, 3500);
+}
+</script>
 </body>
 </html>
