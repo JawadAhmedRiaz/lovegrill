@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Love n' Grill — CMS</title>
-  <!-- Netlify Identity (same one the old Decap CMS used) -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -234,12 +232,19 @@
     <div class="login-flame">&#x1F525;</div>
     <div class="login-brand">Love n' Grill</div>
     <div class="login-sub">CMS Dashboard</div>
-    <button class="btn btn-primary" id="login-btn"
-      onclick="openLogin()"
-      style="padding:12px 36px;font-size:0.95rem;">
-      &#x1F510; Log In
-    </button>
-    <div class="login-status" id="login-status">Connecting to Netlify Identity…</div>
+    <form onsubmit="doLogin(event)" style="width:100%;max-width:290px;margin:0 auto;">
+      <input class="form-input" id="l-email" type="email" placeholder="Email address" required
+        autocomplete="email"
+        style="margin-bottom:8px;background:rgba(255,255,255,0.05);border-color:rgba(255,160,51,0.3);" />
+      <input class="form-input" id="l-pass" type="password" placeholder="Password" required
+        autocomplete="current-password"
+        style="margin-bottom:12px;background:rgba(255,255,255,0.05);border-color:rgba(255,160,51,0.3);" />
+      <button class="btn btn-primary" type="submit" id="login-btn"
+        style="width:100%;padding:12px;justify-content:center;font-size:0.95rem;">
+        &#x1F510; Log In
+      </button>
+    </form>
+    <div class="login-status" id="login-status"></div>
     <hr class="login-divider">
     <p class="login-note">
       Use the same email &amp; password you set up<br>
@@ -279,7 +284,7 @@
         </div>
       </div>
       <div id="publish-status" class="publish-status"></div>
-      <div class="nav-item" onclick="netlifyIdentity.logout()" style="margin-top:4px;">
+      <div class="nav-item" onclick="logout()" style="margin-top:4px;">
         <span class="nav-icon">&#x1F6AA;</span> Log out
       </div>
     </div>
@@ -353,53 +358,63 @@ let _user    = null;
 let _fileShas = {}; // stores GitHub SHA for each file (needed for PUT)
 let _isSaving = false;
 
-// ── NETLIFY IDENTITY ─────────────────────────────
-let _identityReady = false;
+// ── DIRECT IDENTITY API LOGIN ────────────────────
+// No widget, no popup — just a standard fetch to the Identity API
+const IDENTITY_URL = 'https://lovengrill1.netlify.app/.netlify/identity';
+let _refreshToken = null;
 
-function openLogin() {
-  if (!window.netlifyIdentity) {
-    setLoginStatus('⚠️ Identity script not loaded — try refreshing.');
-    return;
+async function doLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById('l-email').value.trim();
+  const pass  = document.getElementById('l-pass').value;
+  const btn   = document.getElementById('login-btn');
+
+  btn.disabled = true;
+  setLoginStatus('Logging in…');
+
+  try {
+    const res = await fetch(IDENTITY_URL + '/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `grant_type=password&username=${encodeURIComponent(email)}&password=${encodeURIComponent(pass)}`
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error_description || data.msg || 'Login failed');
+
+    _refreshToken = data.refresh_token;
+    _user = {
+      token: { access_token: data.access_token },
+      email: data.user?.email || email,
+      user_metadata: data.user?.user_metadata || {}
+    };
+    onLogin(_user);
+  } catch(err) {
+    setLoginStatus('⚠️ ' + err.message);
+    btn.disabled = false;
   }
-  if (!_identityReady) {
-    setLoginStatus('⏳ Still connecting… wait a moment then try again.');
-    return;
-  }
-  netlifyIdentity.open('login');
 }
 
-if (window.netlifyIdentity) {
-  netlifyIdentity.on('init', user => {
-    _identityReady = true;
-    if (user) {
-      onLogin(user);
-    } else {
-      setLoginStatus(''); // ready — clear "Connecting…" message
-    }
+async function refreshToken() {
+  if (!_refreshToken) throw new Error('Session expired — please log in again.');
+  const res = await fetch(IDENTITY_URL + '/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `grant_type=refresh_token&refresh_token=${encodeURIComponent(_refreshToken)}`
   });
-  netlifyIdentity.on('login', user => {
-    netlifyIdentity.close();
-    onLogin(user);
-  });
-  netlifyIdentity.on('logout', () => {
-    _user = null;
-    document.getElementById('app').style.display = 'none';
-    document.getElementById('login-gate').style.display = 'flex';
-    setLoginStatus('');
-  });
-  netlifyIdentity.on('error', err => {
-    console.error('Netlify Identity error:', err);
-    setLoginStatus('⚠️ ' + (err.message || 'Identity error — check Netlify dashboard'));
-  });
+  const data = await res.json();
+  if (!res.ok) throw new Error('Session expired — please log in again.');
+  _user.token.access_token = data.access_token;
+  _refreshToken = data.refresh_token;
+}
 
-  // If init hasn't fired after 10 seconds, show a diagnostic message
-  setTimeout(() => {
-    if (!_identityReady) {
-      setLoginStatus('⚠️ Could not connect to Identity service. Check the browser Network tab for a failed request to <code>/.netlify/identity/settings</code>');
-    }
-  }, 10000);
-} else {
-  setLoginStatus('⚠️ Identity script not available — open this page at lovengrill.pk/admin or lovengrill1.netlify.app/admin');
+function logout() {
+  _user = null;
+  _refreshToken = null;
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-gate').style.display = 'flex';
+  document.getElementById('login-btn').disabled = false;
+  document.getElementById('l-pass').value = '';
+  setLoginStatus('');
 }
 
 async function onLogin(user) {
