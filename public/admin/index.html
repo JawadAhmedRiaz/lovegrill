@@ -235,11 +235,11 @@
     <div class="login-brand">Love n' Grill</div>
     <div class="login-sub">CMS Dashboard</div>
     <button class="btn btn-primary" id="login-btn"
-      onclick="netlifyIdentity.open('login')"
+      onclick="openLogin()"
       style="padding:12px 36px;font-size:0.95rem;">
       &#x1F510; Log In
     </button>
-    <div class="login-status" id="login-status"></div>
+    <div class="login-status" id="login-status">Connecting to Netlify Identity…</div>
     <hr class="login-divider">
     <p class="login-note">
       Use the same email &amp; password you set up<br>
@@ -354,10 +354,28 @@ let _fileShas = {}; // stores GitHub SHA for each file (needed for PUT)
 let _isSaving = false;
 
 // ── NETLIFY IDENTITY ─────────────────────────────
+function openLogin() {
+  if (!window.netlifyIdentity) {
+    setLoginStatus('⚠️ Identity not loaded — try refreshing.');
+    return;
+  }
+  setLoginStatus('Opening login…');
+  netlifyIdentity.open('login');
+}
+
 if (window.netlifyIdentity) {
+  // Explicitly tell the widget which site to connect to.
+  // Auto-detection sometimes fails silently — this fixes it.
+  netlifyIdentity.init({
+    APIUrl: 'https://lovengrill1.netlify.app/.netlify/identity'
+  });
+
   netlifyIdentity.on('init', user => {
     if (user) {
       onLogin(user);
+    } else {
+      // Widget initialized OK, no current session — show ready state
+      setLoginStatus('');
     }
   });
   netlifyIdentity.on('login', user => {
@@ -368,12 +386,14 @@ if (window.netlifyIdentity) {
     _user = null;
     document.getElementById('app').style.display = 'none';
     document.getElementById('login-gate').style.display = 'flex';
+    setLoginStatus('');
   });
   netlifyIdentity.on('error', err => {
-    setLoginStatus('Error: ' + err.message);
+    console.error('Netlify Identity error:', err);
+    setLoginStatus('⚠️ ' + (err.message || 'Identity error — check Netlify dashboard'));
   });
 } else {
-  setLoginStatus('Netlify Identity not available — open this page at lovengrill.pk/admin');
+  setLoginStatus('⚠️ Identity not available — open this page at lovengrill.pk/admin');
 }
 
 async function onLogin(user) {
