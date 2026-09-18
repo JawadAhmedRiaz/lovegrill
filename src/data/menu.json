@@ -6,7 +6,7 @@
       "items": [
         {
           "spicy": false,
-          "name": "Chicken Tiva",
+          "name": "Chicken Tikka",
           "variants": [
             {
               "label": "Small",
@@ -157,7 +157,19 @@
           "variants": [
             {
               "label": "Small",
-              "price": 550
+              "price": 810
+            },
+            {
+              "label": "Medium",
+              "price": 1210
+            },
+            {
+              "label": "Large",
+              "price": 1760
+            },
+            {
+              "label": "XL",
+              "price": 1999
             }
           ],
           "addons": [
@@ -223,7 +235,7 @@
             },
             {
               "label": "XL",
-              "price": 1999
+              "price": 2299
             }
           ],
           "desc": "Fiery spice blend on a crispy base for heat lovers.",
@@ -294,7 +306,7 @@
             },
             {
               "label": "XL",
-              "price": 1750
+              "price": 2350
             }
           ],
           "desc": "Tangy peri-peri sauce with juicy chicken bites.",
@@ -365,7 +377,7 @@
             },
             {
               "label": "XL",
-              "price": 2250
+              "price": 2350
             }
           ],
           "desc": "Loaded supreme pizza with generous chicken topping.",
@@ -496,6 +508,10 @@
             {
               "label": "Large",
               "price": 1960
+            },
+            {
+              "label": "XL",
+              "price": 2399
             }
           ],
           "desc": "Rich seasoned beef with mozzarella on a hand-tossed base.",
@@ -562,7 +578,7 @@
             },
             {
               "label": "XL",
-              "price": 2399
+              "price": 2299
             }
           ],
           "desc": "Mughlai spiced toppings with aromatic herbs and cheese.",
@@ -626,6 +642,10 @@
             {
               "label": "Large",
               "price": 1960
+            },
+            {
+              "label": "XL",
+              "price": 2299
             }
           ],
           "desc": "Our signature house pizza — a true crowd pleaser.",
@@ -692,7 +712,7 @@
             },
             {
               "label": "XL",
-              "price": 2399
+              "price": 2299
             }
           ],
           "desc": "Crown crust stuffed with cheese for a royal treat.",
@@ -756,6 +776,10 @@
             {
               "label": "Large",
               "price": 1960
+            },
+            {
+              "label": "XL",
+              "price": 2399
             }
           ],
           "desc": "A unique fusion of pizza and pasta flavours in every bite.",
@@ -817,7 +841,7 @@
         {
           "spicy": false,
           "price": 1199,
-          "name": "BBG Beef (Special)",
+          "name": "BBQ Beef (Special)",
           "desc": "Our special BBG beef burger — bold, juicy, unforgettable.",
           "addons": [
             {
@@ -1046,7 +1070,7 @@
             },
             {
               "label": "12 Pcs",
-              "price": 850
+              "price": 899
             }
           ],
           "image": "/uploads/crispo-wings.jpg"
@@ -1088,6 +1112,16 @@
             }
           ],
           "image": "/uploads/baked-wings.jpg"
+        },
+        {
+          "id": "chicken-strips",
+          "name": "Chicken Strips",
+          "desc": "Crispy chicken strips (6 pcs)",
+          "tag": "",
+          "image": "",
+          "price": 850,
+          "popular": false,
+          "spicy": false
         }
       ]
     },
@@ -1371,6 +1405,16 @@
           "popular": false,
           "spicy": true,
           "image": "/uploads/masala-rice.jpeg"
+        },
+        {
+          "id": "chicken-fried-rice",
+          "name": "Chicken Fried Rice",
+          "desc": "Wok-fried rice with tender chicken pieces",
+          "tag": "",
+          "image": "/uploads/garlic-rice.jpeg",
+          "price": 599,
+          "popular": false,
+          "spicy": false
         }
       ]
     },
@@ -1380,7 +1424,7 @@
       "items": [
         {
           "id": "nd-chicken",
-          "name": "Chicken Chomins",
+          "name": "Chicken Chowmins",
           "desc": "Stir-fried noodles with tender chicken and fresh veggies.",
           "price": 899,
           "tag": "Popular",
@@ -1390,7 +1434,7 @@
         },
         {
           "id": "nd-veg",
-          "name": "Vegetable Chomins",
+          "name": "Vegetable Chowmins",
           "desc": "Stir-fried noodles loaded with fresh colourful vegetables.",
           "price": 799,
           "tag": "Veggie",
@@ -1441,6 +1485,72 @@
             }
           ],
           "image": "/uploads/special-soup.jpeg"
+        }
+      ]
+    },
+    {
+      "name": "Cold Drinks",
+      "icon": "🥤",
+      "items": [
+        {
+          "id": "cold-can",
+          "name": "Can (Pepsi/Coke/Fanta)",
+          "desc": "330ml can",
+          "tag": "",
+          "image": "",
+          "price": 130,
+          "popular": false,
+          "spicy": false
+        },
+        {
+          "id": "cold-500ml",
+          "name": "500ml Bottle",
+          "desc": "500ml cold drink",
+          "tag": "",
+          "image": "",
+          "price": 150,
+          "popular": false,
+          "spicy": false
+        },
+        {
+          "id": "cold-1l",
+          "name": "1 Liter Bottle",
+          "desc": "1 liter cold drink",
+          "tag": "",
+          "image": "",
+          "price": 170,
+          "popular": false,
+          "spicy": false
+        },
+        {
+          "id": "cold-1-5l",
+          "name": "1.5 Liter Bottle",
+          "desc": "1.5 liter cold drink",
+          "tag": "Best Value",
+          "image": "",
+          "price": 230,
+          "popular": false,
+          "spicy": false
+        },
+        {
+          "id": "cold-water-lg",
+          "name": "Large Water",
+          "desc": "Large mineral water",
+          "tag": "",
+          "image": "",
+          "price": 130,
+          "popular": false,
+          "spicy": false
+        },
+        {
+          "id": "cold-water-sm",
+          "name": "Small Water",
+          "desc": "Small mineral water",
+          "tag": "",
+          "image": "",
+          "price": 60,
+          "popular": false,
+          "spicy": false
         }
       ]
     },
@@ -2016,114 +2126,124 @@
       "icon": "🎁",
       "items": [
         {
-          "id": "dl-student1",
-          "name": "Student Deal — Pizza",
-          "desc": "1 Medium Pizza with 2NR drink.",
-          "price": 1250,
-          "tag": "Student",
+          "id": "shogal-mela",
+          "name": "Shogal Mela",
+          "desc": "2 Large Pizzas (Regular Flavour) + 4 Zinger Burgers + 1.5L Drink",
+          "tag": "",
+          "image": "/uploads/party-deal.jpeg",
+          "price": 4400,
           "popular": false,
-          "spicy": false,
-          "image": "/uploads/student-deal-pizza.jpeg"
+          "spicy": false
         },
         {
-          "id": "dl-student2",
-          "name": "Student Deal — Burger",
-          "desc": "2 Zinger Burgers with 2NR drink.",
-          "price": 1099,
-          "tag": "Student",
+          "id": "broken-heart",
+          "name": "Broken Heart",
+          "desc": "1 Special Pasta + 1 Small Pizza + 1 Liter Drink",
+          "tag": "",
+          "image": "",
+          "price": 1650,
           "popular": false,
-          "spicy": false,
-          "image": "/uploads/student-deal-burger.jpeg"
+          "spicy": false
         },
         {
-          "id": "dl-doctor",
-          "name": "Doctor Deal",
-          "desc": "1 Large Pizza with 1L drink.",
+          "id": "patchup",
+          "name": "Patchup",
+          "desc": "2 Pcs Breast + Plain Fries Medium + 1 NR Drink",
+          "tag": "",
+          "image": "",
+          "price": 1050,
+          "popular": false,
+          "spicy": false
+        },
+        {
+          "id": "love-special",
+          "name": "Love Special",
+          "desc": "2 Medium Pizzas (Regular Flavour) + 1.5L Drink",
+          "tag": "Popular",
+          "image": "",
+          "price": 2320,
+          "popular": true,
+          "spicy": false
+        },
+        {
+          "id": "kuchu-puchu",
+          "name": "Kuchu Puchu",
+          "desc": "1 Chicken Chowmein + 6 Pcs Nuggets + 1 NR Drink",
+          "tag": "",
+          "image": "",
+          "price": 1300,
+          "popular": false,
+          "spicy": false
+        },
+        {
+          "id": "cutie",
+          "name": "Cutie",
+          "desc": "1 Small Pizza + 1 Zinger Burger (Tikka Roll Paratha) + 6 Wings + 1.5L Drink",
+          "tag": "",
+          "image": "",
+          "price": 2200,
+          "popular": false,
+          "spicy": false
+        },
+        {
+          "id": "food-affair",
+          "name": "Food Affair",
+          "desc": "1 XL Pizza (Regular Flavour) + 1.5L Drink",
+          "tag": "",
+          "image": "",
+          "price": 2300,
+          "popular": false,
+          "spicy": false
+        },
+        {
+          "id": "dosti",
+          "name": "Dosti",
+          "desc": "2 Zinger Burgers + Masala Fries Medium + 1 Liter Drink",
+          "tag": "",
+          "image": "",
+          "price": 1450,
+          "popular": false,
+          "spicy": false
+        },
+        {
+          "id": "paisa-vasool",
+          "name": "Paisa Vasool",
+          "desc": "1 Special Medium Pizza + 1 Special Classic + 1 Thunder Burger + 1.5L Drink",
+          "tag": "Best Value",
+          "image": "",
+          "price": 2550,
+          "popular": true,
+          "spicy": false
+        },
+        {
+          "id": "wrap-star",
+          "name": "Wrap Star",
+          "desc": "2 Wraps (Your Choice) + 2 Mint Margarita",
+          "tag": "",
+          "image": "",
           "price": 1700,
-          "tag": "Solo",
           "popular": false,
-          "spicy": false,
-          "image": "/uploads/doctor-deal.jpeg"
+          "spicy": false
         },
         {
-          "id": "dl-pkaustria",
-          "name": "Pak Austria Deal",
-          "desc": "2 Tikka Rolls, 1 Medium Pizzasta, 1L Drink.",
-          "price": 1999,
-          "tag": "Value",
-          "popular": true,
-          "spicy": false,
-          "image": "/uploads/pak-austria-deal.jpeg"
-        },
-        {
-          "id": "dl-uoh",
-          "name": "University of Haripur Deal",
-          "desc": "2 Zinger Burgers, Medium Pizzasta, 1L Drink.",
-          "price": 2299,
-          "tag": "Value",
+          "id": "wifey-deal",
+          "name": "Wifey Deal",
+          "desc": "1 Special Wrap + 1 Plain Fries + 1 Mint Margarita",
+          "tag": "",
+          "image": "",
+          "price": 1100,
           "popular": false,
-          "spicy": false,
-          "image": "/uploads/uoh-deal.jpeg"
+          "spicy": false
         },
         {
-          "id": "dl-haripur",
-          "name": "Haripur Deal",
-          "desc": "1 Tikka Roll Paratha, 6 Wings Oven Baked, 1 Medium Beef Pizza, BBQ Cheese Wrap, 1L Drink.",
-          "price": 2650,
-          "tag": "Combo",
+          "id": "mini-munchies",
+          "name": "Mini Munchies",
+          "desc": "5 Pcs Broast + Plain Fries Medium + 1 Coke Drink",
+          "tag": "",
+          "image": "",
+          "price": 1950,
           "popular": false,
-          "spicy": false,
-          "image": "/uploads/haripur-deal.jpeg"
-        },
-        {
-          "id": "dl-lawyers",
-          "name": "Lawyers Deal",
-          "desc": "1 Medium Pizzasta, Tikka Roll Paratha, 6 Crispo Wings, 1L Drink.",
-          "price": 2150,
-          "tag": "Combo",
-          "popular": false,
-          "spicy": false,
-          "image": "/uploads/lawyers-deal.jpeg"
-        },
-        {
-          "id": "dl-party",
-          "name": "Party Deal",
-          "desc": "2 Large Pizzas, 6 Wings Oven Baked, 6 Crispo Wings, 2 Classic Thunder Burgers, 2 Zinger Burgers, 3 Tikka Roll Paratha, 1.5L Drink.",
-          "price": 7199,
-          "tag": "Party",
-          "popular": true,
-          "spicy": false,
-          "image": "/uploads/party-deal.jpeg"
-        },
-        {
-          "id": "dl-yari",
-          "name": "Yari Deal",
-          "desc": "1 Med Pizza, 2 Pcs Chicken Broast, 1L Drink.",
-          "price": 1880,
-          "tag": "Friends",
-          "popular": false,
-          "spicy": false,
-          "image": "/uploads/yaari-deal.jpeg"
-        },
-        {
-          "id": "dl-pagal",
-          "name": "Pagal Deal",
-          "desc": "1 Med Pizza, 1 Zinger Burger, Reg Fries, 1L Drink.",
-          "price": 2050,
-          "tag": "Value",
-          "popular": false,
-          "spicy": false,
-          "image": "/uploads/pagal-deal.jpeg"
-        },
-        {
-          "id": "dl-kids",
-          "name": "Kids Deal",
-          "desc": "1 Crispo Patty, 3 Nuggets, Fries, Juice.",
-          "price": 799,
-          "tag": "Kids",
-          "popular": false,
-          "spicy": false,
-          "image": "/uploads/kids-deal.png"
+          "spicy": false
         }
       ]
     }
