@@ -354,28 +354,27 @@ let _fileShas = {}; // stores GitHub SHA for each file (needed for PUT)
 let _isSaving = false;
 
 // ── NETLIFY IDENTITY ─────────────────────────────
+let _identityReady = false;
+
 function openLogin() {
   if (!window.netlifyIdentity) {
-    setLoginStatus('⚠️ Identity not loaded — try refreshing.');
+    setLoginStatus('⚠️ Identity script not loaded — try refreshing.');
     return;
   }
-  setLoginStatus('Opening login…');
+  if (!_identityReady) {
+    setLoginStatus('⏳ Still connecting… wait a moment then try again.');
+    return;
+  }
   netlifyIdentity.open('login');
 }
 
 if (window.netlifyIdentity) {
-  // Explicitly tell the widget which site to connect to.
-  // Auto-detection sometimes fails silently — this fixes it.
-  netlifyIdentity.init({
-    APIUrl: 'https://lovengrill1.netlify.app/.netlify/identity'
-  });
-
   netlifyIdentity.on('init', user => {
+    _identityReady = true;
     if (user) {
       onLogin(user);
     } else {
-      // Widget initialized OK, no current session — show ready state
-      setLoginStatus('');
+      setLoginStatus(''); // ready — clear "Connecting…" message
     }
   });
   netlifyIdentity.on('login', user => {
@@ -392,8 +391,15 @@ if (window.netlifyIdentity) {
     console.error('Netlify Identity error:', err);
     setLoginStatus('⚠️ ' + (err.message || 'Identity error — check Netlify dashboard'));
   });
+
+  // If init hasn't fired after 10 seconds, show a diagnostic message
+  setTimeout(() => {
+    if (!_identityReady) {
+      setLoginStatus('⚠️ Could not connect to Identity service. Check the browser Network tab for a failed request to <code>/.netlify/identity/settings</code>');
+    }
+  }, 10000);
 } else {
-  setLoginStatus('⚠️ Identity not available — open this page at lovengrill.pk/admin');
+  setLoginStatus('⚠️ Identity script not available — open this page at lovengrill.pk/admin or lovengrill1.netlify.app/admin');
 }
 
 async function onLogin(user) {
