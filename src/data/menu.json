@@ -147,15 +147,19 @@
           "image": "/uploads/chicken-fajita.jpg"
         },
         {
-          "spicy": false,
+          "id": "pz-cgold",
           "name": "Cheese Gold",
+          "desc": "Only cheese inside — pure golden cheesy bliss.",
+          "tag": "Cheese Lover",
+          "image": "/uploads/cheese-gold1.jpg",
+          "popular": false,
+          "spicy": false,
           "variants": [
             {
               "label": "Small",
-              "price": 810
+              "price": 550
             }
           ],
-          "desc": "Only cheese inside — pure golden cheesy bliss.",
           "addons": [
             {
               "label": "Extra Chicken",
@@ -199,11 +203,7 @@
                 }
               ]
             }
-          ],
-          "popular": false,
-          "tag": "Cheese Lover",
-          "id": "pz-cgold",
-          "image": "/uploads/cheese-gold1.jpg"
+          ]
         },
         {
           "spicy": true,
