@@ -845,7 +845,7 @@
           "desc": "Our special BBG beef burger — bold, juicy, unforgettable.",
           "addons": [
             {
-              "label": "Extra Base",
+              "label": "Extra Patty",
               "price": 310
             },
             {
@@ -865,7 +865,7 @@
           "desc": "Flame-grilled beef patty with fresh toppings.",
           "addons": [
             {
-              "label": "Extra Base",
+              "label": "Extra Patty",
               "price": 310
             },
             {
@@ -885,7 +885,7 @@
           "desc": "Juicy beef with sautéed mushrooms and creamy sauce.",
           "addons": [
             {
-              "label": "Extra Base",
+              "label": "Extra Patty",
               "price": 310
             },
             {
@@ -905,7 +905,7 @@
           "desc": "Beef patty loaded with jalapeños and spicy sauce.",
           "addons": [
             {
-              "label": "Extra Base",
+              "label": "Extra Patty",
               "price": 310
             },
             {
