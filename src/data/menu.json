@@ -1560,7 +1560,7 @@
       "items": [
         {
           "spicy": false,
-          "price": 350,
+          "price": 445,
           "name": "Americano (Hot)",
           "desc": "Classic rich espresso with hot water — bold and smooth.",
           "addons": [
@@ -1584,7 +1584,7 @@
         },
         {
           "spicy": false,
-          "price": 499,
+          "price": 545,
           "name": "Latte (Hot)",
           "desc": "Espresso with steamed milk — creamy and comforting.",
           "addons": [
@@ -1608,7 +1608,7 @@
         },
         {
           "spicy": false,
-          "price": 399,
+          "price": 545,
           "name": "Cappuccino",
           "desc": "Espresso topped with thick frothy milk foam.",
           "addons": [
@@ -1632,7 +1632,6 @@
         },
         {
           "spicy": false,
-          "price": 399,
           "name": "Espresso",
           "desc": "Pure concentrated espresso shot — intense and rich.",
           "addons": [
@@ -1652,11 +1651,21 @@
           "popular": false,
           "tag": "Hot Coffee",
           "id": "dr-espresso",
-          "image": "/uploads/espresso.jpeg"
+          "image": "/uploads/espresso.jpeg",
+          "variants": [
+            {
+              "label": "Single",
+              "price": 295
+            },
+            {
+              "label": "Double",
+              "price": 395
+            }
+          ]
         },
         {
           "spicy": false,
-          "price": 550,
+          "price": 595,
           "name": "Ice Latte",
           "desc": "Chilled espresso with milk and ice — refreshing pick-me-up.",
           "addons": [
@@ -1680,7 +1689,7 @@
         },
         {
           "spicy": false,
-          "price": 497,
+          "price": 745,
           "name": "Ice Latte (Flavoured)",
           "desc": "Ice latte with caramel, vanilla, or hazelnut flavour.",
           "addons": [
@@ -1758,7 +1767,7 @@
         },
         {
           "spicy": false,
-          "price": 350,
+          "price": 545,
           "name": "Ice Americano / Black",
           "desc": "Cold brew black coffee — bold and refreshing.",
           "addons": [
@@ -1792,7 +1801,7 @@
         },
         {
           "spicy": false,
-          "price": 450,
+          "price": 495,
           "name": "Bubble Tea",
           "desc": "Refreshing iced tea paired with our signature chewy tapioca pearls.",
           "flavors": [
@@ -1814,7 +1823,7 @@
         },
         {
           "spicy": false,
-          "price": 599,
+          "price": 545,
           "name": "Milk Bubble Tea",
           "desc": "A rich, creamy blend of sweetened milk tea and classic boba.",
           "flavors": [
@@ -1852,7 +1861,7 @@
         },
         {
           "spicy": false,
-          "price": 550,
+          "price": 695,
           "name": "Ice-Cream Shakes",
           "desc": "Thick, hand-spun shakes crafted with premium ice cream.",
           "flavors": [
@@ -1871,6 +1880,802 @@
           "id": "dr-icecream-shake",
           "image": "/uploads/icecream-shakes.jpeg",
           "flavorRequired": true
+        },
+        {
+          "id": "dr-cortado",
+          "name": "Cortado",
+          "desc": "Equal parts espresso and warm milk — smooth and bold.",
+          "price": 495,
+          "tag": "Hot Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-affogato",
+          "name": "Affogato",
+          "desc": "Espresso shot poured over a scoop of vanilla ice cream.",
+          "price": 495,
+          "tag": "Hot Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-flatwhite",
+          "name": "Flat White",
+          "desc": "Velvety microfoam milk with a double ristretto — rich and smooth.",
+          "price": 545,
+          "tag": "Hot Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-spanish-latte",
+          "name": "Spanish Latte",
+          "desc": "Sweet condensed milk topped with espresso and steamed milk.",
+          "price": 645,
+          "tag": "Hot Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-caramel-latte",
+          "name": "Caramel Latte",
+          "desc": "Classic latte with rich caramel syrup.",
+          "price": 645,
+          "tag": "Hot Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-vanilla-latte",
+          "name": "Vanilla Latte",
+          "desc": "Smooth latte with sweet vanilla syrup.",
+          "price": 645,
+          "tag": "Hot Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-almond-latte",
+          "name": "Roasted Almond Latte",
+          "desc": "Espresso with steamed milk and roasted almond syrup.",
+          "price": 645,
+          "tag": "Hot Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-hazelnut-latte",
+          "name": "Hazelnut Latte",
+          "desc": "Creamy latte with toasted hazelnut syrup.",
+          "price": 645,
+          "tag": "Hot Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-pumpkin-latte",
+          "name": "Pumpkin Spice Latte",
+          "desc": "Seasonal spiced latte with warm pumpkin flavour.",
+          "price": 645,
+          "tag": "Hot Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-coconut-latte",
+          "name": "Coconut Latte",
+          "desc": "Latte with a tropical twist of coconut syrup.",
+          "price": 645,
+          "tag": "Hot Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-tiramisu-latte",
+          "name": "Tiramisu Latte",
+          "desc": "Inspired by the classic Italian dessert — coffee meets cocoa.",
+          "price": 645,
+          "tag": "Hot Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-irish-latte",
+          "name": "Irish Latte",
+          "desc": "Latte with a bold Irish-inspired flavour profile.",
+          "price": 645,
+          "tag": "Hot Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-iced-cappuccino",
+          "name": "Iced Cappuccino",
+          "desc": "Espresso with cold milk and light froth — chilled to perfection.",
+          "price": 595,
+          "tag": "Cold Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-blue-iced-latte",
+          "name": "Blue Iced Latte",
+          "desc": "Striking blue-tinted iced latte with a sweet floral flavour.",
+          "price": 745,
+          "tag": "Cold Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-spanish-iced-latte",
+          "name": "Spanish Iced Latte",
+          "desc": "Condensed milk layered with espresso and ice — sweet and bold.",
+          "price": 745,
+          "tag": "Cold Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-strawberry-iced-latte",
+          "name": "Strawberry Iced Latte",
+          "desc": "Fruity strawberry syrup blended into a chilled latte.",
+          "price": 745,
+          "tag": "Cold Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-pumpkin-iced-latte",
+          "name": "Pumpkin Spice Iced Latte",
+          "desc": "Cold version of the beloved spiced pumpkin latte.",
+          "price": 745,
+          "tag": "Cold Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-vanilla-iced-latte",
+          "name": "Vanilla Iced Latte",
+          "desc": "Sweet vanilla syrup in a chilled espresso milk blend.",
+          "price": 745,
+          "tag": "Cold Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-caramel-iced-latte",
+          "name": "Caramel Iced Latte",
+          "desc": "Rich caramel poured into a perfectly chilled latte.",
+          "price": 745,
+          "tag": "Cold Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-hazelnut-iced-latte",
+          "name": "Hazelnut Iced Latte",
+          "desc": "Hazelnut syrup with espresso and cold milk over ice.",
+          "price": 745,
+          "tag": "Cold Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-almond-iced-latte",
+          "name": "Roasted Almond Iced Latte",
+          "desc": "Nutty roasted almond flavour in a chilled latte.",
+          "price": 745,
+          "tag": "Cold Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-coconut-iced-latte",
+          "name": "Coconut Iced Latte",
+          "desc": "Tropical coconut syrup meets cold espresso milk.",
+          "price": 745,
+          "tag": "Cold Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-tiramisu-iced-latte",
+          "name": "Tiramisu Iced Latte",
+          "desc": "Cold tiramisu-inspired latte with cocoa notes.",
+          "price": 745,
+          "tag": "Cold Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-mocha-choc",
+          "name": "Mocha Chocolate",
+          "desc": "Bold espresso blended with rich chocolate and cold milk.",
+          "price": 745,
+          "tag": "Cold Coffee",
+          "popular": false,
+          "spicy": false,
+          "image": "",
+          "addons": [
+            {
+              "label": "Extra pump of Caramel",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Hazelnut",
+              "price": 120
+            },
+            {
+              "label": "Extra pump of Vanilla",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dr-frappe-vanilla",
+          "name": "Vanilla Frappe",
+          "desc": "Blended vanilla frappe — creamy, cold, and irresistible.",
+          "price": 845,
+          "tag": "Frappe",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-frappe-caramel",
+          "name": "Caramel Frappe",
+          "desc": "Caramel-blended frappe topped with whipped cream.",
+          "price": 845,
+          "tag": "Frappe",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-frappe-choc",
+          "name": "Chocolate Frappe",
+          "desc": "Rich chocolate frappe — deeply indulgent.",
+          "price": 845,
+          "tag": "Frappe",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-frappe-hazelnut",
+          "name": "Hazelnut Frappe",
+          "desc": "Nutty hazelnut blended frappe with a creamy finish.",
+          "price": 845,
+          "tag": "Frappe",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-frappe-oreo",
+          "name": "Oreo Frappe",
+          "desc": "Cookies-and-cream frappe blended with Oreo crumble.",
+          "price": 845,
+          "tag": "Frappe",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-shake-cnc",
+          "name": "Cookies and Cream Shake",
+          "desc": "Thick shake packed with cookies-and-cream goodness.",
+          "price": 695,
+          "tag": "Shakes",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-shake-lotus",
+          "name": "Lotus Cream Shake",
+          "desc": "Indulgent shake made with smooth Lotus Biscoff cream.",
+          "price": 695,
+          "tag": "Shakes",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-shake-nutella",
+          "name": "Nutella Yum Shake",
+          "desc": "Creamy Nutella blended into a thick hand-spun shake.",
+          "price": 695,
+          "tag": "Shakes",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-shake-pista",
+          "name": "Pistachio Shake",
+          "desc": "Premium pistachio flavoured thick shake.",
+          "price": 695,
+          "tag": "Shakes",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-smoothie-seasonal",
+          "name": "Seasonal Fruit Smoothie",
+          "desc": "Fresh blended seasonal fruits — refreshing and natural.",
+          "price": 895,
+          "tag": "Smoothies",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-frosty-blue-eye",
+          "name": "Blue Eye King",
+          "desc": "A vibrant, eye-catching frosty mocktail.",
+          "price": 545,
+          "tag": "Frosty Bar",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-frosty-flirt",
+          "name": "Frosty Flirt",
+          "desc": "A playful and refreshing blended frosty drink.",
+          "price": 545,
+          "tag": "Frosty Bar",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-frosty-berries",
+          "name": "Naughty Berries",
+          "desc": "Mixed berry frosty with a bold tangy punch.",
+          "price": 545,
+          "tag": "Frosty Bar",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-frosty-apple",
+          "name": "Apple Breeze",
+          "desc": "Cool apple-infused frosty mocktail.",
+          "price": 545,
+          "tag": "Frosty Bar",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-frosty-strawberry-park",
+          "name": "Strawberries Park",
+          "desc": "Strawberry frosty — sweet, bold, and refreshing.",
+          "price": 545,
+          "tag": "Frosty Bar",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-frosty-mint-glacier",
+          "name": "Mint Glacier",
+          "desc": "Icy mint frosty with a clean refreshing finish.",
+          "price": 495,
+          "tag": "Frosty Bar",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-matcha-iced",
+          "name": "Iced Matcha",
+          "desc": "Premium ceremonial matcha over ice with milk.",
+          "price": 645,
+          "tag": "Matcha",
+          "popular": true,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-matcha-strawberry",
+          "name": "Strawberry Matcha",
+          "desc": "Matcha layered with sweet strawberry — vibrant and refreshing.",
+          "price": 795,
+          "tag": "Matcha",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-matcha-mango",
+          "name": "Mango Matcha",
+          "desc": "Tropical mango meets the earthy depth of matcha.",
+          "price": 795,
+          "tag": "Matcha",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-matcha-blueberry",
+          "name": "Blueberry Matcha",
+          "desc": "Antioxidant-rich blueberry and matcha fusion.",
+          "price": 795,
+          "tag": "Matcha",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-matcha-apple",
+          "name": "Apple Matcha",
+          "desc": "Crisp apple flavour blended with smooth matcha.",
+          "price": 795,
+          "tag": "Matcha",
+          "popular": false,
+          "spicy": false,
+          "image": ""
+        },
+        {
+          "id": "dr-matcha-hot",
+          "name": "Hot Matcha",
+          "desc": "Classic warm matcha latte — earthy, smooth, comforting.",
+          "price": 546,
+          "tag": "Matcha",
+          "popular": false,
+          "spicy": false,
+          "image": ""
         }
       ]
     },

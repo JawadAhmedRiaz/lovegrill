@@ -527,6 +527,19 @@
       color: var(--muted);
       word-break: break-all;
     }
+
+    /* ── ADD-ONS EDITOR ── */
+    .addon-list { display: flex; flex-direction: column; gap: 10px; }
+    .addon-row {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+    .addon-row-head { display: grid; grid-template-columns: 1fr 100px 36px; gap: 7px; align-items: center; margin-bottom: 6px; }
+    .addon-vp-list { display: flex; flex-direction: column; gap: 5px; padding-left: 8px; border-left: 2px solid var(--border); margin-top: 6px; }
+    .addon-vp-row  { display: grid; grid-template-columns: 1fr 100px 36px; gap: 7px; align-items: center; }
+    .addon-section-label { font-size: 0.6rem; color: var(--muted); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; }
   </style>
 </head>
 <body>
@@ -638,7 +651,8 @@ let catIdx   = 0;
 let _catIdx  = null;
 let _itemIdx = null;
 let _variants = [];
-let _imageFiles = {}; // filename → objectURL (persists between modal opens)
+let _addons   = []; // { label, price, variantPrices: [{label,price}] }
+let _imageFiles = {}; // filename -> objectURL (persists between modal opens)
 
 // ── ROUTING ─────────────────────────────────────
 const TITLES = {
@@ -1016,6 +1030,7 @@ function openAdd(ci) {
 function fillModal(item) {
   const hasV = !!(item.variants && item.variants.length);
   _variants  = hasV ? JSON.parse(JSON.stringify(item.variants)) : [];
+  _addons    = (item.addons && item.addons.length) ? JSON.parse(JSON.stringify(item.addons)) : [];
   const mode = hasV ? 'variants' : 'flat';
 
   setHtml('modal-body', `
@@ -1071,6 +1086,18 @@ function fillModal(item) {
 
     <hr class="divider" />
 
+    <!-- ADD-ONS EDITOR -->
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <label class="form-label" style="margin:0;">&#x2795; Add-ons / Extras</label>
+        <button class="btn btn-secondary btn-sm" onclick="addAddon()">&#xFF0B; Add Add-on</button>
+      </div>
+      <div class="form-hint" style="margin-bottom:10px;">Optional extras shown when the customer views this item. Use &ldquo;Flat Price&rdquo; for a single price (e.g. Extra Base = Rs. 310). Use &ldquo;Variant Prices&rdquo; when the price depends on the item size (e.g. Extra Cheese on a pizza).</div>
+      <div class="addon-list" id="m-addon-list"></div>
+    </div>
+
+    <hr class="divider" />
+
     <div class="toggle-row">
       <div>
         <div class="toggle-label">&#x1F525; Popular</div>
@@ -1093,6 +1120,7 @@ function fillModal(item) {
     </div>`);
 
   renderVariants();
+  renderAddons();
   updateImgPreview();
 }
 
@@ -1122,6 +1150,89 @@ function renderVariants() {
 function addVariant()     { _variants.push({label:'',price:''}); renderVariants(); }
 function removeVariant(i) { _variants.splice(i,1); renderVariants(); }
 
+// ── ADD-ONS EDITOR ───────────────────────────────
+function renderAddons() {
+  const list = document.getElementById('m-addon-list');
+  if (!list) return;
+
+  if (!_addons.length) {
+    list.innerHTML = '<div style="font-size:0.78rem;color:var(--muted);padding:8px 0;">No add-ons yet. Click &ldquo;+ Add Add-on&rdquo; to add one.</div>';
+    return;
+  }
+
+  list.innerHTML = _addons.map((ao, ai) => {
+    const hasVP = ao.variantPrices && ao.variantPrices.length > 0;
+    const vpRows = hasVP ? ao.variantPrices.map((vp, vi) => `
+      <div class="addon-vp-row">
+        <input class="form-input" placeholder="Matches variant label (e.g. Small)"
+          value="${esc(vp.label||'')}" oninput="_addons[${ai}].variantPrices[${vi}].label=this.value" />
+        <input class="form-input" type="number" min="0" placeholder="Price"
+          value="${vp.price!==''?vp.price:''}" oninput="_addons[${ai}].variantPrices[${vi}].price=Number(this.value)" />
+        <button class="btn btn-danger btn-sm" onclick="removeAddonVP(${ai},${vi})"
+          style="height:37px;width:36px;padding:0;justify-content:center;">&#x2715;</button>
+      </div>`).join('') : '';
+
+    return `
+      <div class="addon-row">
+        <div class="addon-row-head">
+          <input class="form-input" placeholder="Add-on label (e.g. Extra Cheese)"
+            value="${esc(ao.label||'')}" oninput="_addons[${ai}].label=this.value" />
+          <input class="form-input" type="number" min="0" placeholder="Flat Rs."
+            value="${ao.price!=null&&ao.price!==''?ao.price:''}"
+            oninput="_addons[${ai}].price=(this.value===''?undefined:Number(this.value))"
+            title="Flat price — leave empty if using Variant Prices below" />
+          <button class="btn btn-danger btn-sm" onclick="removeAddon(${ai})"
+            style="height:37px;width:36px;padding:0;justify-content:center;">&#x2715;</button>
+        </div>
+        <div class="addon-section-label">Variant Prices (optional — per size)</div>
+        <div class="addon-vp-list" id="ao-vp-${ai}">
+          ${vpRows}
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="addAddonVP(${ai})" style="margin-top:6px;font-size:0.72rem;">&#xFF0B; Add Variant Price</button>
+      </div>`;
+  }).join('');
+}
+
+function addAddon() {
+  _addons.push({ label: '', price: undefined, variantPrices: [] });
+  renderAddons();
+}
+
+function removeAddon(i) {
+  _addons.splice(i, 1);
+  renderAddons();
+}
+
+function addAddonVP(ai) {
+  if (!_addons[ai].variantPrices) _addons[ai].variantPrices = [];
+  _addons[ai].variantPrices.push({ label: '', price: '' });
+  renderAddons();
+}
+
+function removeAddonVP(ai, vi) {
+  _addons[ai].variantPrices.splice(vi, 1);
+  renderAddons();
+}
+
+function collectAddons() {
+  // Sync any last-typed values from DOM to _addons
+  (_addons || []).forEach((ao, ai) => {
+    const headInputs = document.querySelectorAll(`#m-addon-list .addon-row:nth-child(${ai+1}) .addon-row-head input`);
+    if (headInputs.length >= 2) {
+      ao.label = headInputs[0].value;
+      const pv = headInputs[1].value;
+      ao.price = pv === '' ? undefined : Number(pv);
+    }
+    (ao.variantPrices || []).forEach((vp, vi) => {
+      const vpInputs = document.querySelectorAll(`#ao-vp-${ai} .addon-vp-row:nth-child(${vi+1}) input`);
+      if (vpInputs.length >= 2) {
+        vp.label = vpInputs[0].value;
+        vp.price = Number(vpInputs[1].value);
+      }
+    });
+  });
+}
+
 function saveItem() {
   const val = id => { const el=document.getElementById(id); return el?el.value.trim():''; };
   const chk = id => { const el=document.getElementById(id); return el?el.checked:false; };
@@ -1130,6 +1241,21 @@ function saveItem() {
   if (!name) { toast('Item name is required','err'); return; }
 
   const mode = document.getElementById('m-mode')?.value||'flat';
+
+  // Collect add-ons from editor
+  collectAddons();
+  const cleanAddons = (_addons || [])
+    .filter(ao => ao.label && ao.label.trim())
+    .map(ao => {
+      const out = { label: ao.label.trim() };
+      if (ao.price != null && ao.price !== '' && !isNaN(ao.price)) out.price = Number(ao.price);
+      if (ao.variantPrices && ao.variantPrices.length) {
+        out.variantPrices = ao.variantPrices
+          .filter(vp => vp.label && vp.label.trim())
+          .map(vp => ({ label: vp.label.trim(), price: Number(vp.price)||0 }));
+      }
+      return out;
+    });
 
   const item = {
     id:      _itemIdx!==null
@@ -1160,9 +1286,17 @@ function saveItem() {
     item.variants=_variants.filter(v=>v.label||v.price);
   }
 
+  // Preserve other fields from original (flavors, flavorRequired, etc.)
   if (_itemIdx!==null) {
     const orig=S.menu.categories[_catIdx].items[_itemIdx];
-    if (orig.addons) item.addons=orig.addons; // preserve add-ons
+    if (orig.flavors)        item.flavors        = orig.flavors;
+    if (orig.flavorRequired) item.flavorRequired = orig.flavorRequired;
+  }
+
+  // Save add-ons (always — even if empty array, to allow clearing)
+  if (cleanAddons.length) item.addons = cleanAddons;
+
+  if (_itemIdx!==null) {
     S.menu.categories[_catIdx].items[_itemIdx]=item;
     toast('"'+name+'" updated','ok');
   } else {
